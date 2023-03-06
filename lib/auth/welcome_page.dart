@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../delayed_animation.dart';
-import 'social_page.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -62,7 +61,7 @@ class WelcomePage extends StatelessWidget {
                     ),
                     child: Text('COMMENCER'),
                     onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => SocialPage(),));
+                      // Navigator.push(context, MaterialPageRoute(builder: (context) => SocialPage(),));
                     },
                   ),
                 ),

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lebonberger/home/welcome_page.dart';
-import 'package:lebonberger/screens/membres/navbar_membre.dart';
-import 'package:lebonberger/screens/membres/home_page.dart';
+import 'package:lebonberger/auth/welcome_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +13,7 @@ class MyApp extends StatelessWidget {
     return  const MaterialApp(
       title: 'Le Bon Berger',
       debugShowCheckedModeBanner: false,
-       home: WelcomePage()
+       home: WelcomePage ()
       // Scaffold(
       //   //drawer: WelcomeMembre(),
       //   appBar: AppBar(
