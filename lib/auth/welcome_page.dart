@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lebonberger/routes/app.routes.dart';
 import '../delayed_animation.dart';
+import 'package:get/get.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -38,14 +40,11 @@ class WelcomePage extends StatelessWidget {
                     top: 30,
                     bottom: 20,
                   ),
-                  child:  Text(
+                  child: Text(
                     "L'Eternet est mon berger. Je ne manquerai de rien",
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(
-                      color: Colors.green,
-                      fontSize: 16
-                    ),
-
+                    style:
+                        GoogleFonts.poppins(color: Colors.green, fontSize: 16),
                   ),
                 ),
               ),
@@ -60,8 +59,8 @@ class WelcomePage extends StatelessWidget {
                       padding: EdgeInsets.all(13),
                     ),
                     child: Text('COMMENCER'),
-                    onPressed: (){
-                      // Navigator.push(context, MaterialPageRoute(builder: (context) => SocialPage(),));
+                    onPressed: () {
+                      Get.toNamed(AppRoutes.login);
                     },
                   ),
                 ),
