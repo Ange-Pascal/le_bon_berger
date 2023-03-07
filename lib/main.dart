@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:lebonberger/auth/welcome_page.dart';
 
 void main() {
@@ -10,18 +11,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const MaterialApp(
+    return GetMaterialApp(
       title: 'Le Bon Berger',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
       debugShowCheckedModeBanner: false,
-       home: WelcomePage ()
-      // Scaffold(
-      //   //drawer: WelcomeMembre(),
-      //   appBar: AppBar(
-      //     toolbarHeight: 100,
-      //     title: const Text('Le Bon Berger'),
-      //   ),
-      //   body: Center(), 
-      // ),
+      home: WelcomePage(),
+      getPages: [],
     );
   }
 }
