@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lebonberger/routes/app.routes.dart';
 import '../delayed_animation.dart';
 import '../main.dart';
 
@@ -170,18 +172,13 @@ class _LoginFormState extends State<LoginForm> {
                   ),
                 ),
                 onPressed: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => MyApp(),
-                  //   ),
-                  // );
+                  Get.toNamed(AppRoutes.membre);
 
-                  if (_formKey.currentState!.validate()) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('processing data')),
-                    );
-                  }
+                  // if (_formKey.currentState!.validate()) {
+                  //   ScaffoldMessenger.of(context).showSnackBar(
+                  //     const SnackBar(content: Text('processing data')),
+                  //   );
+                  // }
                 },
               ),
             ),
