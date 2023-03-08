@@ -3,16 +3,13 @@ import 'package:flutter/material.dart';
 class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color backgroundColor = const Color.fromRGBO(24, 97, 44, 1);
   final Text title;
-  final AppBar appBar;
-  final List<Widget> widgets;
 
   /// you can add more fields that meet your needs
 
-  const BaseAppBar(
-      {super.key,
-      required this.title,
-      required this.appBar,
-      required this.widgets});
+  const BaseAppBar({
+    super.key,
+    required this.title,
+  });
 
   @override
   Widget build(BuildContext context) {

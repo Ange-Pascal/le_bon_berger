@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:lebonberger/auth/login_page.dart';
+import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:lebonberger/membres/MembreScreen.dart';
 import 'package:lebonberger/routes/app.routes.dart';
 
@@ -12,6 +13,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.membre,
       page: () => MembreScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.dashboard,
+      page: () => DashBoardScreen(),
     )
   ];
 }
