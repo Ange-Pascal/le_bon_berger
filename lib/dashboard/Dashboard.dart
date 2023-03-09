@@ -17,7 +17,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     return const Scaffold(
       appBar: BaseAppBar(title: Text('Tablaeu de bord')),
       body: Center(
-        child: Text("tableau de bord"),
+        child: Text("Tableau de bord"),
       ),
       drawer: AppDrawer(),
     );
