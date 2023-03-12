@@ -3,6 +3,7 @@ import 'package:lebonberger/auth/login_page.dart';
 import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:lebonberger/membres/MembreScreen.dart';
 import 'package:lebonberger/membres/add-membre.dart';
+import 'package:lebonberger/membres/membre-detail.dart';
 import 'package:lebonberger/routes/app.routes.dart';
 
 class AppPages {
@@ -22,6 +23,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.addMembre,
       page: () => AddMembre(),
+    ),
+    GetPage(
+      name: AppRoutes.DetailsMembre,
+      page: () => MembreDetail(),
     )
   ];
 }

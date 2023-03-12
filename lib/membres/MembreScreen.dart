@@ -18,7 +18,7 @@ class _MembreScreenState extends State<MembreScreen> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
+  static List<Widget> _widgetOptions = <Widget>[
     MembreListeScreen(),
     Text(
       'Index 1: Business',

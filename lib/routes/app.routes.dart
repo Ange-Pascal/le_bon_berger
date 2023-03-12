@@ -3,4 +3,5 @@ class AppRoutes {
   static const membre = '/membre';
   static const dashboard = '/dashboard';
   static const addMembre = '/add-membre';
+  static const DetailsMembre = '/details-membre';
 }
