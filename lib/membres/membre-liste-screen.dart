@@ -55,8 +55,9 @@ class MembreListeScreen extends StatelessWidget {
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
-                                subtitle: Text(
-                                    '${controller.membres[index].departement.nomDepartement}'),
+                                subtitle: Text('Nom departement'),
+                                // Text(
+                                //     '${controller.membres[index].departement.nomDepartement}'),
                                 leading: Image.asset(
                                     "assets/images/lebonberger.jpeg"),
                                 trailing: Ink(

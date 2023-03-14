@@ -144,7 +144,8 @@ class DataSearch extends SearchDelegate<dynamic> {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                subtitle: Text('${result[index].departement.nomDepartement}'),
+                subtitle: Text('Nom departement'),
+                // Text('${result[index].departement.nomDepartement}'),
                 leading: Image.asset(defaultImage),
                 trailing: Ink(
                   decoration: const ShapeDecoration(

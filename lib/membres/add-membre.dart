@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
+import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:im_stepper/stepper.dart';
 import 'package:intl/intl.dart';
+import 'package:lebonberger/cellules/controller/cellule.controller.dart';
 import 'package:lebonberger/delayed_animation.dart';
+import 'package:lebonberger/membres/controller/membre.controller.dart';
 
 class AddMembre extends StatefulWidget {
   const AddMembre({super.key});
@@ -15,9 +19,9 @@ class AddMembre extends StatefulWidget {
 
 class _AddMembreState extends State<AddMembre> {
   /// ADDED THESE THREE VARIABLES
-  final _formKey = GlobalKey<FormState>();
-  List<String> civilite = <String>['Monsieur', 'Madame', 'Mademoiselle'];
-  List<String> sexe = <String>['Masculin', 'Féminin'];
+
+  MembreController controller = Get.put(MembreController());
+
   List<String> classAge = <String>['Enfants', 'Adolescents', 'Adultes'];
   List<String> Maison = <String>['Maison 1', 'Maison 2', 'Maison 3'];
   List<String> Cellule = <String>['Cellule 1', 'Cellule 2', 'Cellule 3'];
@@ -30,24 +34,6 @@ class _AddMembreState extends State<AddMembre> {
 
   bool goNext = false;
   bool goPrevious = false;
-
-  Widget info(int index) {
-    switch (index) {
-      case 0:
-        return BlochFormWidget1(civilite: civilite, sexe: sexe);
-      case 1:
-        return BlochFormWidget2();
-      case 2:
-        return BlochFormWidget3(
-            classAge: classAge,
-            maison: Maison,
-            cellule: Cellule,
-            departement: Departement);
-      // Here, default corresponds to the index value = 0.
-      default:
-        return BlochFormWidget1(civilite: civilite, sexe: sexe);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,8 +76,591 @@ class _AddMembreState extends State<AddMembre> {
                         alignment: Alignment.centerLeft,
                         padding: EdgeInsets.all(5),
                         child: Form(
-                          key: _formKey,
-                          child: Container(child: info(index)),
+                          key: controller.formkey,
+                          child: Container(
+                            child: index == 0
+                                ? Container(
+                                    child: Column(
+                                      children: [
+                                        DelayedAnimation(
+                                          delay: 500,
+                                          child: Container(
+                                            width: double.infinity,
+                                            height: 60,
+                                            child: Obx(
+                                              () => DropdownButton(
+                                                hint: Text('Civilité'),
+                                                value: controller
+                                                            .selected.value ==
+                                                        ""
+                                                    ? null
+                                                    : controller.selected.value,
+                                                items: controller.civilite
+                                                    .map(
+                                                        (e) => DropdownMenuItem(
+                                                              child: Text(e),
+                                                              value: e,
+                                                            ))
+                                                    .toList(),
+                                                onChanged: (val) {
+                                                  controller.setSelected(val);
+                                                },
+                                                isExpanded: true,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        DelayedAnimation(
+                                          delay: 500,
+                                          child: TextFormField(
+                                            controller:
+                                                controller.nomcontroller,
+                                            decoration: InputDecoration(
+                                              labelText: 'Nom',
+                                              icon: Icon(Icons.person),
+                                              labelStyle: TextStyle(
+                                                color: Colors.grey[400],
+                                              ),
+                                            ),
+                                            onSaved: (newValue) {
+                                              print(newValue);
+                                              controller.nom = newValue!;
+                                            },
+                                          ),
+                                        ),
+                                        DelayedAnimation(
+                                          delay: 500,
+                                          child: TextFormField(
+                                            controller:
+                                                controller.prenomcontroller,
+                                            decoration: InputDecoration(
+                                              labelText: 'Prénom(s)',
+                                              icon: Icon(Icons.person),
+                                              labelStyle: TextStyle(
+                                                color: Colors.grey[400],
+                                              ),
+                                            ),
+                                            onSaved: (newValue) {
+                                              controller.prenom = newValue!;
+                                            },
+                                          ),
+                                        ),
+                                        DelayedAnimation(
+                                          delay: 500,
+                                          child: TextFormField(
+                                            controller:
+                                                controller.telephonecontroller,
+                                            decoration: InputDecoration(
+                                              labelText: 'Téléphone',
+                                              icon: Icon(Icons.phone),
+                                              labelStyle: TextStyle(
+                                                color: Colors.grey[400],
+                                              ),
+                                            ),
+                                            onSaved: (newValue) {
+                                              controller.telephone = newValue!;
+                                            },
+                                          ),
+                                        ),
+                                        DelayedAnimation(
+                                          delay: 500,
+                                          child: TextFormField(
+                                            keyboardType:
+                                                TextInputType.emailAddress,
+                                            controller:
+                                                controller.emailcontroller,
+                                            decoration: InputDecoration(
+                                              labelText: 'Email',
+                                              icon: Icon(Icons.email),
+                                              labelStyle: TextStyle(
+                                                color: Colors.grey[400],
+                                              ),
+                                            ),
+                                            onSaved: (newValue) {
+                                              controller.email = newValue!;
+                                            },
+                                          ),
+                                        ),
+                                        DelayedAnimation(
+                                          delay: 500,
+                                          child: Container(
+                                            width: double.infinity,
+                                            height: 60,
+                                            child: Obx(
+                                              () => DropdownButton(
+                                                hint: Text('Sexe'),
+                                                value: controller.selectedSexe
+                                                            .value ==
+                                                        ""
+                                                    ? null
+                                                    : controller
+                                                        .selectedSexe.value,
+                                                items: controller.sexe
+                                                    .map(
+                                                        (e) => DropdownMenuItem(
+                                                              child: Text(e),
+                                                              value: e,
+                                                            ))
+                                                    .toList(),
+                                                onChanged: (val) {
+                                                  controller
+                                                      .setSelectedSexe(val);
+                                                },
+                                                isExpanded: true,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        DelayedAnimation(
+                                          delay: 500,
+                                          child: TextFormField(
+                                            controller:
+                                                controller.datenaisscontroller,
+                                            decoration: InputDecoration(
+                                              labelText: 'Date de naissance',
+                                              icon: Icon(Icons.calendar_today),
+                                              labelStyle: TextStyle(
+                                                color: Colors.grey[400],
+                                              ),
+                                            ),
+                                            readOnly: true,
+                                            onSaved: (newValue) {
+                                              controller.datenaiss = newValue!;
+                                            },
+                                            onTap: () async {
+                                              DateTime? pickedDate =
+                                                  await showDatePicker(
+                                                      context: context,
+                                                      initialDate:
+                                                          DateTime.now(),
+                                                      firstDate: DateTime(
+                                                          2000), //DateTime.now() - not to allow to choose before today.
+                                                      lastDate: DateTime(2101));
+
+                                              if (pickedDate != null) {
+                                                String formattedDate =
+                                                    DateFormat('dd-MM-yyyy')
+                                                        .format(pickedDate);
+
+                                                controller.datenaisscontroller
+                                                    .text = formattedDate;
+                                              } else {
+                                                print("Date is not selected");
+                                              }
+                                            },
+                                          ),
+                                        ),
+                                        DelayedAnimation(
+                                          delay: 500,
+                                          child: TextFormField(
+                                            controller:
+                                                controller.professioncontroller,
+                                            decoration: InputDecoration(
+                                              labelText: 'Profession',
+                                              icon: Icon(Icons.work),
+                                              labelStyle: TextStyle(
+                                                color: Colors.grey[400],
+                                              ),
+                                            ),
+                                            onSaved: (newValue) {
+                                              controller.profession = newValue!;
+                                            },
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                : index == 1
+                                    ? Container(
+                                        child: Column(
+                                          children: [
+                                            SizedBox(height: 10),
+                                            DelayedAnimation(
+                                              delay: 500,
+                                              child: Container(
+                                                height: 120,
+                                                width: 150,
+                                                decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                    color: Color.fromARGB(
+                                                        255, 226, 225, 225),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            DelayedAnimation(
+                                              delay: 500,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  primary: Color.fromARGB(
+                                                      255, 226, 225, 225),
+                                                  elevation: 0,
+                                                ),
+                                                onPressed: () {},
+                                                child: const Text(
+                                                  'Choisir une Photo',
+                                                  style: TextStyle(
+                                                    fontFamily: 'Poppins',
+                                                    color: Colors.black,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(height: 10),
+                                            DelayedAnimation(
+                                              delay: 500,
+                                              child: TextFormField(
+                                                controller: controller
+                                                    .situationcontroller,
+                                                decoration: InputDecoration(
+                                                  labelText:
+                                                      'Situation Matrimoniale',
+                                                  icon: Icon(Icons.description),
+                                                  labelStyle: TextStyle(
+                                                    color: Colors.grey[400],
+                                                  ),
+                                                ),
+                                                onSaved: (newValue) {
+                                                  controller.situation =
+                                                      newValue!;
+                                                },
+                                              ),
+                                            ),
+                                            DelayedAnimation(
+                                              delay: 500,
+                                              child: TextFormField(
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                controller:
+                                                    controller.enfantcontroller,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Nombre Enfants',
+                                                  icon: Icon(Icons.person),
+                                                  labelStyle: TextStyle(
+                                                    color: Colors.grey[400],
+                                                  ),
+                                                ),
+                                                onSaved: (newValue) {
+                                                  controller.nbrenfants =
+                                                      newValue!;
+                                                },
+                                              ),
+                                            ),
+                                            DelayedAnimation(
+                                              delay: 500,
+                                              child: TextFormField(
+                                                controller: controller
+                                                    .conversioncontroller,
+                                                decoration: InputDecoration(
+                                                  labelText:
+                                                      'Année de convertion',
+                                                  icon: Icon(
+                                                      Icons.calendar_today),
+                                                  labelStyle: TextStyle(
+                                                    color: Colors.grey[400],
+                                                  ),
+                                                ),
+                                                readOnly: true,
+                                                onSaved: (newValue) {
+                                                  controller.anneeconversion =
+                                                      newValue!;
+                                                },
+                                                onTap: () async {
+                                                  DateTime? pickedDate =
+                                                      await showDatePicker(
+                                                          context: context,
+                                                          initialDate:
+                                                              DateTime.now(),
+                                                          firstDate: DateTime(
+                                                              2000), //DateTime.now() - not to allow to choose before today.
+                                                          lastDate:
+                                                              DateTime(2101));
+
+                                                  if (pickedDate != null) {
+                                                    String formattedDate =
+                                                        DateFormat('dd-MM-yyyy')
+                                                            .format(pickedDate);
+                                                    controller
+                                                        .conversioncontroller
+                                                        .text = formattedDate;
+                                                  } else {
+                                                    print(
+                                                        "Date is not selected");
+                                                  }
+                                                },
+                                              ),
+                                            ),
+                                            DelayedAnimation(
+                                              delay: 500,
+                                              child: TextFormField(
+                                                controller: controller
+                                                    .baptemeeaucontroller,
+                                                decoration: InputDecoration(
+                                                  labelText:
+                                                      'Année de bapteme d\'eau',
+                                                  icon: Icon(
+                                                      Icons.calendar_today),
+                                                  labelStyle: TextStyle(
+                                                    color: Colors.grey[400],
+                                                  ),
+                                                ),
+                                                onSaved: (newValue) {
+                                                  controller.baptemeeau =
+                                                      newValue!;
+                                                },
+                                                readOnly: true,
+                                                onTap: () async {
+                                                  DateTime? pickedDate =
+                                                      await showDatePicker(
+                                                          context: context,
+                                                          initialDate:
+                                                              DateTime.now(),
+                                                          firstDate: DateTime(
+                                                              2000), //DateTime.now() - not to allow to choose before today.
+                                                          lastDate:
+                                                              DateTime(2101));
+
+                                                  if (pickedDate != null) {
+                                                    String formattedDate =
+                                                        DateFormat('dd-MM-yyyy')
+                                                            .format(pickedDate);
+
+                                                    controller
+                                                        .baptemeeaucontroller
+                                                        .text = formattedDate;
+                                                  } else {
+                                                    print(
+                                                        "Date is not selected");
+                                                  }
+                                                },
+                                              ),
+                                            ),
+                                            DelayedAnimation(
+                                              delay: 500,
+                                              child: TextFormField(
+                                                controller: controller
+                                                    .baptemeespritcontroller,
+                                                decoration: InputDecoration(
+                                                  labelText:
+                                                      'Année de bapoteme du  Saint-Esprit',
+                                                  icon: Icon(
+                                                      Icons.calendar_today),
+                                                  labelStyle: TextStyle(
+                                                    color: Colors.grey[400],
+                                                  ),
+                                                ),
+                                                onSaved: (newValue) {
+                                                  controller.baptemeesprit =
+                                                      newValue!;
+                                                },
+                                                readOnly: true,
+                                                onTap: () async {
+                                                  DateTime? pickedDate =
+                                                      await showDatePicker(
+                                                          context: context,
+                                                          initialDate:
+                                                              DateTime.now(),
+                                                          firstDate: DateTime(
+                                                              2000), //DateTime.now() - not to allow to choose before today.
+                                                          lastDate:
+                                                              DateTime(2101));
+
+                                                  if (pickedDate != null) {
+                                                    String formattedDate =
+                                                        DateFormat('dd-MM-yyyy')
+                                                            .format(pickedDate);
+
+                                                    controller
+                                                        .baptemeespritcontroller
+                                                        .text = formattedDate;
+                                                  } else {
+                                                    print(
+                                                        "Date is not selected");
+                                                  }
+                                                },
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    : Container(
+                                        child: Column(
+                                          children: [
+                                            DelayedAnimation(
+                                              delay: 500,
+                                              child: Container(
+                                                width: double.infinity,
+                                                height: 60,
+                                                child: Obx(
+                                                  () => DropdownButton(
+                                                    hint: Text('Classe d\'âge'),
+                                                    value: controller
+                                                                .selectedClassAge ==
+                                                            ""
+                                                        ? null
+                                                        : controller
+                                                            .selectedClassAge
+                                                            .value,
+                                                    items: controller.classage
+                                                        .map((e) =>
+                                                            DropdownMenuItem(
+                                                              child: Text(e),
+                                                              value: e,
+                                                            ))
+                                                        .toList(),
+                                                    onChanged: (val) {
+                                                      controller
+                                                          .setSelectedClassAge(
+                                                              val);
+                                                    },
+                                                    isExpanded: true,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            DelayedAnimation(
+                                              delay: 500,
+                                              child: TextFormField(
+                                                controller: controller
+                                                    .personcontactcontroller,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Personne Contact',
+                                                  icon: Icon(Icons.person),
+                                                  labelStyle: TextStyle(
+                                                    color: Colors.grey[400],
+                                                  ),
+                                                ),
+                                                onSaved: (newValue) {
+                                                  controller.personcontact =
+                                                      newValue!;
+                                                },
+                                              ),
+                                            ),
+                                            DelayedAnimation(
+                                              delay: 500,
+                                              child: TextFormField(
+                                                controller: controller
+                                                    .datedecisioncontroller,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Date decision',
+                                                  icon: Icon(
+                                                      Icons.calendar_today),
+                                                  labelStyle: TextStyle(
+                                                    color: Colors.grey[400],
+                                                  ),
+                                                ),
+                                                readOnly: true,
+                                                onSaved: (newValue) {
+                                                  controller.datedecision =
+                                                      newValue!;
+                                                },
+                                                onTap: () async {
+                                                  DateTime? pickedDate =
+                                                      await showDatePicker(
+                                                          context: context,
+                                                          initialDate:
+                                                              DateTime.now(),
+                                                          firstDate: DateTime(
+                                                              2000), //DateTime.now() - not to allow to choose before today.
+                                                          lastDate:
+                                                              DateTime(2101));
+
+                                                  if (pickedDate != null) {
+                                                    String formattedDate =
+                                                        DateFormat('dd-MM-yyyy')
+                                                            .format(pickedDate);
+                                                    controller
+                                                        .datedecisioncontroller
+                                                        .text = formattedDate;
+                                                  } else {
+                                                    print(
+                                                        "Date is not selected");
+                                                  }
+                                                },
+                                              ),
+                                            ),
+                                            DelayedAnimation(
+                                              delay: 500,
+                                              child: TextFormField(
+                                                controller: controller
+                                                    .datearrivecontroller,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Date arrivée',
+                                                  icon: Icon(
+                                                      Icons.calendar_today),
+                                                  labelStyle: TextStyle(
+                                                    color: Colors.grey[400],
+                                                  ),
+                                                ),
+                                                onSaved: (newValue) {
+                                                  controller.datearrive =
+                                                      newValue!;
+                                                },
+                                                readOnly: true,
+                                                onTap: () async {
+                                                  DateTime? pickedDate =
+                                                      await showDatePicker(
+                                                          context: context,
+                                                          initialDate:
+                                                              DateTime.now(),
+                                                          firstDate: DateTime(
+                                                              2000), //DateTime.now() - not to allow to choose before today.
+                                                          lastDate:
+                                                              DateTime(2101));
+
+                                                  if (pickedDate != null) {
+                                                    String formattedDate =
+                                                        DateFormat('dd-MM-yyyy')
+                                                            .format(pickedDate);
+                                                    controller
+                                                        .datearrivecontroller
+                                                        .text = formattedDate;
+                                                  } else {
+                                                    print(
+                                                        "Date is not selected");
+                                                  }
+                                                },
+                                              ),
+                                            ),
+                                            DelayedAnimation(
+                                              delay: 500,
+                                              child: Container(
+                                                  width: double.infinity,
+                                                  height: 60,
+                                                  child: Obx(
+                                                    () => DropdownButton(
+                                                      hint: Text('Cellule'),
+                                                      value: controller
+                                                                  .selectedCellule ==
+                                                              ""
+                                                          ? null
+                                                          : controller
+                                                              .selectedCellule
+                                                              .value,
+                                                      items: controller.cellules
+                                                          .map(
+                                                            (e) =>
+                                                                DropdownMenuItem(
+                                                              child: Text(
+                                                                  e.nomCellule),
+                                                              value: e.id
+                                                                  .toString(),
+                                                            ),
+                                                          )
+                                                          .toList(),
+                                                      onChanged: (val) {
+                                                        controller
+                                                            .setSelectedCellule(
+                                                                val);
+                                                      },
+                                                      isExpanded: true,
+                                                    ),
+                                                  )),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -151,6 +720,7 @@ class _AddMembreState extends State<AddMembre> {
                                     ),
                                   ),
                                   onPressed: () {
+                                    controller.handleSubmit();
                                     setState(() {
                                       index++;
                                     });
@@ -189,337 +759,6 @@ class _AddMembreState extends State<AddMembre> {
   }
 }
 
-class BlochFormWidget1 extends StatelessWidget {
-  List<String> civilite;
-  List<String> sexe;
-  BlochFormWidget1({super.key, required this.civilite, required this.sexe});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          DelayedAnimation(
-            delay: 500,
-            child: Container(
-              width: double.infinity,
-              height: 60,
-              child: DropdownButton(
-                value: civilite[0],
-                items: civilite
-                    .map((e) => DropdownMenuItem(
-                          child: Text(e),
-                          value: e,
-                        ))
-                    .toList(),
-                onChanged: (val) {},
-                isExpanded: true,
-              ),
-            ),
-          ),
-          DelayedAnimation(
-            delay: 500,
-            child: TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Nom',
-                icon: Icon(Icons.person),
-                labelStyle: TextStyle(
-                  color: Colors.grey[400],
-                ),
-              ),
-            ),
-          ),
-          DelayedAnimation(
-            delay: 500,
-            child: TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Prénom(s)',
-                icon: Icon(Icons.person),
-                labelStyle: TextStyle(
-                  color: Colors.grey[400],
-                ),
-              ),
-            ),
-          ),
-          DelayedAnimation(
-            delay: 500,
-            child: TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Téléphone',
-                icon: Icon(Icons.phone),
-                labelStyle: TextStyle(
-                  color: Colors.grey[400],
-                ),
-              ),
-            ),
-          ),
-          DelayedAnimation(
-            delay: 500,
-            child: TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Email',
-                icon: Icon(Icons.email),
-                labelStyle: TextStyle(
-                  color: Colors.grey[400],
-                ),
-              ),
-            ),
-          ),
-          DelayedAnimation(
-            delay: 500,
-            child: Container(
-              width: double.infinity,
-              height: 60,
-              child: DropdownButton(
-                value: sexe[0],
-                items: sexe
-                    .map((e) => DropdownMenuItem(
-                          child: Text(e),
-                          value: e,
-                        ))
-                    .toList(),
-                onChanged: (val) {},
-                isExpanded: true,
-              ),
-            ),
-          ),
-          DelayedAnimation(
-            delay: 500,
-            child: TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Date de naissance',
-                icon: Icon(Icons.calendar_today),
-                labelStyle: TextStyle(
-                  color: Colors.grey[400],
-                ),
-              ),
-              readOnly: true,
-              onTap: () async {
-                DateTime? pickedDate = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(
-                        2000), //DateTime.now() - not to allow to choose before today.
-                    lastDate: DateTime(2101));
-
-                if (pickedDate != null) {
-                  print(
-                      pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-                  String formattedDate =
-                      DateFormat('yyyy-MM-dd').format(pickedDate);
-                  print(
-                      formattedDate); //formatted date output using intl package =>  2021-03-16
-                  //you can implement different kind of Date Format here according to your requirement
-
-                  // setState(() {
-                  //    dateinput.text = formattedDate; //set output date to TextField value.
-                  // });
-                } else {
-                  print("Date is not selected");
-                }
-              },
-            ),
-          ),
-          DelayedAnimation(
-            delay: 500,
-            child: TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Profession',
-                icon: Icon(Icons.work),
-                labelStyle: TextStyle(
-                  color: Colors.grey[400],
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class BlochFormWidget2 extends StatelessWidget {
-  const BlochFormWidget2({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          SizedBox(height: 10),
-          DelayedAnimation(
-            delay: 500,
-            child: Container(
-              height: 120,
-              width: 150,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Color.fromARGB(255, 226, 225, 225),
-                ),
-              ),
-            ),
-          ),
-          DelayedAnimation(
-            delay: 500,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Color.fromARGB(255, 226, 225, 225),
-                elevation: 0,
-              ),
-              onPressed: () {},
-              child: const Text(
-                'Choisir une Photo',
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  color: Colors.black,
-                ),
-              ),
-            ),
-          ),
-          SizedBox(height: 10),
-          DelayedAnimation(
-            delay: 500,
-            child: TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Situation Matrimoniale',
-                icon: Icon(Icons.description),
-                labelStyle: TextStyle(
-                  color: Colors.grey[400],
-                ),
-              ),
-            ),
-          ),
-          DelayedAnimation(
-            delay: 500,
-            child: TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Nombre Enfants',
-                icon: Icon(Icons.person),
-                labelStyle: TextStyle(
-                  color: Colors.grey[400],
-                ),
-              ),
-            ),
-          ),
-          DelayedAnimation(
-            delay: 500,
-            child: TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Année de convertion',
-                icon: Icon(Icons.calendar_today),
-                labelStyle: TextStyle(
-                  color: Colors.grey[400],
-                ),
-              ),
-              readOnly: true,
-              onTap: () async {
-                DateTime? pickedDate = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(
-                        2000), //DateTime.now() - not to allow to choose before today.
-                    lastDate: DateTime(2101));
-
-                if (pickedDate != null) {
-                  print(
-                      pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-                  String formattedDate =
-                      DateFormat('yyyy-MM-dd').format(pickedDate);
-                  print(
-                      formattedDate); //formatted date output using intl package =>  2021-03-16
-                  //you can implement different kind of Date Format here according to your requirement
-
-                  // setState(() {
-                  //    dateinput.text = formattedDate; //set output date to TextField value.
-                  // });
-                } else {
-                  print("Date is not selected");
-                }
-              },
-            ),
-          ),
-          DelayedAnimation(
-            delay: 500,
-            child: TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Année de bapteme d\'eau',
-                icon: Icon(Icons.calendar_today),
-                labelStyle: TextStyle(
-                  color: Colors.grey[400],
-                ),
-              ),
-              readOnly: true,
-              onTap: () async {
-                DateTime? pickedDate = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(
-                        2000), //DateTime.now() - not to allow to choose before today.
-                    lastDate: DateTime(2101));
-
-                if (pickedDate != null) {
-                  print(
-                      pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-                  String formattedDate =
-                      DateFormat('yyyy-MM-dd').format(pickedDate);
-                  print(
-                      formattedDate); //formatted date output using intl package =>  2021-03-16
-                  //you can implement different kind of Date Format here according to your requirement
-
-                  // setState(() {
-                  //    dateinput.text = formattedDate; //set output date to TextField value.
-                  // });
-                } else {
-                  print("Date is not selected");
-                }
-              },
-            ),
-          ),
-          DelayedAnimation(
-            delay: 500,
-            child: TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Année de bapoteme du  Saint-Esprit',
-                icon: Icon(Icons.calendar_today),
-                labelStyle: TextStyle(
-                  color: Colors.grey[400],
-                ),
-              ),
-              readOnly: true,
-              onTap: () async {
-                DateTime? pickedDate = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(
-                        2000), //DateTime.now() - not to allow to choose before today.
-                    lastDate: DateTime(2101));
-
-                if (pickedDate != null) {
-                  print(
-                      pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-                  String formattedDate =
-                      DateFormat('yyyy-MM-dd').format(pickedDate);
-                  print(
-                      formattedDate); //formatted date output using intl package =>  2021-03-16
-                  //you can implement different kind of Date Format here according to your requirement
-
-                  // setState(() {
-                  //    dateinput.text = formattedDate; //set output date to TextField value.
-                  // });
-                } else {
-                  print("Date is not selected");
-                }
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class BlochFormWidget3 extends StatelessWidget {
   List<String> classAge;
   List<String> cellule;
@@ -539,128 +778,6 @@ class BlochFormWidget3 extends StatelessWidget {
     return Container(
       child: Column(
         children: [
-          DelayedAnimation(
-            delay: 500,
-            child: Container(
-              width: double.infinity,
-              height: 60,
-              child: DropdownButton(
-                value: classAge[0],
-                items: classAge
-                    .map((e) => DropdownMenuItem(
-                          child: Text(e),
-                          value: e,
-                        ))
-                    .toList(),
-                onChanged: (val) {},
-                isExpanded: true,
-              ),
-            ),
-          ),
-          DelayedAnimation(
-            delay: 500,
-            child: TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Personne Contact',
-                icon: Icon(Icons.person),
-                labelStyle: TextStyle(
-                  color: Colors.grey[400],
-                ),
-              ),
-            ),
-          ),
-          DelayedAnimation(
-            delay: 500,
-            child: TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Date decision',
-                icon: Icon(Icons.calendar_today),
-                labelStyle: TextStyle(
-                  color: Colors.grey[400],
-                ),
-              ),
-              readOnly: true,
-              onTap: () async {
-                DateTime? pickedDate = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(
-                        2000), //DateTime.now() - not to allow to choose before today.
-                    lastDate: DateTime(2101));
-
-                if (pickedDate != null) {
-                  print(
-                      pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-                  String formattedDate =
-                      DateFormat('yyyy-MM-dd').format(pickedDate);
-                  print(
-                      formattedDate); //formatted date output using intl package =>  2021-03-16
-                  //you can implement different kind of Date Format here according to your requirement
-
-                  // setState(() {
-                  //    dateinput.text = formattedDate; //set output date to TextField value.
-                  // });
-                } else {
-                  print("Date is not selected");
-                }
-              },
-            ),
-          ),
-          DelayedAnimation(
-            delay: 500,
-            child: TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Date arrivée',
-                icon: Icon(Icons.calendar_today),
-                labelStyle: TextStyle(
-                  color: Colors.grey[400],
-                ),
-              ),
-              readOnly: true,
-              onTap: () async {
-                DateTime? pickedDate = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(
-                        2000), //DateTime.now() - not to allow to choose before today.
-                    lastDate: DateTime(2101));
-
-                if (pickedDate != null) {
-                  print(
-                      pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-                  String formattedDate =
-                      DateFormat('yyyy-MM-dd').format(pickedDate);
-                  print(
-                      formattedDate); //formatted date output using intl package =>  2021-03-16
-                  //you can implement different kind of Date Format here according to your requirement
-
-                  // setState(() {
-                  //    dateinput.text = formattedDate; //set output date to TextField value.
-                  // });
-                } else {
-                  print("Date is not selected");
-                }
-              },
-            ),
-          ),
-          DelayedAnimation(
-            delay: 500,
-            child: Container(
-              width: double.infinity,
-              height: 60,
-              child: DropdownButton(
-                value: maison[0],
-                items: maison
-                    .map((e) => DropdownMenuItem(
-                          child: Text(e),
-                          value: e,
-                        ))
-                    .toList(),
-                onChanged: (val) {},
-                isExpanded: true,
-              ),
-            ),
-          ),
           DelayedAnimation(
             delay: 500,
             child: Container(

@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:lebonberger/cellules/model/cellule.model.dart';
+
 List<Membre> membreFromJson(String str) =>
     List<Membre>.from(json.decode(str).map((x) => Membre.fromJson(x)));
 
@@ -67,7 +69,7 @@ class Membre {
   dynamic deletedAt;
   Maison maison;
   Cellule cellule;
-  Cellule departement;
+  Departement departement;
 
   factory Membre.fromJson(Map<String, dynamic> json) => Membre(
         id: json["id"],
@@ -96,7 +98,7 @@ class Membre {
         deletedAt: json["deletedAt"],
         maison: Maison.fromJson(json["maison"]),
         cellule: Cellule.fromJson(json["cellule"]),
-        departement: Cellule.fromJson(json["departement"]),
+        departement: Departement.fromJson(json["departement"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -128,50 +130,6 @@ class Membre {
         "maison": maison.toJson(),
         "cellule": cellule.toJson(),
         "departement": departement.toJson(),
-      };
-}
-
-class Cellule {
-  Cellule({
-    required this.id,
-    this.nomCellule,
-    required this.isActive,
-    required this.isDeleted,
-    required this.createdAt,
-    required this.updatedAt,
-    this.deletedAt,
-    this.nomDepartement,
-  });
-
-  int id;
-  String? nomCellule;
-  bool isActive;
-  bool isDeleted;
-  DateTime createdAt;
-  DateTime updatedAt;
-  dynamic deletedAt;
-  String? nomDepartement;
-
-  factory Cellule.fromJson(Map<String, dynamic> json) => Cellule(
-        id: json["id"],
-        nomCellule: json["nom_cellule"],
-        isActive: json["isActive"],
-        isDeleted: json["isDeleted"],
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
-        deletedAt: json["deletedAt"],
-        nomDepartement: json["nom_departement"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "nom_cellule": nomCellule,
-        "isActive": isActive,
-        "isDeleted": isDeleted,
-        "createdAt": createdAt.toIso8601String(),
-        "updatedAt": updatedAt.toIso8601String(),
-        "deletedAt": deletedAt,
-        "nom_departement": nomDepartement,
       };
 }
 
@@ -232,5 +190,51 @@ class Maison {
         "updatedAt": updatedAt.toIso8601String(),
         "deletedAt": deletedAt,
         "cellule": cellule.toJson(),
+      };
+}
+
+List<Departement> departementFromJson(String str) => List<Departement>.from(
+    json.decode(str).map((x) => Departement.fromJson(x)));
+
+String departementToJson(List<Departement> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+class Departement {
+  Departement({
+    required this.id,
+    required this.nomDepartement,
+    required this.isActive,
+    required this.isDeleted,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+  });
+
+  int id;
+  String nomDepartement;
+  bool isActive;
+  bool isDeleted;
+  DateTime createdAt;
+  DateTime updatedAt;
+  dynamic deletedAt;
+
+  factory Departement.fromJson(Map<String, dynamic> json) => Departement(
+        id: json["id"],
+        nomDepartement: json["nom_departement"],
+        isActive: json["isActive"],
+        isDeleted: json["isDeleted"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+        deletedAt: json["deletedAt"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "nom_departement": nomDepartement,
+        "isActive": isActive,
+        "isDeleted": isDeleted,
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
+        "deletedAt": deletedAt,
       };
 }
