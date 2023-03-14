@@ -16,13 +16,19 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       title: Row(children: [
         Container(
-          height: 40,
-          width: 40,
+          height: 35,
+          width: 35,
           child: Image.asset("assets/images/lebonberger.jpeg"),
         ),
         SizedBox(width: 10),
         Container(
-          child: Text('Le Bon Berger'),
+          child: Text(
+            'Le Bon Berger',
+            style: TextStyle(
+              fontFamily: 'KottaOne',
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         )
       ]),
       backgroundColor: backgroundColor,
