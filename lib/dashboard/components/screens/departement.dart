@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebonberger/dashboard/Dashboard.dart';
 
-
 class DepartementScreen extends StatelessWidget {
   const DepartementScreen({super.key});
 
@@ -12,12 +11,16 @@ class DepartementScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            leading: IconButton(onPressed: () { Get.to(DashBoardScreen());}, icon: Icon(Icons.arrow_back)),
+            leading: IconButton(
+                onPressed: () {
+                  Get.to(DashBoardScreen());
+                },
+                icon: Icon(Icons.arrow_back)),
             backgroundColor: Colors.green,
             expandedHeight: 200,
             pinned: true,
             flexibleSpace: const FlexibleSpaceBar(
-              title: Text("Programmes"),
+              title: Text("Departements"),
               centerTitle: true,
               expandedTitleScale: 1,
               collapseMode: CollapseMode.parallax,
@@ -29,17 +32,29 @@ class DepartementScreen extends StatelessWidget {
           ),
           SliverList(
               delegate: SliverChildBuilderDelegate((context, index) {
-            return ListTile(
-              title: Text("Programme $index"),
-              subtitle: Text("Grande Campagne d'evangelisation $index"),
+            return Container(
+              margin: EdgeInsets.all(30),
+              padding: EdgeInsets.all(20),
+              height: 200,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                        blurRadius: 3,
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 2,
+                        offset: Offset(0, 3))
+                  ]),
+              child: ListTile(
+                title: Text("Programme $index"),
+                subtitle: Text("Grande Campagne d'evangelisation $index"),
+              ),
             );
           }, childCount: 100))
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () { 
-          
-        },
+        onPressed: () {},
         child: const Icon(Icons.add),
         backgroundColor: Colors.green,
       ),
