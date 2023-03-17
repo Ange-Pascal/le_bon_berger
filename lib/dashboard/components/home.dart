@@ -60,7 +60,9 @@ class HomeDashboard extends StatelessWidget {
             height: 40,
           ),
          GridDashboard(),
-        
+        SizedBox(
+            height: 20,
+          ),
         ],
       ),
     );

@@ -6,7 +6,7 @@ import 'package:lebonberger/dashboard/components/screens/activite.dart';
 import 'package:lebonberger/dashboard/components/screens/annonce.dart';
 import 'package:lebonberger/dashboard/components/screens/densite.dart';
 import 'package:lebonberger/dashboard/components/screens/departement.dart';
-import 'package:lebonberger/dashboard/components/screens/home-programme.dart';
+import 'package:lebonberger/dashboard/components/screens/cellule.dart';
 import 'package:lebonberger/dashboard/components/screens/parametre.dart';
 import 'package:lebonberger/membres/MembreScreen.dart';
 
@@ -24,7 +24,7 @@ class GridDashboard extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                Get.to(ProgrammeHome());
+                Get.to(CelluleHome());
               },
               child: Container(
                 margin: const EdgeInsets.only(
@@ -43,14 +43,14 @@ class GridDashboard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Image.asset(
-                      "assets/images/calendar.png",
+                      "assets/images/cellule.png",
                       width: 42,
                     ),
                     SizedBox(
                       height: 14,
                     ),
                     Text(
-                      "Programmes",
+                      "Cellules",
                       style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               color: Colors.green,
@@ -61,7 +61,7 @@ class GridDashboard extends StatelessWidget {
                       height: 8,
                     ),
                     Text(
-                      "March, Wednesday",
+                      "Cellules Actuelles",
                       style: GoogleFonts.poppins(
                           textStyle: const TextStyle(
                         color: Colors.grey,
@@ -72,7 +72,7 @@ class GridDashboard extends StatelessWidget {
                       height: 14,
                     ),
                     Text(
-                      "3 Events",
+                      "10",
                       style: GoogleFonts.poppins(
                           textStyle: const TextStyle(
                               color: Colors.black,
@@ -156,14 +156,14 @@ class GridDashboard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Image.asset(
-                      "assets/images/festival.png",
+                      "assets/images/maison.jpg",
                       width: 42,
                     ),
                     SizedBox(
                       height: 14,
                     ),
                     Text(
-                      "Activités",
+                      "Maison",
                       style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               color: Colors.green,
@@ -174,7 +174,7 @@ class GridDashboard extends StatelessWidget {
                       height: 8,
                     ),
                     Text(
-                      "Activités en cours",
+                      "Maison actuelle",
                       style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                         color: Colors.grey,
@@ -185,7 +185,7 @@ class GridDashboard extends StatelessWidget {
                       height: 14,
                     ),
                     Text(
-                      "5",
+                      "50",
                       style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               color: Colors.black,
@@ -270,14 +270,14 @@ class GridDashboard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Image.asset(
-                      "assets/images/annonce.jpg",
+                      "assets/images/accepter.jpg",
                       width: 42,
                     ),
                     SizedBox(
                       height: 14,
                     ),
                     Text(
-                      "Annonces",
+                      "Décisons",
                       style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               color: Colors.green,
@@ -288,7 +288,7 @@ class GridDashboard extends StatelessWidget {
                       height: 8,
                     ),
                     Text(
-                      "Annonces de la semaine",
+                      "Decisons par semaine",
                       style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                         color: Colors.grey,
@@ -299,7 +299,7 @@ class GridDashboard extends StatelessWidget {
                       height: 14,
                     ),
                     Text(
-                      "10 annonces",
+                      "10",
                       style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               color: Colors.black,
@@ -328,14 +328,14 @@ class GridDashboard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Image.asset(
-                      "assets/images/densité.jpg",
+                      "assets/images/visite.png",
                       width: 42,
                     ),
                     SizedBox(
                       height: 14,
                     ),
                     Text(
-                      "Densité ",
+                      "Visites",
                       style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               color: Colors.green,
@@ -346,7 +346,7 @@ class GridDashboard extends StatelessWidget {
                       height: 8,
                     ),
                     Text(
-                      "Demographique",
+                      "Visite par semaine",
                       style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                         color: Colors.grey,
@@ -357,7 +357,7 @@ class GridDashboard extends StatelessWidget {
                       height: 14,
                     ),
                     Text(
-                      "1000",
+                      "10",
                       style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               color: Colors.black,
