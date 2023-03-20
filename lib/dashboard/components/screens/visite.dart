@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lebonberger/dashboard/components/screens/absence-screen.dart';
+import 'package:lebonberger/dashboard/components/screens/visite-screen.dart';
 import 'package:lebonberger/dashboard/services/add-visite.dart';
 
-class AbsenceHome extends StatelessWidget {
-  const AbsenceHome({super.key});
+class VisiteHome extends StatelessWidget {
+  const VisiteHome({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,7 @@ class AbsenceHome extends StatelessWidget {
                       Icons.home,
                       color: Colors.white,
                     )),
-                title: Text("Absence $index",
+                title: Text("Visite $index",
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold, fontSize: 18)),
                 subtitle: Column(
@@ -69,7 +69,7 @@ class AbsenceHome extends StatelessWidget {
                 ]),
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () {
-                  Get.to(AbsenceScreen());
+                  Get.to(VisiteScreen());
                 },
               ),
             );

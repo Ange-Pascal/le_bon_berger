@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lebonberger/dashboard/components/screens/absence-screen.dart';
-import 'package:lebonberger/dashboard/services/add-visite.dart';
+import 'package:lebonberger/dashboard/components/screens/decision-screen.dart';
+import 'package:lebonberger/dashboard/services/add-decision.dart';
 
-class AbsenceHome extends StatelessWidget {
-  const AbsenceHome({super.key});
+class DecisionHome extends StatelessWidget {
+  const DecisionHome({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class AbsenceHome extends StatelessWidget {
             expandedHeight: 200,
             pinned: true,
             flexibleSpace: const FlexibleSpaceBar(
-              title: Text("Visites"),
+              title: Text("Decision"),
               centerTitle: true,
               expandedTitleScale: 1,
               collapseMode: CollapseMode.parallax,
@@ -58,42 +58,31 @@ class AbsenceHome extends StatelessWidget {
                       Icons.home,
                       color: Colors.white,
                     )),
-                title: Text("Absence $index",
+                title: Text("Decision $index",
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold, fontSize: 18)),
                 subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                  Text("Fidèle $index"), 
-                  Text("Koffi $index"),
-                ]),
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Assigné à $index"),
+                      Text("Statut $index"),
+                    ]),
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () {
-                  Get.to(AbsenceScreen());
+                  Get.to(DecisionScreen());
                 },
               ),
             );
           }, childCount: 10))
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _modal(context);
-        },
-        child: const Icon(Icons.add),
-        backgroundColor: Colors.green,
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     //_modal(context);
+      //   },
+      //   child: const Icon(Icons.add),
+      //   backgroundColor: Colors.green,
+      // ),
     );
   }
 }
-
-void _modal(BuildContext context) =>
-    showModalBottomSheet(
-      backgroundColor: Colors.white,
-      context: context, 
-      isScrollControlled: true, 
-      isDismissible: true,
-      builder: (BuildContext context) {
-      return AddVisite();
-    });
-

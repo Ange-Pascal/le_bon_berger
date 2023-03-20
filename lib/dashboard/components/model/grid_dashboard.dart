@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 import 'package:lebonberger/dashboard/components/screens/absence.dart';
-import 'package:lebonberger/dashboard/components/screens/activite.dart';
-import 'package:lebonberger/dashboard/components/screens/annonce.dart';
-import 'package:lebonberger/dashboard/components/screens/densite.dart';
+import 'package:lebonberger/dashboard/components/screens/decicion.dart';
 import 'package:lebonberger/dashboard/components/screens/departement.dart';
 import 'package:lebonberger/dashboard/components/screens/cellule.dart';
+import 'package:lebonberger/dashboard/components/screens/maison.dart';
+import 'package:lebonberger/dashboard/components/screens/nouvelle.dart';
 import 'package:lebonberger/dashboard/components/screens/parametre.dart';
+import 'package:lebonberger/dashboard/components/screens/visite.dart';
 import 'package:lebonberger/membres/MembreScreen.dart';
 
 class GridDashboard extends StatelessWidget {
@@ -17,7 +18,7 @@ class GridDashboard extends StatelessWidget {
     return Flexible(
       child: GridView.count(
           childAspectRatio: 1.0,
-          padding: EdgeInsets.only(left: 16, right: 16),
+          padding: EdgeInsets.only(left: 10, right: 10),
           crossAxisCount: 2,
           crossAxisSpacing: 18,
           mainAxisSpacing: 18,
@@ -141,7 +142,7 @@ class GridDashboard extends StatelessWidget {
               ),
             ),
             GestureDetector(
-              onTap: (){Get.to(ActiviteScreen());},
+              onTap: (){Get.to(MaisonView());},
               child: Container(
                 decoration: BoxDecoration(
                     color: Colors.white,
@@ -254,7 +255,7 @@ class GridDashboard extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Get.to(AnnonceScreen());
+                Get.to(DecisionHome());
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -312,7 +313,7 @@ class GridDashboard extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Get.to(DensiteScreen());
+                Get.to(VisiteHome());
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -369,7 +370,7 @@ class GridDashboard extends StatelessWidget {
               ),
             ),
             GestureDetector(
-              onTap: (){Get.to(AbsenceScreen());},
+              onTap: (){Get.to(AbsenceHome());},
               child: Container(
                 decoration: BoxDecoration(
                     color: Colors.white,
@@ -426,7 +427,7 @@ class GridDashboard extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Get.to(ParametreScreen());
+                Get.to(NouvelleHome());
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -442,14 +443,14 @@ class GridDashboard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Image.asset(
-                      "assets/images/setting.png",
+                      "assets/images/infos.png",
                       width: 42,
                     ),
                     SizedBox(
                       height: 14,
                     ),
                     Text(
-                      "Paramètres",
+                      "Nouvelles",
                       style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               color: Colors.green,
@@ -460,7 +461,7 @@ class GridDashboard extends StatelessWidget {
                       height: 8,
                     ),
                     Text(
-                      "Modifications",
+                      "Informations",
                       style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                         color: Colors.grey,

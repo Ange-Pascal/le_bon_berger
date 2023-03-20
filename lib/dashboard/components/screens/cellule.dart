@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lebonberger/dashboard/services/add-cellule.dart';
 import 'cellule_screen.dart';
 import 'package:get/get.dart';
 
@@ -58,24 +59,32 @@ class CelluleHome extends StatelessWidget {
                       Icons.home,
                       color: Colors.white,
                     )),
-                title: Text(" Nom: Cellule $index",
+                title: Text("Nom: Cellule $index",
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold, fontSize: 18)),
-                subtitle: Text("Date de création:  date $index"),
+                subtitle: Text("Responsable:  Koffi $index"),
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () {
                   Get.to(CelluleScreen());
                 },
               ),
+              
             );
           }, childCount: 10))
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          _modal(context);
+        },
         child: const Icon(Icons.add),
         backgroundColor: Colors.green,
       ),
     );
   }
 }
+
+void _modal(BuildContext context) => showModalBottomSheet(
+  context: context,
+   builder: (context) => AddCellule()
+);

@@ -3,11 +3,10 @@ import 'package:get/get.dart';
 import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
-import 'package:lebonberger/dashboard/components/screens/cellule.dart';
-import 'package:lebonberger/dashboard/services/update-cellule.dart';
+import 'package:lebonberger/dashboard/services/update-departement.dart';
 
-class CelluleScreen extends StatelessWidget {
-  const CelluleScreen({super.key});
+class DepartementView extends StatelessWidget {
+  const DepartementView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +39,7 @@ class CelluleScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Text(
-                                " Cellule Elkana",
+                                " Groupe Vocal",
                                 style: GoogleFonts.poppins(
                                     fontSize: 30, fontWeight: FontWeight.bold),
                               ),
@@ -54,7 +53,25 @@ class CelluleScreen extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                     color: Colors.green),
                               ),
-                              
+                              Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 70),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        "7 Femmes",
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.black, fontSize: 16),
+                                      ),
+                                      SizedBox(
+                                        width: 30,
+                                      ),
+                                      Text(
+                                        "3 Garçons",
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.black, fontSize: 16),
+                                      ),
+                                    ],
+                                  ))
                             ],
                           ),
                         ),
@@ -70,7 +87,7 @@ class CelluleScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "Responsable de la cellule",
+                          "Responsable du groupe",
                           style: GoogleFonts.poppins(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ), 
@@ -86,7 +103,7 @@ class CelluleScreen extends StatelessWidget {
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ), 
                         Text(
-                          "+225 0756879067",
+                          "+225 0758964837",
                           style: GoogleFonts.poppins(
                               fontSize: 16, fontWeight: FontWeight.bold, color: Colors.grey),
                         ),
@@ -109,5 +126,5 @@ class CelluleScreen extends StatelessWidget {
 
 void _modal(BuildContext context) => showModalBottomSheet(
   context: context,
-   builder: (context) => UpdateCellule()
+   builder: (context) => UpdateDepartement()
 );

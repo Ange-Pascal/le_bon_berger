@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lebonberger/dashboard/components/screens/absence-screen.dart';
-import 'package:lebonberger/dashboard/services/add-visite.dart';
+import 'package:lebonberger/dashboard/components/screens/department-screen.dart';
+import 'package:lebonberger/dashboard/services/add-departement.dart';
+import 'package:lebonberger/dashboard/services/add-maison.dart';
 
-class AbsenceHome extends StatelessWidget {
-  const AbsenceHome({super.key});
+class MaisonView extends StatelessWidget {
+  const MaisonView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class AbsenceHome extends StatelessWidget {
             expandedHeight: 200,
             pinned: true,
             flexibleSpace: const FlexibleSpaceBar(
-              title: Text("Visites"),
+              title: Text("Maison"),
               centerTitle: true,
               expandedTitleScale: 1,
               collapseMode: CollapseMode.parallax,
@@ -58,18 +59,18 @@ class AbsenceHome extends StatelessWidget {
                       Icons.home,
                       color: Colors.white,
                     )),
-                title: Text("Absence $index",
+                title: Text("Maison $index",
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold, fontSize: 18)),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                  Text("Fidèle $index"), 
-                  Text("Koffi $index"),
+                  Text("Chef de Famille $index"), 
+                  Text("Koffi Jacob $index"),
                 ]),
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () {
-                  Get.to(AbsenceScreen());
+                  Get.to(DepartementView());
                 },
               ),
             );
@@ -94,6 +95,5 @@ void _modal(BuildContext context) =>
       isScrollControlled: true, 
       isDismissible: true,
       builder: (BuildContext context) {
-      return AddVisite();
+      return AddMaison();
     });
-

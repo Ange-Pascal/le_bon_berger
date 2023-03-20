@@ -3,11 +3,10 @@ import 'package:get/get.dart';
 import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
-import 'package:lebonberger/dashboard/components/screens/cellule.dart';
-import 'package:lebonberger/dashboard/services/update-cellule.dart';
+import 'package:lebonberger/dashboard/services/update-departement.dart';
 
-class CelluleScreen extends StatelessWidget {
-  const CelluleScreen({super.key});
+class DecisionScreen extends StatelessWidget {
+  const DecisionScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +39,7 @@ class CelluleScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Text(
-                                " Cellule Elkana",
+                                "Décision A",
                                 style: GoogleFonts.poppins(
                                     fontSize: 30, fontWeight: FontWeight.bold),
                               ),
@@ -48,13 +47,31 @@ class CelluleScreen extends StatelessWidget {
                                 height: 5,
                               ),
                               Text(
-                                "20 Membres",
+                                "Statut A",
                                 style: GoogleFonts.poppins(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.green),
                               ),
-                              
+                              Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 70),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        "Assigné à : ",
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.black, fontSize: 16),
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                        "Adolphe Hitler",
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.black, fontSize: 16),
+                                      ),
+                                    ],
+                                  ))
                             ],
                           ),
                         ),
@@ -70,25 +87,58 @@ class CelluleScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "Responsable de la cellule",
+                          "Suit à",
                           style: GoogleFonts.poppins(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ), 
                         Text(
-                          "Koffi Jacob",
+                          "Son absence",
                           style: GoogleFonts.poppins(
                               fontSize: 16, fontWeight: FontWeight.bold, color: Colors.grey),
                         ),
                         SizedBox(height: 10,), 
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center, 
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                            "Date de décision:",
+                            style: GoogleFonts.poppins(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "12-04-2030",
+                            style: GoogleFonts.poppins(
+                                fontSize: 16, color: Colors.grey),
+                          ),
+                          ]
+                        ), 
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center, 
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                            "Date de décision:",
+                            style: GoogleFonts.poppins(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "12-04-2030",
+                            style: GoogleFonts.poppins(
+                                fontSize: 16, color: Colors.grey),
+                          ),
+                          ]
+                        ), 
+                        const SizedBox(height: 20,), 
                         Text(
-                          "Numero de Téléphone",
+                          "Commentaire",
                           style: GoogleFonts.poppins(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ), 
                         Text(
-                          "+225 0756879067",
+                          "Il est sous discipline jusqu'au 31 Decembre",
                           style: GoogleFonts.poppins(
-                              fontSize: 16, fontWeight: FontWeight.bold, color: Colors.grey),
+                              fontSize: 16, color: Colors.grey),
                         ),
                       ],
                     ),
@@ -98,16 +148,17 @@ class CelluleScreen extends StatelessWidget {
             )
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {_modal(context);},
-          child: const Icon(Icons.add),
-          backgroundColor: Colors.green,
-        ));
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () {_modal(context);},
+        //   child: const Icon(Icons.add),
+        //   backgroundColor: Colors.green,
+        // )
+        );
   }
 }
 
 
-void _modal(BuildContext context) => showModalBottomSheet(
-  context: context,
-   builder: (context) => UpdateCellule()
-);
+// void _modal(BuildContext context) => showModalBottomSheet(
+//   context: context,
+//    builder: (context) => UpdateDepartement()
+// );

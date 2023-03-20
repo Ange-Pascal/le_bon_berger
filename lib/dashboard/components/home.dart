@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lebonberger/dashboard/components/model/dashboard-view.dart';
 import 'package:lebonberger/dashboard/components/model/grid_dashboard.dart';
 
 
@@ -56,9 +57,10 @@ class HomeDashboard extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 40,
           ),
+          //DashboardView(), 
          GridDashboard(),
         SizedBox(
             height: 20,
