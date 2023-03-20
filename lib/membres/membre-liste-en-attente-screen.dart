@@ -5,13 +5,13 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
-import 'package:lebonberger/membres/components/MembreHeader.dart';
+import 'package:lebonberger/membres/components/MembreEnAttenteHeader.dart';
 import 'package:lebonberger/membres/controller/membre.controller.dart';
 import 'package:lebonberger/routes/api.routes.dart';
 import 'package:lebonberger/routes/app.routes.dart';
 
-class MembreListeScreen extends StatelessWidget {
-  MembreListeScreen({super.key});
+class MembreListeEnAttenteScreen extends StatelessWidget {
+  MembreListeEnAttenteScreen({super.key});
   MembreController controller = Get.put(MembreController());
 
   @override
@@ -21,13 +21,13 @@ class MembreListeScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          MembreHeader(),
+          MembreEnAttenteHeader(),
           Container(
             padding: EdgeInsets.all(15),
             height: MediaQuery.of(context).size.height,
             child: RefreshIndicator(
               onRefresh: () async {
-                controller.findAll();
+                controller.flindAllEnAttente();
               },
               child: Obx(
                 () {
@@ -37,13 +37,14 @@ class MembreListeScreen extends StatelessWidget {
                     );
                   } else {
                     return ListView.builder(
-                      itemCount: controller.membres.length,
+                      itemCount: controller.membresEnAttente.length,
                       itemBuilder: (context, int index) {
                         return Ink(
                           child: InkWell(
                             onTap: () {
                               Get.toNamed(AppRoutes.DetailsMembre,
-                                  arguments: controller.membres[index]);
+                                  arguments:
+                                      controller.membresEnAttente[index]);
                             },
                             child: Container(
                               margin: EdgeInsets.only(
@@ -52,24 +53,27 @@ class MembreListeScreen extends StatelessWidget {
                               color: Colors.white70,
                               child: ListTile(
                                 title: Text(
-                                  controller.membres[index].nom +
-                                      ' ${controller.membres[index].nom}',
+                                  controller.membresEnAttente[index].nom +
+                                      ' ${controller.membresEnAttente[index].nom}',
                                   style: TextStyle(
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
                                 subtitle: Text(
-                                    '${controller.membres[index].departement.nomDepartement}'),
+                                    '${controller.membresEnAttente[index].departement.nomDepartement}'),
                                 leading: Container(
-                                  child: controller.membres[index].photo == null
+                                  child: controller
+                                              .membresEnAttente[index].photo ==
+                                          null
                                       ? Image.asset(
                                           "assets/images/users.png",
                                           fit: BoxFit.cover,
                                         )
                                       : Image.network(
                                           ApiRoutes.STORAGE_PUBLIC_PATH +
-                                              controller.membres[index].photo!,
+                                              controller.membresEnAttente[index]
+                                                  .photo!,
                                           fit: BoxFit.cover,
                                         ),
                                 ),
@@ -82,11 +86,12 @@ class MembreListeScreen extends StatelessWidget {
                                     icon: Icon(
                                       Icons.info_outline,
                                       size: 30,
-                                      color: Color.fromARGB(184, 76, 175, 79),
+                                      color: Color.fromARGB(184, 214, 61, 6),
                                     ),
                                     onPressed: () {
                                       Get.toNamed(AppRoutes.DetailsMembre,
-                                          arguments: controller.membres[index]);
+                                          arguments: controller
+                                              .membresEnAttente[index]);
                                     },
                                   ),
                                 ),

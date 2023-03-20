@@ -4,6 +4,7 @@ import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:lebonberger/membres/MembreScreen.dart';
 import 'package:lebonberger/membres/add-membre.dart';
 import 'package:lebonberger/membres/membre-detail.dart';
+import 'package:lebonberger/membres/membre-liste-en-attente-screen.dart';
 import 'package:lebonberger/routes/app.routes.dart';
 
 class AppPages {
@@ -27,6 +28,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.DetailsMembre,
       page: () => MembreDetail(),
+    ),
+    GetPage(
+      name: AppRoutes.membreEnAttente,
+      page: () => MembreListeEnAttenteScreen(),
     )
   ];
 }

@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/route_manager.dart';
 import 'package:lebonberger/layout/AppDrawer.dart';
 import 'package:lebonberger/layout/header/BaseAppBar.dart';
+import 'package:lebonberger/membres/membre-liste-en-attente-screen.dart';
 import 'package:lebonberger/membres/membre-liste-screen.dart';
 import 'package:lebonberger/routes/app.routes.dart';
 
@@ -20,10 +21,7 @@ class _MembreScreenState extends State<MembreScreen> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
     MembreListeScreen(),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
+    MembreListeEnAttenteScreen(),
     Text(
       'Index 2: School',
       style: optionStyle,
@@ -56,10 +54,6 @@ class _MembreScreenState extends State<MembreScreen> {
             icon: Icon(Icons.person_add_disabled),
             label: 'En attentes',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.more_vert),
-            label: 'Plus',
-          )
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Color.fromARGB(255, 201, 181, 6),

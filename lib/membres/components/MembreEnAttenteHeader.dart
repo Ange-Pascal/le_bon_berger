@@ -8,11 +8,11 @@ import 'package:lebonberger/routes/api.routes.dart';
 import 'package:lebonberger/routes/app.routes.dart';
 import 'package:searchfield/searchfield.dart';
 
-class MembreHeader extends StatelessWidget {
-  MembreHeader({super.key});
+class MembreEnAttenteHeader extends StatelessWidget {
+  MembreEnAttenteHeader({super.key});
 
   MembreController controller = Get.put(MembreController());
-  String title = 'Membres';
+  String title = 'Membres en attente';
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class MembreHeader extends StatelessWidget {
         children: [
           Obx(
             () => Text(
-              '${title}' + ' (${controller.membres.length})',
+              '${title}' + ' (${controller.membresEnAttente.length})',
               style: TextStyle(
                 fontFamily: 'Poppins',
                 fontSize: 25,
@@ -46,7 +46,7 @@ class MembreHeader extends StatelessWidget {
                 onTap: () {
                   showSearch(
                     context: context,
-                    delegate: DataSearch(membres: controller.membres),
+                    delegate: DataSearch(membres: controller.membresEnAttente),
                   );
                 },
                 child: Row(

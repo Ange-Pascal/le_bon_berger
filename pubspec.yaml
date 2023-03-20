@@ -44,6 +44,9 @@ dependencies:
   intl: ^0.18.0
   http: ^0.13.5
   searchfield: ^0.7.5
+  image_picker: ^0.8.7
+  file_picker: ^5.2.6
+  dio: ^5.0.2
 
 
 dev_dependencies:
