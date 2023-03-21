@@ -59,24 +59,103 @@ class AppDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            title: const Text('Tableau de bord'),
+            title: const Text(
+              'Tableau de bord',
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 15,
+              ),
+            ),
             onTap: () {
               Get.toNamed(AppRoutes.dashboard);
             },
           ),
           ListTile(
-            title: const Text('Membres'),
+            title: const Text(
+              'Membres',
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 15,
+              ),
+            ),
             onTap: () {
               Get.toNamed(AppRoutes.membre);
             },
           ),
           ListTile(
-            title: const Text('Item 2'),
+            title: const Text(
+              'Cellules',
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 15,
+              ),
+            ),
+          ),
+          const Divider(
+            color: Color.fromARGB(255, 189, 187, 187),
+          ),
+          ListTile(
+            title: const Text(
+              'Départements',
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 15,
+              ),
+            ),
+          ),
+          ListTile(
+            title: const Text(
+              'Maisons',
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 15,
+              ),
+            ),
+          ),
+          ListTile(
+            title: const Text(
+              'Visites',
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 15,
+              ),
+            ),
+          ),
+          const Divider(
+            color: Color.fromARGB(255, 189, 187, 187),
+          ),
+          ListTile(
+            title: const Text(
+              'Décisions',
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 15,
+              ),
+            ),
+          ),
+          ListTile(
+            title: const Text(
+              'Absences',
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 15,
+              ),
+            ),
+          ),
+          const Divider(
+            color: Color.fromARGB(255, 189, 187, 187),
+          ),
+          ListTile(
+            title: const Text(
+              'Se déconnecter',
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 15,
+                color: Colors.red,
+              ),
+            ),
             onTap: () {
-              // Update the state of the app
-              // ...
-              // Then close the drawer
-              Navigator.pop(context);
+              Get.toNamed(AppRoutes.login);
             },
           ),
         ],

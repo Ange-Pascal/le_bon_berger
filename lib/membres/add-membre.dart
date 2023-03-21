@@ -147,6 +147,7 @@ class _AddMembreState extends State<AddMembre> {
                                         TextFormField(
                                           controller:
                                               controller.telephonecontroller,
+                                          keyboardType: TextInputType.number,
                                           decoration: InputDecoration(
                                             labelText: 'Téléphone',
                                             icon: Icon(Icons.phone),

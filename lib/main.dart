@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lebonberger/auth/welcome_page.dart';
 import 'package:lebonberger/routes/app.pages.dart';
 import 'package:get/get.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
       debugShowCheckedModeBanner: false,
-      home: WelcomePage(),
+      // home: WelcomePage(),
       getPages: AppPages.pages,
     );
   }

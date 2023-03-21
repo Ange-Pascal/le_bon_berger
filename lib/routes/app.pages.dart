@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:lebonberger/auth/login_page.dart';
+import 'package:lebonberger/auth/welcome_page.dart';
 import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:lebonberger/membres/MembreScreen.dart';
 import 'package:lebonberger/membres/add-membre.dart';
@@ -9,6 +10,10 @@ import 'package:lebonberger/routes/app.routes.dart';
 
 class AppPages {
   static final List<GetPage> pages = [
+    GetPage(
+      name: AppRoutes.welcome,
+      page: () => WelcomePage(),
+    ),
     GetPage(
       name: AppRoutes.login,
       page: () => LoginPage(),

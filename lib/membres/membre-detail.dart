@@ -534,6 +534,25 @@ class MembreDetail extends StatelessWidget {
                       width: MediaQuery.of(context).size.width,
                       child: Column(
                         children: [
+                          membre.isActive != false
+                              ? TextButton(
+                                  onPressed: () {},
+                                  child: Text(
+                                    'Ajouter une décision',
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 17,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  style: TextButton.styleFrom(
+                                    minimumSize: Size.fromHeight(50),
+                                    backgroundColor:
+                                        Color.fromARGB(255, 236, 235, 235),
+                                  ),
+                                )
+                              : Text(''),
+                          Divider(),
                           membre.isActive == false
                               ? TextButton(
                                   onPressed: () {
@@ -583,6 +602,8 @@ class MembreDetail extends StatelessWidget {
                                   ),
                                   style: TextButton.styleFrom(
                                     minimumSize: Size.fromHeight(50),
+                                    backgroundColor:
+                                        Color.fromARGB(255, 236, 235, 235),
                                   ),
                                 )
                               : TextButton(
@@ -634,6 +655,8 @@ class MembreDetail extends StatelessWidget {
                                   ),
                                   style: TextButton.styleFrom(
                                     minimumSize: Size.fromHeight(50),
+                                    backgroundColor:
+                                        Color.fromARGB(255, 236, 235, 235),
                                   ),
                                 ),
                           Divider(),
@@ -684,7 +707,10 @@ class MembreDetail extends StatelessWidget {
                               ),
                             ),
                             style: TextButton.styleFrom(
-                                minimumSize: Size.fromHeight(50)),
+                              minimumSize: Size.fromHeight(50),
+                              backgroundColor:
+                                  Color.fromARGB(255, 236, 189, 189),
+                            ),
                           ),
                         ],
                       ),
