@@ -31,7 +31,7 @@ class MembreListeScreen extends StatelessWidget {
               },
               child: Obx(
                 () {
-                  if (controller.isLoading.value) {
+                  if (controller.isLoading.value == true) {
                     return const Center(
                       child: CircularProgressIndicator(),
                     );
@@ -53,7 +53,7 @@ class MembreListeScreen extends StatelessWidget {
                               child: ListTile(
                                 title: Text(
                                   controller.membres[index].nom +
-                                      ' ${controller.membres[index].nom}',
+                                      ' ${controller.membres[index].prenom}',
                                   style: TextStyle(
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.w500,
@@ -73,22 +73,15 @@ class MembreListeScreen extends StatelessWidget {
                                           fit: BoxFit.cover,
                                         ),
                                 ),
-                                trailing: Ink(
-                                  decoration: const ShapeDecoration(
-                                    // color: Color.fromARGB(255, 183, 245, 188),
-                                    shape: CircleBorder(),
-                                  ),
-                                  child: IconButton(
-                                    icon: Icon(
-                                      Icons.info_outline,
-                                      size: 30,
-                                      color: Color.fromARGB(184, 76, 175, 79),
-                                    ),
-                                    onPressed: () {
-                                      Get.toNamed(AppRoutes.DetailsMembre,
-                                          arguments:
-                                              controller.membres[index].id);
-                                    },
+                                trailing: Container(
+                                  width: 10,
+                                  height: 10,
+                                  decoration: BoxDecoration(
+                                    color:
+                                        controller.membres[index].isActive == 1
+                                            ? Colors.green
+                                            : Colors.red,
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
                                 ),
                               ),

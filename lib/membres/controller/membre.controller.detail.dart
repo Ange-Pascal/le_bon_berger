@@ -13,13 +13,15 @@ import 'package:lebonberger/departement/model/departement.model.dart';
 import 'package:lebonberger/departement/service/departement.service.dart';
 import 'package:lebonberger/maison/model/maison.model.dart';
 import 'package:lebonberger/maison/service/maison.service.dart';
+import 'package:lebonberger/membres/MembreScreen.dart';
+import 'package:lebonberger/membres/controller/membre.controller.dart';
 import 'package:lebonberger/membres/membre-detail.dart';
 import 'package:lebonberger/membres/model/membre.model.dart';
 import 'package:lebonberger/membres/service/membre.service.dart';
 import 'package:lebonberger/routes/app.routes.dart';
 
 class MembreDetailController extends GetxController {
-  late List<Membre> membres = <Membre>[].obs;
+  late List<Membre> membres = <Membre>[];
 
   RxBool isLoading = true.obs;
 
@@ -58,6 +60,7 @@ class MembreDetailController extends GetxController {
         membres[0].photo = membre.photo;
         // Get.toNamed(AppRoutes.DetailsMembre, arguments: membre);
         // findAll();
+        refreshController();
         isLoading(false);
         Get.back();
       }
@@ -67,24 +70,57 @@ class MembreDetailController extends GetxController {
   findOneByMembreId() async {
     if (Get.arguments != null) {
       dynamic membreId = Get.arguments.toString();
-      Membre membre = await MembreService.findOndById(membreId);
+      MembreService.findOndById(membreId).then((membre) {
+        isLoading(false);
+        membres.add(membre);
+      }).catchError((onError) => print(onError));
       // print(membre);
-      isLoading(false);
-      membres.add(membre);
     }
   }
 
+// 1 compte Actif
+// 0 compte Inactif
   activerDesactiverCompte(Membre membre) async {
     isLoading(true);
     dynamic data = {
       "id": membre.id.toString(),
-      "isActive": membre.isActive == true ? false : true
+      "isActive": membre.isActive == 0 ? 1 : 0
     };
     MembreService.activerDesactiverCompte(data, membre.id.toString())
         .then((res) {
       isLoading(false);
       membres[0] = res;
-      Get.back();
+      refreshController();
+      Get.back(result: true);
     }).catchError((onError) => print(onError));
+  }
+
+  validerCreerMembre(Membre membre) {
+    isLoading(true);
+    dynamic data = {"id": membre.id.toString()};
+
+    MembreService.validerCreerMembre(data).then((res) {
+      isLoading(false);
+      refreshController();
+      Get.toNamed(AppRoutes.membre);
+    }).catchError((onError) => print(onError));
+  }
+
+  supprimerCompte(Membre membre) {
+    isLoading(true);
+    dynamic data = membre.id.toString();
+
+    MembreService.supprimerCompte(data).then((res) {
+      isLoading(false);
+      refreshController();
+      Get.toNamed(AppRoutes.membre);
+    }).catchError((onError) => print(onError));
+    // Get.toNamed(AppRoutes.membre, preventDuplicates: false);
+  }
+
+  refreshController() {
+    MembreController membreController = Get.find();
+    membreController.findAll();
+    membreController.flindAllEnAttente();
   }
 }

@@ -166,21 +166,50 @@ class MembreDetail extends StatelessWidget {
                             fontSize: 20,
                           ),
                         ),
-                        Container(
-                          margin: EdgeInsets.only(
-                            top: 5,
-                          ),
-                          padding: EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                            color: Color.fromARGB(72, 183, 245, 188),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Text(
-                            '${DateFormat('dd.MM.yyyy').format(controller.membres[0].dateNaissance)}',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(
+                                top: 5,
+                              ),
+                              padding: EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(71, 6, 114, 202),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: Text(
+                                '${DateFormat('dd.MM.yyyy').format(controller.membres[0].dateNaissance)}',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                             ),
-                          ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(
+                                top: 5,
+                              ),
+                              padding: EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                color: controller.membres[0].isActive == 1
+                                    ? Color.fromARGB(72, 183, 245, 188)
+                                    : Color.fromARGB(71, 221, 58, 4),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: Text(
+                                controller.membres[0].isActive == 1
+                                    ? 'Compte actif'
+                                    : 'Compte inactif',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                         SizedBox(
                           height: 20,
@@ -547,7 +576,7 @@ class MembreDetail extends StatelessWidget {
                           width: MediaQuery.of(context).size.width,
                           child: Column(
                             children: [
-                              controller.membres[0].isActive != false
+                              controller.membres[0].isActive != 2
                                   ? TextButton(
                                       onPressed: () {},
                                       child: Text(
@@ -566,7 +595,7 @@ class MembreDetail extends StatelessWidget {
                                     )
                                   : Text(''),
                               Divider(),
-                              controller.membres[0].isActive == false
+                              controller.membres[0].isActive == 0
                                   ? TextButton(
                                       onPressed: () {
                                         Get.defaultDialog(
@@ -599,7 +628,11 @@ class MembreDetail extends StatelessWidget {
                                             style: ElevatedButton.styleFrom(
                                               backgroundColor: Colors.green,
                                             ),
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              controller
+                                                  .activerDesactiverCompte(
+                                                      controller.membres[0]);
+                                            },
                                             child: Text('Oui, activer'),
                                           ),
                                           barrierDismissible: false,
@@ -619,63 +652,123 @@ class MembreDetail extends StatelessWidget {
                                             Color.fromARGB(255, 236, 235, 235),
                                       ),
                                     )
-                                  : TextButton(
-                                      onPressed: () {
-                                        Get.defaultDialog(
-                                          title: "Désactiver le compte",
-                                          titleStyle: TextStyle(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 18.0,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.black,
-                                          ),
-                                          middleText:
-                                              "Voulez-vous vraiment désactiver ce compte ?",
-                                          middleTextStyle: TextStyle(
-                                            fontSize: 15.0,
-                                          ),
-                                          backgroundColor: Colors.white,
-                                          radius: 0.0,
-                                          cancel: TextButton(
-                                            onPressed: () {
-                                              Get.back();
-                                            },
-                                            child: Text(
-                                              'Annuler',
-                                              style: TextStyle(
+                                  : controller.membres[0].isActive == 1
+                                      ? TextButton(
+                                          onPressed: () {
+                                            Get.defaultDialog(
+                                              title: "Désactiver le compte",
+                                              titleStyle: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 18.0,
+                                                fontWeight: FontWeight.bold,
                                                 color: Colors.black,
                                               ),
+                                              middleText:
+                                                  "Voulez-vous vraiment désactiver ce compte ?",
+                                              middleTextStyle: TextStyle(
+                                                fontSize: 15.0,
+                                              ),
+                                              backgroundColor: Colors.white,
+                                              radius: 0.0,
+                                              cancel: TextButton(
+                                                onPressed: () {
+                                                  Get.back();
+                                                },
+                                                child: Text(
+                                                  'Annuler',
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                  ),
+                                                ),
+                                              ),
+                                              confirm: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  backgroundColor:
+                                                      Color.fromARGB(
+                                                          255, 179, 186, 179),
+                                                ),
+                                                onPressed: () {
+                                                  controller
+                                                      .activerDesactiverCompte(
+                                                          controller
+                                                              .membres[0]);
+                                                },
+                                                child: Text('Oui, désactiver'),
+                                              ),
+                                              barrierDismissible: false,
+                                            );
+                                          },
+                                          child: Text(
+                                            'Désactiver le compte',
+                                            style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 17,
+                                              color: Colors.black,
                                             ),
                                           ),
-                                          confirm: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              backgroundColor: Color.fromARGB(
-                                                  255, 179, 186, 179),
-                                            ),
-                                            onPressed: () {
-                                              controller
-                                                  .activerDesactiverCompte(
+                                          style: TextButton.styleFrom(
+                                            minimumSize: Size.fromHeight(50),
+                                            backgroundColor: Color.fromARGB(
+                                                255, 236, 235, 235),
+                                          ),
+                                        )
+                                      : TextButton(
+                                          onPressed: () {
+                                            Get.defaultDialog(
+                                              title: "Valider la création",
+                                              titleStyle: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 18.0,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black,
+                                              ),
+                                              middleText:
+                                                  "Voulez-vous vraiment créer ce membre ?",
+                                              middleTextStyle: TextStyle(
+                                                fontSize: 15.0,
+                                              ),
+                                              backgroundColor: Colors.white,
+                                              radius: 0.0,
+                                              cancel: TextButton(
+                                                onPressed: () {
+                                                  Get.back();
+                                                },
+                                                child: Text(
+                                                  'Annuler',
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                  ),
+                                                ),
+                                              ),
+                                              confirm: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  backgroundColor:
+                                                      Color.fromARGB(
+                                                          255, 179, 186, 179),
+                                                ),
+                                                onPressed: () {
+                                                  controller.validerCreerMembre(
                                                       controller.membres[0]);
-                                            },
-                                            child: Text('Oui, désactiver'),
+                                                },
+                                                child: Text('Oui, Créer'),
+                                              ),
+                                              barrierDismissible: false,
+                                            );
+                                          },
+                                          child: Text(
+                                            'Valider la crétaion',
+                                            style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 17,
+                                              color: Colors.black,
+                                            ),
                                           ),
-                                          barrierDismissible: false,
-                                        );
-                                      },
-                                      child: Text(
-                                        'Désactiver le compte',
-                                        style: TextStyle(
-                                          fontFamily: 'Poppins',
-                                          fontSize: 17,
-                                          color: Colors.black,
+                                          style: TextButton.styleFrom(
+                                            minimumSize: Size.fromHeight(50),
+                                            backgroundColor: Color.fromARGB(
+                                                255, 236, 235, 235),
+                                          ),
                                         ),
-                                      ),
-                                      style: TextButton.styleFrom(
-                                        minimumSize: Size.fromHeight(50),
-                                        backgroundColor:
-                                            Color.fromARGB(255, 236, 235, 235),
-                                      ),
-                                    ),
                               Divider(),
                               TextButton(
                                 onPressed: () {
@@ -709,7 +802,11 @@ class MembreDetail extends StatelessWidget {
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: Colors.red,
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        controller.supprimerCompte(
+                                          controller.membres[0],
+                                        );
+                                      },
                                       child: Text('Oui, Supprimer'),
                                     ),
                                     barrierDismissible: false,

@@ -26,7 +26,7 @@ class MembreController extends GetxController {
   late List<Maison> maisons = <Maison>[].obs;
   late List<Departement> departements = <Departement>[].obs;
 
-  RxBool isLoading = true.obs;
+  RxBool isLoading = false.obs;
   late TextEditingController searchController = TextEditingController();
 
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
@@ -87,7 +87,6 @@ class MembreController extends GetxController {
     findAllMaison();
     findAllDepartement();
     flindAllEnAttente();
-    findOneByMembreId();
 
     searchController = TextEditingController();
     nomcontroller = TextEditingController();
@@ -104,11 +103,13 @@ class MembreController extends GetxController {
     personcontactcontroller = TextEditingController();
     datedecisioncontroller = TextEditingController();
     datearrivecontroller = TextEditingController();
+
     super.onInit();
   }
 
   @override
   void onReady() {
+    findAll();
     super.onReady();
   }
 
@@ -132,15 +133,14 @@ class MembreController extends GetxController {
   }
 
   findAll() async {
-    try {
+    isLoading(true);
+    MembreService.flindAll().then((res) {
       isLoading(false);
-      var res = await MembreService.flindAll();
       membres.assignAll(membreFromJson(res));
-      // print(membres);
-    } catch (e) {
+    }).catchError((onError) {
       isLoading(false);
-      print(e);
-    }
+      print(onError);
+    });
   }
 
   flindAllEnAttente() async {
@@ -148,7 +148,6 @@ class MembreController extends GetxController {
       isLoading(false);
       var res = await MembreService.flindAllEnAttente();
       membresEnAttente.assignAll(membreFromJson(res));
-      // print(membres);
     } catch (e) {
       isLoading(false);
       print(e);
@@ -169,7 +168,6 @@ class MembreController extends GetxController {
     try {
       var res = await DepartementService.flindAll();
       departements.assignAll(departementFromJson(res));
-      // print(departements);
     } catch (e) {
       print(e);
     }
@@ -214,37 +212,17 @@ class MembreController extends GetxController {
 
   void takePhoto(String membreId) async {
     isLoadingFile(true);
-    // FilePickerResult? result;
-    // String? fileName;
-    // PlatformFile? pickerFile;
-    // File? fileToDisplay;
 
     final XFile? imageFile =
         await _picker.pickImage(source: ImageSource.gallery);
 
     if (imageFile != null) {
       File file = File(imageFile.path);
-      // print(imageFile.path);
-
-      // String str =
-      //     "{id: 7, civilite: Mme, nom: Ode, prenom: Nadège, telephone: 0102090800, email: ode@oramge.com, sexe: F, photo: image_picker_E1DE00E5-A79E-4574-AD27-FE24B10F9FEA-26636-00002071AA15CDEF.jpg-1679073908451-494588774.jpg, date_naissance: 2000-02-08, annee_convers: 01-03-2023, annee_bp_eau: 02-03-2023, annee_bp_esprit: 15-03-2023, situation_mat: Célibataire, nombre_enfants: 4, profession: Commerciale, classe_age: Adultes (25 à 64 ans), personne_contact: Personne, date_decision: 15-03-2023, date_arrivee: 15-03-2023, isActive: false, isDeleted: false, createdAt: 2023-03-15T16:04:07.160Z, updatedAt: 2023-03-17T17:25:08.000Z, deletedAt: null}";
-
       var res = await MembreService.uploadImage(file, membreId);
-
       if (res != null) {
         Membre membre = membreFromJsonSingle(res);
-        print(membre);
-        // Get.toNamed(AppRoutes.DetailsMembre, arguments: membre);
-        findAll();
-        Get.toNamed(AppRoutes.membre);
       }
-
-      // Get.to(MembreDetail(), arguments: membre);
     }
-
-    // pathString = imageFile.path as RxString;
-
-    // await MembreService.uploadImage(pickedFile!.path, membreId);
   }
 
   handleSubmit() async {
@@ -296,26 +274,4 @@ class MembreController extends GetxController {
       }
     }
   }
-
-  findOneByMembreId() async {
-    print("Get.arguments");
-    print(Get.arguments);
-    if (Get.arguments != null) {
-      print(membres.length);
-      String membreId = Get.arguments;
-      Membre membre = await MembreService.findOndById(membreId);
-      // membres.add(membre);
-    }
-  }
-
-  // convertToDecode() {
-  //   final decode = jsonDecode(Get.parameters['membre']!);
-  //   final passToModel = Membre.fromJson(decode);
-  //   membre(passToModel);
-  //   // or if you are using getBuilder
-  //   // try do it like this
-  //   // model.value = passToModel;
-  //   // update();
-  //   // don't forget to call update() since it's needed from getbuilder;
-  // }
 }

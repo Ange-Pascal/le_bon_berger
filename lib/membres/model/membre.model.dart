@@ -63,7 +63,7 @@ class Membre {
   String personneContact;
   String dateDecision;
   String dateArrivee;
-  bool? isActive;
+  int? isActive;
   bool? isDeleted;
   dynamic createdAt;
   dynamic updatedAt;

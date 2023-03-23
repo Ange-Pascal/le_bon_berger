@@ -44,7 +44,7 @@ class MembreListeEnAttenteScreen extends StatelessWidget {
                             onTap: () {
                               Get.toNamed(AppRoutes.DetailsMembre,
                                   arguments:
-                                      controller.membresEnAttente[index]);
+                                      controller.membresEnAttente[index].id);
                             },
                             child: Container(
                               margin: EdgeInsets.only(
@@ -54,7 +54,7 @@ class MembreListeEnAttenteScreen extends StatelessWidget {
                               child: ListTile(
                                 title: Text(
                                   controller.membresEnAttente[index].nom +
-                                      ' ${controller.membresEnAttente[index].nom}',
+                                      ' ${controller.membresEnAttente[index].prenom}',
                                   style: TextStyle(
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.w500,
