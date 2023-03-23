@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lebonberger/auth/auth.controller.dart';
+import 'package:lebonberger/dashboard/services/add-visite.dart';
 import 'package:lebonberger/routes/app.routes.dart';
 import '../delayed_animation.dart';
 import '../main.dart';
@@ -74,6 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                     DelayedAnimation(
                       delay: 500,
                       child: TextFormField(
+                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           labelText: 'Votre téléphone',
                           labelStyle: TextStyle(
@@ -85,6 +87,9 @@ class _LoginPageState extends State<LoginPage> {
                             return 'Entrer votre identifiant ou email';
                           }
                           return null;
+                        },
+                        onSaved: (newValue) {
+                          controller.telephone = newValue!;
                         },
                       ),
                     ),
@@ -115,6 +120,9 @@ class _LoginPageState extends State<LoginPage> {
                             }
                             return null;
                           },
+                          onSaved: (newValue) {
+                            controller.password = newValue!;
+                          },
                         ),
                       ),
                     ),
@@ -130,17 +138,25 @@ class _LoginPageState extends State<LoginPage> {
                             vertical: 13,
                           ),
                         ),
-                        child: Text(
-                          'CONFIRMER',
-                          style: GoogleFonts.poppins(
-                            color: Colors.white,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
+                        child: Obx(() {
+                          if (controller.isLoading.value == false) {
+                            return Text(
+                              'CONFIRMER',
+                              style: GoogleFonts.poppins(
+                                color: Colors.white,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            );
+                          } else {
+                            return CircularProgressIndicator(
+                              color: Colors.white,
+                            );
+                          }
+                        }),
                         onPressed: () {
                           controller.login();
-                          Get.toNamed(AppRoutes.membre);
+                          // Get.toNamed(AppRoutes.membre);
 
                           // if (_formKey.currentState!.validate()) {
                           //   ScaffoldMessenger.of(context).showSnackBar(

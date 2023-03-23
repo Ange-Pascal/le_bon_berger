@@ -43,7 +43,7 @@ class MembreListeScreen extends StatelessWidget {
                           child: InkWell(
                             onTap: () {
                               Get.toNamed(AppRoutes.DetailsMembre,
-                                  arguments: controller.membres[index]);
+                                  arguments: controller.membres[index].id);
                             },
                             child: Container(
                               margin: EdgeInsets.only(
@@ -86,7 +86,8 @@ class MembreListeScreen extends StatelessWidget {
                                     ),
                                     onPressed: () {
                                       Get.toNamed(AppRoutes.DetailsMembre,
-                                          arguments: controller.membres[index]);
+                                          arguments:
+                                              controller.membres[index].id);
                                     },
                                   ),
                                 ),

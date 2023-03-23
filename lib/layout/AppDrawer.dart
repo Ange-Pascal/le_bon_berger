@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
+import 'package:lebonberger/auth/auth.controller.dart';
 import 'package:lebonberger/routes/app.routes.dart';
 
 class AppDrawer extends StatelessWidget {
-  const AppDrawer({
+  AppDrawer({
     super.key,
   });
+
+  AuthController controller = Get.put(AuthController());
+  // Map<String, dynamic> payload = AuthController().getPayload();
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +52,7 @@ class AppDrawer extends StatelessWidget {
                   const SizedBox(height: 15),
                   Container(
                     child: Text(
-                      'jeanmarcokassa@gmail.com',
+                      '${controller.getPayload()?.email}',
                       style: TextStyle(color: Colors.white),
                     ),
                   )
@@ -155,7 +160,8 @@ class AppDrawer extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Get.toNamed(AppRoutes.login);
+              // Get.toNamed(AppRoutes.welcome);
+              controller.logOut();
             },
           ),
         ],

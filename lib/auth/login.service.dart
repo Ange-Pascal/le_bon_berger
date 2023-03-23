@@ -14,8 +14,7 @@ class AuthService {
         body: json.encode(data),
         headers: {'Content-Type': 'application/json'},
       );
-
-      print(res.body);
+      return res.body;
     } catch (e) {
       print(e);
     }

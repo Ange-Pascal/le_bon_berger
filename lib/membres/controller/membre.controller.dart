@@ -87,6 +87,7 @@ class MembreController extends GetxController {
     findAllMaison();
     findAllDepartement();
     flindAllEnAttente();
+    findOneByMembreId();
 
     searchController = TextEditingController();
     nomcontroller = TextEditingController();
@@ -293,6 +294,17 @@ class MembreController extends GetxController {
         findAll();
         Get.toNamed(AppRoutes.membre);
       }
+    }
+  }
+
+  findOneByMembreId() async {
+    print("Get.arguments");
+    print(Get.arguments);
+    if (Get.arguments != null) {
+      print(membres.length);
+      String membreId = Get.arguments;
+      Membre membre = await MembreService.findOndById(membreId);
+      // membres.add(membre);
     }
   }
 

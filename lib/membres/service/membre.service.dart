@@ -49,12 +49,27 @@ class MembreService {
     return jsonEncode(response.data);
   }
 
-  static Future<String> findOndById(String membreId) async {
+  static Future<Membre> findOndById(String membreId) async {
     Dio dio = Dio();
     Response response;
 
     response = await dio.get('${ApiRoutes.membres}/$membreId');
+    return membreFromJsonSingle(jsonEncode(response.data));
+  }
 
-    return response.data.toString();
+  static Future<Membre> activerDesactiverCompte(
+      dynamic data, String membreId) async {
+    String path = '${ApiRoutes.membres}/action-request';
+
+    print(Uri.parse(ApiRoutes.membres));
+    http.Response res = await http.post(
+      Uri.parse(path),
+      body: json.encode(data),
+      headers: {'Content-Type': 'application/json'},
+    );
+
+    print(res.body);
+
+    return membreFromJsonSingle(res.body);
   }
 }
