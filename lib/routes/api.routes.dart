@@ -1,10 +1,18 @@
 class ApiRoutes {
-  // Base Route
-  static String BASE_IP = '10.0.2.2';
-  static String APP_BASE_URL = 'http://$BASE_IP:8000/api';
-  static String CORE_BASE_URL = 'http://$BASE_IP:8000/api';
+  // Base Route dev
+  // static String BASE_IP = '10.0.2.2';
+  // static String APP_BASE_URL = 'http://$BASE_IP:8000/api';
+  // static String CORE_BASE_URL = 'http://$BASE_IP:8000/api';
 
-  static String STORAGE_PUBLIC_PATH = 'http://$BASE_IP:8000/uploads/';
+  // Base Route dev
+  static String BASE_IP = 'http://leecka.bptechnology.net/public/index.php';
+  static String APP_BASE_URL =
+      'http://leecka.bptechnology.net/public/index.php/api';
+  static String CORE_BASE_URL =
+      'http://leecka.bptechnology.net/public/index.php/api';
+
+  static String STORAGE_PUBLIC_PATH =
+      'http://leecka.bptechnology.net/public/uploads/';
 
   // APP ROUTE
   static String membres = APP_BASE_URL + '/membres';
