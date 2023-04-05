@@ -52,7 +52,7 @@ class MembreListeScreen extends StatelessWidget {
                               color: Colors.white70,
                               child: ListTile(
                                 title: Text(
-                                  controller.membres[index].nom +
+                                  controller.membres[index].name +
                                       ' ${controller.membres[index].prenom}',
                                   style: TextStyle(
                                     fontFamily: 'Poppins',

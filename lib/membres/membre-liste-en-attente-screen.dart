@@ -53,7 +53,7 @@ class MembreListeEnAttenteScreen extends StatelessWidget {
                               color: Colors.white70,
                               child: ListTile(
                                 title: Text(
-                                  controller.membresEnAttente[index].nom +
+                                  controller.membresEnAttente[index].name +
                                       ' ${controller.membresEnAttente[index].prenom}',
                                   style: TextStyle(
                                     fontFamily: 'Poppins',

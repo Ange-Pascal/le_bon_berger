@@ -1,10 +1,10 @@
 class ApiRoutes {
   // Base Route
-  static String BASE_IP = '10.213.42.7';
-  static String APP_BASE_URL = 'http://$BASE_IP:50000';
-  static String CORE_BASE_URL = 'http://$BASE_IP:50100';
+  static String BASE_IP = '10.0.2.2';
+  static String APP_BASE_URL = 'http://$BASE_IP:8000/api';
+  static String CORE_BASE_URL = 'http://$BASE_IP:8000/api';
 
-  static String STORAGE_PUBLIC_PATH = APP_BASE_URL + '/public/uploads/';
+  static String STORAGE_PUBLIC_PATH = 'http://$BASE_IP:8000/uploads/';
 
   // APP ROUTE
   static String membres = APP_BASE_URL + '/membres';
@@ -16,4 +16,7 @@ class ApiRoutes {
 
   // departement Route
   static String departements = APP_BASE_URL + '/departements';
+
+  // Encadreur
+  static String encadreur = APP_BASE_URL + '/encadreurs';
 }

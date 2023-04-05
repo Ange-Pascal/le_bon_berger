@@ -605,6 +605,37 @@ class _AddMembreState extends State<AddMembre> {
                                                 ),
                                               ),
                                             ),
+                                            Container(
+                                              width: double.infinity,
+                                              height: 60,
+                                              child: Obx(
+                                                () => DropdownButton(
+                                                  hint: Text('Encadreur'),
+                                                  value: controller
+                                                              .selectedEncadreur ==
+                                                          ""
+                                                      ? null
+                                                      : controller
+                                                          .selectedMaison.value,
+                                                  items: controller.encadreurs
+                                                      .map(
+                                                        (e) => DropdownMenuItem(
+                                                          child: Text(
+                                                              '${e.name} ${e.prenom}'),
+                                                          value:
+                                                              e.id.toString(),
+                                                        ),
+                                                      )
+                                                      .toList(),
+                                                  onChanged: (val) {
+                                                    controller
+                                                        .setSelectedEncadreur(
+                                                            val);
+                                                  },
+                                                  isExpanded: true,
+                                                ),
+                                              ),
+                                            ),
                                           ],
                                         ),
                                       ),

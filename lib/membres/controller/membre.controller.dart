@@ -7,10 +7,13 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:lebonberger/auth/auth.controller.dart';
 import 'package:lebonberger/cellules/model/cellule.model.dart';
 import 'package:lebonberger/cellules/service/cellule.service.dart';
 import 'package:lebonberger/departement/model/departement.model.dart';
 import 'package:lebonberger/departement/service/departement.service.dart';
+import 'package:lebonberger/encadreur/encadreur.model.dart';
+import 'package:lebonberger/encadreur/encadreur.service.dart';
 import 'package:lebonberger/maison/model/maison.model.dart';
 import 'package:lebonberger/maison/service/maison.service.dart';
 import 'package:lebonberger/membres/membre-detail.dart';
@@ -25,6 +28,7 @@ class MembreController extends GetxController {
   late List<Cellule> cellules = <Cellule>[].obs;
   late List<Maison> maisons = <Maison>[].obs;
   late List<Departement> departements = <Departement>[].obs;
+  late List<Encadreur> encadreurs = <Encadreur>[].obs;
 
   RxBool isLoading = false.obs;
   late TextEditingController searchController = TextEditingController();
@@ -33,10 +37,10 @@ class MembreController extends GetxController {
   List<String> civilite = <String>['M.', 'Mme', 'Mlle'];
   List<String> sexe = <String>['M', 'F'];
   List<String> classage = <String>[
-    "Enfants (00 à 14 ans)",
-    "Adolescents (15 à 24 ans)",
-    "Adultes (25 à 64 ans)",
-    "Aînés (65 ans et plus)"
+    "Enfants",
+    "Adolescents",
+    "Adultes",
+    "Aînés"
   ];
 
   late TextEditingController nomcontroller = TextEditingController();
@@ -77,6 +81,7 @@ class MembreController extends GetxController {
   final selectedCellule = "".obs;
   final selectedMaison = "".obs;
   final selectedDepartement = "".obs;
+  final selectedEncadreur = "".obs;
   late DateTime dateNaissanceDateTime = DateTime.now();
   final isLoadingFile = false.obs;
   RxString pathString = "".obs;
@@ -86,6 +91,7 @@ class MembreController extends GetxController {
     findAll();
     findAllMaison();
     findAllDepartement();
+    findallEncadreur();
     flindAllEnAttente();
 
     searchController = TextEditingController();
@@ -158,7 +164,7 @@ class MembreController extends GetxController {
     try {
       var res = await MaisonService.flindAll();
       maisons.assignAll(maisonFromJson(res));
-      print(maisons);
+      print(maisons.length);
     } catch (e) {
       print(e);
     }
@@ -168,6 +174,18 @@ class MembreController extends GetxController {
     try {
       var res = await DepartementService.flindAll();
       departements.assignAll(departementFromJson(res));
+      print(departements.length);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  findallEncadreur() async {
+    try {
+      var res = await EncadreurService.flindAll();
+
+      encadreurs.assignAll(encadreurFromJson(res));
+      print(encadreurs.length);
     } catch (e) {
       print(e);
     }
@@ -195,6 +213,10 @@ class MembreController extends GetxController {
 
   setSelectedDepartement(val) {
     selectedDepartement.value = val;
+  }
+
+  setSelectedEncadreur(val) {
+    selectedEncadreur.value = val;
   }
 
   getsexe(String val) {
@@ -232,7 +254,7 @@ class MembreController extends GetxController {
     if (formkey.currentState!.validate()) {
       Map<String, dynamic> data = {
         "civilite": selected.value,
-        "nom": nom,
+        "name": nom,
         "prenom": prenom,
         "telephone": telephone,
         "email": email,
@@ -249,8 +271,9 @@ class MembreController extends GetxController {
         "personne_contact": personcontact,
         "date_decision": datedecision,
         "date_arrivee": datearrive,
-        "maison": selectedMaison.value,
-        "departement": selectedDepartement.value,
+        "maison_id": selectedMaison.value,
+        "departement_id": selectedDepartement.value,
+        "encadreur_id": selectedEncadreur.value
       };
 
       // print(DateFormat('yyyy-MM-dd').format(DateTime.parse("2023/03/07")));
@@ -269,9 +292,14 @@ class MembreController extends GetxController {
         );
       } else {
         formkey.currentState?.reset();
-        findAll();
+        flindAllEnAttente();
         Get.toNamed(AppRoutes.membre);
       }
     }
+  }
+
+  refreshController() {
+    AuthController authController = Get.find();
+    authController.getCurrentUser();
   }
 }

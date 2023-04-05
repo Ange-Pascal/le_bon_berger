@@ -59,7 +59,7 @@ class MembreDetail extends StatelessWidget {
                                   ? NetworkImage(ApiRoutes.STORAGE_PUBLIC_PATH +
                                       controller.membres[0].photo!)
                                   : NetworkImage(ApiRoutes.STORAGE_PUBLIC_PATH +
-                                      'users.png'),
+                                      'user.png'),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -159,7 +159,7 @@ class MembreDetail extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          '${controller.membres[0].civilite} ${controller.membres[0].nom} ${controller.membres[0].prenom}',
+                          '${controller.membres[0].civilite} ${controller.membres[0].name} ${controller.membres[0].prenom}',
                           style: TextStyle(
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w300,

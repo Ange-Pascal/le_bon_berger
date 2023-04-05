@@ -22,9 +22,6 @@ class Maison {
     required this.repere,
     required this.isActive,
     required this.isDeleted,
-    required this.createdAt,
-    required this.updatedAt,
-    this.deletedAt,
     required this.cellule,
   });
 
@@ -34,11 +31,8 @@ class Maison {
   String telephone;
   String quartier;
   String repere;
-  bool isActive;
-  bool isDeleted;
-  DateTime createdAt;
-  DateTime updatedAt;
-  dynamic deletedAt;
+  dynamic isActive;
+  dynamic isDeleted;
   Cellule cellule;
 
   factory Maison.fromJson(Map<String, dynamic> json) => Maison(
@@ -50,9 +44,6 @@ class Maison {
         repere: json["repere"],
         isActive: json["isActive"],
         isDeleted: json["isDeleted"],
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
-        deletedAt: json["deletedAt"],
         cellule: Cellule.fromJson(json["cellule"]),
       );
 
@@ -65,9 +56,6 @@ class Maison {
         "repere": repere,
         "isActive": isActive,
         "isDeleted": isDeleted,
-        "createdAt": createdAt.toIso8601String(),
-        "updatedAt": updatedAt.toIso8601String(),
-        "deletedAt": deletedAt,
         "cellule": cellule.toJson(),
       };
 }

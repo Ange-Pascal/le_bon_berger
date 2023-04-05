@@ -14,29 +14,26 @@ class Cellule {
   Cellule({
     required this.id,
     required this.nomCellule,
-    required this.isActive,
-    required this.isDeleted,
+    this.isActive,
+    this.isDeleted,
     required this.createdAt,
     required this.updatedAt,
-    this.deletedAt,
   });
 
   int id;
   String nomCellule;
-  bool isActive;
-  bool isDeleted;
+  dynamic isActive;
+  dynamic isDeleted;
   DateTime createdAt;
   DateTime updatedAt;
-  dynamic deletedAt;
 
   factory Cellule.fromJson(Map<String, dynamic> json) => Cellule(
         id: json["id"],
         nomCellule: json["nom_cellule"],
         isActive: json["isActive"],
         isDeleted: json["isDeleted"],
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
-        deletedAt: json["deletedAt"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -46,6 +43,5 @@ class Cellule {
         "isDeleted": isDeleted,
         "createdAt": createdAt.toIso8601String(),
         "updatedAt": updatedAt.toIso8601String(),
-        "deletedAt": deletedAt,
       };
 }

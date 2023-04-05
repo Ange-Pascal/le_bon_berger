@@ -3,11 +3,11 @@ import 'package:http/http.dart' as http;
 import 'package:lebonberger/auth/Token.dart';
 import 'package:lebonberger/routes/api.routes.dart';
 
-class MaisonService extends GetConnect {
+class EncadreurService extends GetConnect {
   // Liste membres
   static Future<dynamic> flindAll() async {
     http.Response res = await http.get(
-      Uri.parse(ApiRoutes.maisons),
+      Uri.parse(ApiRoutes.encadreur),
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',

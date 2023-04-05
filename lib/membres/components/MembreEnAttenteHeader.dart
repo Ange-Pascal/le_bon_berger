@@ -100,7 +100,7 @@ class DataSearch extends SearchDelegate<dynamic> {
     final List<Membre> result = membres
         .where(
           (element) =>
-              element.nom.toLowerCase().contains(query.toLowerCase()) ||
+              element.name.toLowerCase().contains(query.toLowerCase()) ||
               element.departement.nomDepartement
                   .toLowerCase()
                   .contains(query.toLowerCase()) ||
@@ -116,7 +116,7 @@ class DataSearch extends SearchDelegate<dynamic> {
       itemCount: result.length,
       itemBuilder: (context, int index) {
         return ListTile(
-          title: Text('${result[index].nom}'),
+          title: Text('${result[index].name}'),
         );
       },
     );
@@ -127,7 +127,7 @@ class DataSearch extends SearchDelegate<dynamic> {
     final List<Membre> result = membres
         .where(
           (element) =>
-              element.nom.toLowerCase().contains(query.toLowerCase()) ||
+              element.name.toLowerCase().contains(query.toLowerCase()) ||
               element.departement.nomDepartement
                   .toLowerCase()
                   .contains(query.toLowerCase()) ||
@@ -154,7 +154,7 @@ class DataSearch extends SearchDelegate<dynamic> {
               color: Colors.white70,
               child: ListTile(
                 title: Text(
-                  result[index].nom + ' ${result[index].nom}',
+                  result[index].name + ' ${result[index].name}',
                   style: TextStyle(
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.w500,

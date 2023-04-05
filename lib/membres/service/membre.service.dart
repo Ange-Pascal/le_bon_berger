@@ -35,7 +35,8 @@ class MembreService {
 
   // Add Membres
   static Future<dynamic> create(Map<String, dynamic> data) async {
-    print(Uri.parse(ApiRoutes.membres));
+    // print(Uri.parse(ApiRoutes.membres));
+    // print(data);
     http.Response res = await http.post(
       Uri.parse(ApiRoutes.membres),
       body: json.encode(data),
@@ -46,7 +47,9 @@ class MembreService {
       },
     );
 
-    return json.decode(res.body);
+    print(res.body);
+
+    // return json.decode(res.body);
   }
 
   static Future<dynamic> uploadImage(File file, String membreId) async {
@@ -58,7 +61,7 @@ class MembreService {
       "photo": await MultipartFile.fromFile(file.path, filename: fileName),
     });
     // print('${ApiRoutes.membres}/$membreId');
-    response = await dio.patch('${ApiRoutes.membres}/$membreId',
+    response = await dio.post('${ApiRoutes.membres}/$membreId',
         data: formData,
         options: Options(headers: {
           'Content-Type': 'application/json',
@@ -87,7 +90,7 @@ class MembreService {
       dynamic data, String membreId) async {
     String path = '${ApiRoutes.membres}/action-request';
 
-    print(Uri.parse(ApiRoutes.membres));
+    // print(Uri.parse(ApiRoutes.membres));
     http.Response res = await http.post(
       Uri.parse(path),
       body: json.encode(data),
@@ -101,8 +104,8 @@ class MembreService {
   }
 
   static Future<dynamic> validerCreerMembre(Map<String, dynamic> data) async {
-    print(Uri.parse(ApiRoutes.membres));
-    String path = '${ApiRoutes.membres}/validate-membre';
+    // print(Uri.parse(ApiRoutes.membres));
+    String path = '${ApiRoutes.membres}/validated-acount';
     http.Response res = await http.post(
       Uri.parse(path),
       body: json.encode(data),
@@ -117,9 +120,9 @@ class MembreService {
   }
 
   static Future<dynamic> supprimerCompte(String membreId) async {
-    print(Uri.parse(ApiRoutes.membres));
+    // print(Uri.parse(ApiRoutes.membres));
     String path = '${ApiRoutes.membres}/$membreId';
-    print(path);
+    // print(path);
     http.Response res = await http.delete(
       Uri.parse(path),
       headers: {

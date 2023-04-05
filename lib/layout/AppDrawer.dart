@@ -52,7 +52,7 @@ class AppDrawer extends StatelessWidget {
                   const SizedBox(height: 15),
                   Container(
                     child: Text(
-                      '${controller.getPayload()?.email}',
+                      '${controller.getCurrentUser()['email']}',
                       style: TextStyle(color: Colors.white),
                     ),
                   )

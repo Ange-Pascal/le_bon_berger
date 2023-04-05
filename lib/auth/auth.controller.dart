@@ -13,6 +13,8 @@ class AuthController extends GetxController with CacheManager {
   GlobalKey<FormState> loginFormKey =
       GlobalKey<FormState>(debugLabel: 'LoginPage');
 
+  Map<String, dynamic> currentUser = {};
+
   late TextEditingController telephoneController;
   late TextEditingController passwordController;
   var obscureText = true.obs;
@@ -47,21 +49,20 @@ class AuthController extends GetxController with CacheManager {
       };
 
       AuthService.login(data).then((res) async {
-        var jsonToken = json.decode(res);
+        // print(res);
+        // String rawJson = '{"name":"Mary","age":30}';
+        Map<String, dynamic> jsonToken = jsonDecode(res);
         isLoading(false);
 
         if (jsonToken["statusCode"] == 404) {
-          print("error");
           Get.snackbar("Invalid Credentials", jsonToken["message"]);
         } else {
-          print("success");
-          // print(jsonToken["statusCode"]);
-          await saveToken(jsonToken["access_token"]);
+          await saveToken(jsonToken["access_token"], jsonToken["current_user"]);
           Get.toNamed(AppRoutes.membre);
         }
       }).catchError((onError) {
         print("echec");
-        // print(onError["message"]);
+        // print(onError);
         isLoading(false);
         Get.snackbar("Invalid Credentials", "Champs obligatoire");
       });
@@ -80,13 +81,11 @@ class AuthController extends GetxController with CacheManager {
     Get.to(const OnBoard());
   }
 
-  User? getPayload() {
-    String? token = getToken();
-    if (token != null) {
-      Map<String, dynamic> payload = Jwt.parseJwt(token);
-      print(payload);
-      // return payload;
-      return User.fromJson(payload);
+  getPayload() {
+    Map<String, dynamic> user = getCurrentUser();
+    // ignore: unnecessary_null_comparison
+    if (user != null) {
+      return user;
     }
   }
 }
