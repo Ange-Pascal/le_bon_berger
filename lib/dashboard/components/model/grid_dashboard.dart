@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:lebonberger/dashboard/components/screens/absence.dart';
 import 'package:lebonberger/dashboard/components/screens/decicion.dart';
 import 'package:lebonberger/dashboard/components/screens/departement.dart';
-import 'package:lebonberger/dashboard/components/screens/cellule.dart';
+import 'package:lebonberger/cellules/cellule-liste.dart';
 import 'package:lebonberger/dashboard/components/screens/maison.dart';
 import 'package:lebonberger/dashboard/components/screens/nouvelle.dart';
 import 'package:lebonberger/dashboard/components/screens/parametre.dart';

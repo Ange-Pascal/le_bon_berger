@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lebonberger/dashboard/services/add-cellule.dart';
-import 'cellule_screen.dart';
+import 'package:lebonberger/cellules/add-cellule.dart';
+import 'encadreur-screen.dart';
 import 'package:get/get.dart';
 
-class CelluleHome extends StatelessWidget {
-  const CelluleHome({super.key});
+class EncadreurHome extends StatelessWidget {
+  const EncadreurHome({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class CelluleHome extends StatelessWidget {
             expandedHeight: 200,
             pinned: true,
             flexibleSpace: const FlexibleSpaceBar(
-              title: Text("Cellules"),
+              title: Text("Encadreur"),
               centerTitle: true,
               expandedTitleScale: 1,
               collapseMode: CollapseMode.parallax,
@@ -59,13 +59,13 @@ class CelluleHome extends StatelessWidget {
                       Icons.home,
                       color: Colors.white,
                     )),
-                title: Text("Nom: Cellule $index",
+                title: Text("Nom: Encadreur $index",
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold, fontSize: 18)),
-                subtitle: Text("Responsable:  Koffi $index"),
+                subtitle: Text("Departement:  Musique $index"),
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () {
-                  Get.to(CelluleScreen());
+                  Get.to(EncadreurScreen());
                 },
               ),
               

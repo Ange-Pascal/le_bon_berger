@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:get/get.dart';
-import 'package:lebonberger/cellules/cellule-liste.dart';
 import 'package:lebonberger/dashboard/services/update-cellule.dart';
 
-class CelluleScreen extends StatelessWidget {
-  const CelluleScreen({super.key});
+class EncadreurScreen extends StatelessWidget {
+  const EncadreurScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +38,7 @@ class CelluleScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Text(
-                                " Cellule Elkana",
+                                " Nom & Prénom",
                                 style: GoogleFonts.poppins(
                                     fontSize: 30, fontWeight: FontWeight.bold),
                               ),
@@ -48,7 +46,7 @@ class CelluleScreen extends StatelessWidget {
                                 height: 5,
                               ),
                               Text(
-                                "20 Membres",
+                                "Koffi Julien",
                                 style: GoogleFonts.poppins(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
@@ -70,12 +68,12 @@ class CelluleScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "Responsable de la cellule",
+                          "Departement",
                           style: GoogleFonts.poppins(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ), 
                         Text(
-                          "Koffi Jacob",
+                          "Musique",
                           style: GoogleFonts.poppins(
                               fontSize: 16, fontWeight: FontWeight.bold, color: Colors.grey),
                         ),
