@@ -2,34 +2,81 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:lebonberger/auth/Token.dart';
 import 'package:lebonberger/routes/api.routes.dart';
 
 import '../model/cellule.model.dart';
 
+
 class CelluleService {
   // Liste cellules
   static Future<dynamic> flindAll() async {
-    http.Response res = await http
-        .get(Uri.parse('http://leecka.bptechnology.net/public/index.php/api'));
+    // print(Uri.parse(ApiRoutes.membres));
 
-    if (res.statusCode == 200) {
-        return Cellule.fromJson(jsonDecode(res.body));
-      } else {
-        throw Exception("impossible d'afficher les cellules");
-      }
+    http.Response res = await http.get(Uri.parse(ApiRoutes.cellules), headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ${Token.getToken()}',
+    });
+    return res.body;
   }
 
-  // Add Cellule
+
+
+  // Add Cellule step 2 les differentes methodes
   static Future<dynamic> create(Map<String, dynamic> data) async {
     // print(Uri.parse(ApiRoutes.membres));
     // print(data);
     http.Response res = await http.post(
       Uri.parse(ApiRoutes.cellules),
       body: json.encode(data),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ${Token.getToken()}',
+      },
+    );
+    return json.decode(res.body);
+  }
+
+  // Supprimer une cellule 
+
+  static Future<dynamic> deleteCellule(String celluleId) async {
+    // print(Uri.parse(ApiRoutes.membres));
+    String path = '${ApiRoutes.cellules}/$celluleId';
+    
+    http.Response res = await http.delete(
+      Uri.parse(path),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ${Token.getToken()}',
+      },
     );
 
     print(res.body);
 
-    // return json.decode(res.body);
+    return json.decode(res.body);
+  } 
+
+
+  // modifier le nom de la cellule 
+
+  static Future<dynamic> updateCellule(String celluleId) async {
+    // print(Uri.parse(ApiRoutes.membres));
+    String path = '${ApiRoutes.cellules}/$celluleId';
+    
+    http.Response res = await http.put(
+      Uri.parse(path),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ${Token.getToken()}',
+      },
+    );
+
+    print(res.body);
+
+    return json.decode(res.body);
   }
 }

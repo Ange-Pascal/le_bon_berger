@@ -44,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Votre identifiant",
+                    "Votre numéro de téléphone",
                     style: GoogleFonts.poppins(
                       color: Colors.green,
                       fontSize: 25,
@@ -53,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   SizedBox(height: 22),
                   Text(
-                    "Utilisez votre adresse email comme identfiant pour vous connecter.",
+                    "Utilisez votre numéro de téléphone pour vous connecter.",
                     style: GoogleFonts.poppins(
                       color: Colors.grey[600],
                       fontSize: 16,

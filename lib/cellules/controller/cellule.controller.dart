@@ -2,66 +2,53 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebonberger/cellules/model/cellule.model.dart';
 import 'package:lebonberger/cellules/service/cellule.service.dart';
+import 'package:lebonberger/routes/app.routes.dart';
 
 class CelluleController extends GetxController {
   RxBool isLoading = false.obs;
+  // Etape 1 creation des instances
   late List<Cellule> cellules = <Cellule>[].obs;
-  TextEditingController nomCelluleEditingController = TextEditingController(); 
-
-  final GlobalKey<FormState> formkey = GlobalKey<FormState>(); 
-
+  late TextEditingController nomCelluleController= TextEditingController();
   var nomCellule = ""; 
+  var celluleId = "";
+
+  final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  
 
 
-  @override
-  void onInit() {
-    findAll(); 
-    
+
+  // Fetch cellule step 2 appel in service the method
+
+  @override 
+  void onInit() async {
+    findCelluleAll(); 
+
+    nomCelluleController = TextEditingController(); 
+    super.onInit();
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose(); 
-    nomCelluleEditingController.dispose();
-    formkey.currentState?.dispose();
-  }
-
-  findAll() async {
-    try {
+  
+  void findCelluleAll() {
+    isLoading(true); 
+    CelluleService.flindAll().then((res) {
       isLoading(false);
-      var res = await CelluleService.flindAll();
-      cellules.assignAll(res);
-    } catch (e) {
+      cellules.assignAll(celluleFromJson(res));
+    }).catchError((onError) {
       isLoading(false);
-    }
-  }
-
-  onSaved() {
-    formkey.currentState!.save();
+      print(onError);
+    });
   }
 
 
-  celluleSubmit() async {
+  // controller pour ajout de cellule 
+  
+  celluleSubmit() async{
     formkey.currentState!.save();
-    // formkey.currentState?.reset();
-
-    if (formkey.currentState!.validate()) {
+    if(formkey.currentState!.validate()){
       Map<String, dynamic> data = {
-        "name": nomCellule,
-        
+        "nom_cellule" : nomCellule,
       };
 
-      // print(DateFormat('yyyy-MM-dd').format(DateTime.parse("2023/03/07")));
-      // convertDateFromString(datenaiss);
-      // print(data);
-
-      var res = await CelluleService.create(data);
-      // print(res[0]);
+      var res = await CelluleService.create(data); 
       if (res != null && res["statusCode"] == 400) {
         Get.snackbar(
           "Champs Obligatoire",
@@ -69,14 +56,41 @@ class CelluleController extends GetxController {
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.red,
           colorText: Colors.white,
-        );
+        ); 
+        
       } else {
-        formkey.currentState?.reset();
-        Get.toNamed('http://leecka.bptechnology.net/public/index.php/api');
+        nomCelluleController.clear();
+        Get.back();
       }
     }
   }
 
-  
+  void deleteCellule(Cellule cellul) {
+    isLoading(true); 
+    CelluleService.deleteCellule(cellul.id.toString()).then((res) {
+      isLoading(false);
+      findCelluleAll();
+      Get.back();
+    }).catchError((onError) {
+      isLoading(false);
+      print(onError);
+    });
+  } 
 
+  // Modifier la cellule controller function
+
+  void updateCellules(Cellule cellul) {
+    isLoading(true); 
+    CelluleService.updateCellule(cellul.id.toString()).then((res) {
+      isLoading(false);
+      findCelluleAll();
+      Get.back();
+    }).catchError((onError) {
+      isLoading(false);
+      print(onError);
+    });
+  }
+  
+  
+  
 }

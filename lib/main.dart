@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lebonberger/auth/welcome_page.dart';
+import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:lebonberger/onBoard.dart';
 import 'package:lebonberger/routes/app.pages.dart';
 import 'package:get/get.dart';
@@ -21,7 +22,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
       debugShowCheckedModeBanner: false,
-      home: OnBoard(),
+      home: OnBoard(), 
+      // home: DashBoardScreen(),
       getPages: AppPages.pages,
     );
   }

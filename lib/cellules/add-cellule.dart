@@ -1,56 +1,68 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebonberger/cellules/controller/cellule.controller.dart';
-import 'package:lebonberger/dashboard/services/add-visite.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class AddCellule extends StatelessWidget {
-   AddCellule({super.key}); 
-   CelluleController controller = Get.put(CelluleController());
+class AddCellule extends StatefulWidget {
+  AddCellule({super.key});
 
-  final _formKey = GlobalKey<FormState>();
+  @override
+  State<AddCellule> createState() => _AddCelluleState();
+}
+
+class _AddCelluleState extends State<AddCellule> {
+  CelluleController controller = Get.put(CelluleController());
+  // final _formKey = GlobalKey<FormState>();
+  //   TextEditingController nomCellule= TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(children: [
-        Obx(()  {
-            return Container(
-              margin: EdgeInsets.only(
-                top: 10
+    return Wrap(children: [
+      Padding(
+          padding: EdgeInsets.all(15),
+          child: Text(
+            'Ajouter une cellule',
+            style:
+                GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.bold),
+          )),
+      Form(
+        key: controller.formkey,
+        child: Column(children: [
+          Container(
+            margin: EdgeInsets.only(top: 10),
+            padding: const EdgeInsets.all(10),
+            child: TextFormField(
+              controller: controller.nomCelluleController,
+              decoration: const InputDecoration(
+                labelText: 'Nom de la cellule',
+                hintText: 'Entrez le nom de la cellule',
+                focusColor: Colors.green,
               ),
-              padding: const EdgeInsets.all(10),
-              child: TextFormField(
-                decoration: const InputDecoration(
-                    labelText: 'Nom de la cellule',
-                    hintText: 'Entrez le nom de la cellule',
-                    focusColor: Colors.green,
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.green))
-                    // border: OutlineInputBorder(borderRadius: Border.symmetric(vertical: ))
-                    ), 
-                    onSaved: (newValue){
-                      controller.nomCellule = newValue!;
-                    },
-              ),
-            );
-          }
-        ),
-         
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [  
+              onSaved: (newValue) {
+                controller.nomCellule = newValue!;
+              },
+              validator: (value) {
+                if(value == null || value.isEmpty){
+                  return 'Champs obligatoire';
+                }
+                 return null; 
+              },
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center, children: [
             SizedBox(
-                width: 200,
-                child:
-                    ElevatedButton(onPressed: () {
-                      controller.celluleSubmit();
-                    }, child: Text("Ajouter"), style: ElevatedButton.styleFrom(
-                      primary: Colors.green
-                    ),)),
-          ],
-        )
-      ]),
-    );
+              width: 250,
+              child: ElevatedButton(
+                child: Text('Ajouter'),
+                onPressed: () {
+                  controller.celluleSubmit();
+                },
+              ),
+            ),
+          ]),
+        ]),
+      ),
+    ]);
   }
 }

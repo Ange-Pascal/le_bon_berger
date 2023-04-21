@@ -41,7 +41,7 @@ class WelcomePage extends StatelessWidget {
                     bottom: 20,
                   ),
                   child: Text(
-                    "L'Eternet est mon berger. Je ne manquerai de rien",
+                    "Je suis le bon berger. je connais mes brebis, et elles me connaissent.",
                     textAlign: TextAlign.center,
                     style:
                         GoogleFonts.poppins(color: Colors.green, fontSize: 16),
