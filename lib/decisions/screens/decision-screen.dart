@@ -3,10 +3,9 @@ import 'package:get/get.dart';
 import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
-import 'package:lebonberger/dashboard/services/update-departement.dart';
 
-class DepartementView extends StatelessWidget {
-  const DepartementView({super.key});
+class DecisionScreen extends StatelessWidget {
+  const DecisionScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +38,7 @@ class DepartementView extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Text(
-                                " Groupe Vocal",
+                                "Décision A",
                                 style: GoogleFonts.poppins(
                                     fontSize: 30, fontWeight: FontWeight.bold),
                               ),
@@ -47,7 +46,7 @@ class DepartementView extends StatelessWidget {
                                 height: 5,
                               ),
                               Text(
-                                "20 Membres",
+                                "Statut A",
                                 style: GoogleFonts.poppins(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
@@ -58,15 +57,15 @@ class DepartementView extends StatelessWidget {
                                   child: Row(
                                     children: [
                                       Text(
-                                        "7 Femmes",
+                                        "Assigné à : ",
                                         style: GoogleFonts.poppins(
                                             color: Colors.black, fontSize: 16),
                                       ),
                                       SizedBox(
-                                        width: 30,
+                                        width: 5,
                                       ),
                                       Text(
-                                        "3 Garçons",
+                                        "Adolphe Hitler",
                                         style: GoogleFonts.poppins(
                                             color: Colors.black, fontSize: 16),
                                       ),
@@ -87,25 +86,58 @@ class DepartementView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "Responsable du groupe",
+                          "Suit à",
                           style: GoogleFonts.poppins(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ), 
                         Text(
-                          "Koffi Jacob",
+                          "Son absence",
                           style: GoogleFonts.poppins(
                               fontSize: 16, fontWeight: FontWeight.bold, color: Colors.grey),
                         ),
                         SizedBox(height: 10,), 
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center, 
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                            "Date de décision:",
+                            style: GoogleFonts.poppins(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "12-04-2030",
+                            style: GoogleFonts.poppins(
+                                fontSize: 16, color: Colors.grey),
+                          ),
+                          ]
+                        ), 
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center, 
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                            "Date de décision:",
+                            style: GoogleFonts.poppins(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "12-04-2030",
+                            style: GoogleFonts.poppins(
+                                fontSize: 16, color: Colors.grey),
+                          ),
+                          ]
+                        ), 
+                        const SizedBox(height: 20,), 
                         Text(
-                          "Numero de Téléphone",
+                          "Commentaire",
                           style: GoogleFonts.poppins(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ), 
                         Text(
-                          "+225 0758964837",
+                          "Il est sous discipline jusqu'au 31 Decembre",
                           style: GoogleFonts.poppins(
-                              fontSize: 16, fontWeight: FontWeight.bold, color: Colors.grey),
+                              fontSize: 16, color: Colors.grey),
                         ),
                       ],
                     ),
@@ -115,16 +147,17 @@ class DepartementView extends StatelessWidget {
             )
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {_modal(context);},
-          child: const Icon(Icons.add),
-          backgroundColor: Colors.green,
-        ));
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () {_modal(context);},
+        //   child: const Icon(Icons.add),
+        //   backgroundColor: Colors.green,
+        // )
+        );
   }
 }
 
 
-void _modal(BuildContext context) => showModalBottomSheet(
-  context: context,
-   builder: (context) => UpdateDepartement()
-);
+// void _modal(BuildContext context) => showModalBottomSheet(
+//   context: context,
+//    builder: (context) => UpdateDepartement()
+// );

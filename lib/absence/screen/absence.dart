@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lebonberger/dashboard/components/screens/decision-screen.dart';
-import 'package:lebonberger/dashboard/services/add-decision.dart';
+import 'package:lebonberger/absence/screen/absence-screen.dart';
+import 'package:lebonberger/dashboard/services/add-visite.dart';
 
-class DecisionHome extends StatelessWidget {
-  const DecisionHome({super.key});
+class AbsenceHome extends StatelessWidget {
+  const AbsenceHome({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +16,14 @@ class DecisionHome extends StatelessWidget {
           SliverAppBar(
             leading: IconButton(
                 onPressed: () {
-                  Get.to(DashBoardScreen());
+                  Get.back();
                 },
                 icon: Icon(Icons.arrow_back)),
             backgroundColor: Colors.green,
             expandedHeight: 200,
             pinned: true,
-            flexibleSpace: const FlexibleSpaceBar(
-              title: Text("Decision"),
+            flexibleSpace:  FlexibleSpaceBar(
+              title: Text("Absence",  style: GoogleFonts.poppins(fontSize: 25, fontWeight: FontWeight.bold),),
               centerTitle: true,
               expandedTitleScale: 1,
               collapseMode: CollapseMode.parallax,
@@ -58,31 +58,42 @@ class DecisionHome extends StatelessWidget {
                       Icons.home,
                       color: Colors.white,
                     )),
-                title: Text("Decision $index",
+                title: Text("Absence $index",
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold, fontSize: 18)),
                 subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Assigné à $index"),
-                      Text("Statut $index"),
-                    ]),
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                  Text("Fidèle $index"), 
+                  Text("Koffi $index"),
+                ]),
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () {
-                  Get.to(DecisionScreen());
+                  Get.to(AbsenceScreen());
                 },
               ),
             );
           }, childCount: 10))
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     //_modal(context);
-      //   },
-      //   child: const Icon(Icons.add),
-      //   backgroundColor: Colors.green,
-      // ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _modal(context);
+        },
+        child: const Icon(Icons.add),
+        backgroundColor: Colors.green,
+      ),
     );
   }
 }
+
+void _modal(BuildContext context) =>
+    showModalBottomSheet(
+      backgroundColor: Colors.white,
+      context: context, 
+      isScrollControlled: true, 
+      isDismissible: true,
+      builder: (BuildContext context) {
+      return AddVisite();
+    });
+

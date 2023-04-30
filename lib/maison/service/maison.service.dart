@@ -3,17 +3,32 @@ import 'package:http/http.dart' as http;
 import 'package:lebonberger/auth/Token.dart';
 import 'package:lebonberger/routes/api.routes.dart';
 
-class MaisonService extends GetConnect {
-  // Liste membres
+// class MaisonService extends GetConnect {
+//   // Liste membres
+//   static Future<dynamic> flindAll() async {
+//     http.Response res = await http.get(
+//       Uri.parse(ApiRoutes.maisons),
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Accept': 'application/json',
+//         'Authorization': 'Bearer ${Token.getToken()}',
+//       },
+//     );
+//     return res.body;
+//   }
+// }  
+
+class MaisonService {
+  // Liste maison , affichage 
   static Future<dynamic> flindAll() async {
-    http.Response res = await http.get(
-      Uri.parse(ApiRoutes.maisons),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ${Token.getToken()}',
-      },
-    );
+    // print(Uri.parse(ApiRoutes.membres));
+
+    http.Response res = await http.get(Uri.parse(ApiRoutes.maisons), headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ${Token.getToken()}',
+    });
     return res.body;
   }
 }
+

@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
+import 'package:lebonberger/absence/screen/absence.dart';
 import 'package:lebonberger/auth/auth.controller.dart';
+import 'package:lebonberger/cellules/cellule-liste.dart';
+import 'package:lebonberger/decisions/screens/decicion.dart';
+import 'package:lebonberger/departement/screens/departement.dart';
+import 'package:lebonberger/encadreur/components/screens/encadreur-home.dart';
+import 'package:lebonberger/maison/screens/maison.dart';
 import 'package:lebonberger/routes/app.routes.dart';
+import 'package:lebonberger/visites/view/visite.dart';
 
 class AppDrawer extends StatelessWidget {
   AppDrawer({
@@ -95,6 +102,9 @@ class AppDrawer extends StatelessWidget {
                 fontSize: 15,
               ),
             ),
+            onTap: () {
+              Get.to(CelluleHome());
+            },
           ),
           const Divider(
             color: Color.fromARGB(255, 189, 187, 187),
@@ -105,8 +115,11 @@ class AppDrawer extends StatelessWidget {
               style: TextStyle(
                 fontFamily: 'Poppins',
                 fontSize: 15,
-              ),
-            ),
+              ), 
+            ), 
+            onTap: () {
+              Get.to(DepartementScreen());
+            },
           ),
           ListTile(
             title: const Text(
@@ -116,6 +129,9 @@ class AppDrawer extends StatelessWidget {
                 fontSize: 15,
               ),
             ),
+            onTap: () {
+              Get.to(MaisonView());
+            },
           ),
           ListTile(
             title: const Text(
@@ -124,10 +140,37 @@ class AppDrawer extends StatelessWidget {
                 fontFamily: 'Poppins',
                 fontSize: 15,
               ),
-            ),
+            ), 
+            onTap: () {
+              Get.to(VisiteHome());
+            },
           ),
           const Divider(
             color: Color.fromARGB(255, 189, 187, 187),
+          ), 
+          ListTile(
+            title: const Text(
+              'Encadreurs',
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 15,
+              ),
+            ), 
+            onTap: () {
+              Get.to(EncadreurHome());
+            },
+          ),
+          ListTile(
+            title: const Text(
+              'Absences',
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 15,
+              ),
+            ), 
+            onTap: () {
+              Get.to(AbsenceHome());
+            },
           ),
           ListTile(
             title: const Text(
@@ -137,16 +180,11 @@ class AppDrawer extends StatelessWidget {
                 fontSize: 15,
               ),
             ),
+            onTap: () {
+              Get.to(DecisionHome());
+            },
           ),
-          ListTile(
-            title: const Text(
-              'Absences',
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 15,
-              ),
-            ),
-          ),
+          
           const Divider(
             color: Color.fromARGB(255, 189, 187, 187),
           ),

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lebonberger/dashboard/components/screens/department-screen.dart';
-import 'package:lebonberger/dashboard/services/add-departement.dart';
+import 'package:lebonberger/visites/view/visite-screen.dart';
+import 'package:lebonberger/dashboard/services/add-visite.dart';
 
-class DepartementScreen extends StatelessWidget {
-  const DepartementScreen({super.key});
+class VisiteHome extends StatelessWidget {
+  const VisiteHome({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +16,14 @@ class DepartementScreen extends StatelessWidget {
           SliverAppBar(
             leading: IconButton(
                 onPressed: () {
-                  Get.to(DashBoardScreen());
+                  Get.back();
                 },
                 icon: Icon(Icons.arrow_back)),
             backgroundColor: Colors.green,
             expandedHeight: 200,
             pinned: true,
-            flexibleSpace: const FlexibleSpaceBar(
-              title: Text("Departement"),
+            flexibleSpace:  FlexibleSpaceBar(
+              title: Text("Visites", style: GoogleFonts.poppins(fontSize: 25, fontWeight: FontWeight.bold ),),
               centerTitle: true,
               expandedTitleScale: 1,
               collapseMode: CollapseMode.parallax,
@@ -58,18 +58,18 @@ class DepartementScreen extends StatelessWidget {
                       Icons.home,
                       color: Colors.white,
                     )),
-                title: Text("Departement $index",
+                title: Text("Visite $index",
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold, fontSize: 18)),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                  Text("Musique $index"), 
-                  Text("Eglise $index"),
+                  Text("Fidèle $index"), 
+                  Text("Koffi $index"),
                 ]),
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () {
-                  Get.to(DepartementView());
+                  Get.to(VisiteScreen());
                 },
               ),
             );
@@ -87,5 +87,13 @@ class DepartementScreen extends StatelessWidget {
   }
 }
 
-void _modal(BuildContext context) => showModalBottomSheet(
-    context: context, builder: (context) => AddDepartement());
+void _modal(BuildContext context) =>
+    showModalBottomSheet(
+      backgroundColor: Colors.white,
+      context: context, 
+      isScrollControlled: true, 
+      isDismissible: true,
+      builder: (BuildContext context) {
+      return AddVisite();
+    });
+

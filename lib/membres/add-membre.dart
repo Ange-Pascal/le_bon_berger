@@ -12,7 +12,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:lebonberger/cellules/controller/cellule.controller.dart';
 import 'package:lebonberger/delayed_animation.dart';
-import 'package:lebonberger/membres/controller/membre.controller.dart';
+import 'package:lebonberger/membres/controller/membre.controller.dart'; 
 
 class AddMembre extends StatefulWidget {
   const AddMembre({super.key});

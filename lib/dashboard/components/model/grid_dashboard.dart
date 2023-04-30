@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
-import 'package:lebonberger/dashboard/components/screens/absence.dart';
-import 'package:lebonberger/dashboard/components/screens/decicion.dart';
-import 'package:lebonberger/dashboard/components/screens/departement.dart';
+import 'package:lebonberger/absence/screen/absence.dart';
+import 'package:lebonberger/decisions/screens/decicion.dart';
+import 'package:lebonberger/departement/screens/departement.dart';
 import 'package:lebonberger/cellules/cellule-liste.dart';
-import 'package:lebonberger/dashboard/components/screens/maison.dart';
-import 'package:lebonberger/dashboard/components/screens/nouvelle.dart';
+import 'package:lebonberger/maison/screens/maison.dart';
+import 'package:lebonberger/nouvelles/screens/nouvelle.dart';
 import 'package:lebonberger/dashboard/components/screens/parametre.dart';
-import 'package:lebonberger/dashboard/components/screens/visite.dart';
+import 'package:lebonberger/visites/view/visite.dart';
 import 'package:lebonberger/membres/MembreScreen.dart';
 
 class GridDashboard extends StatelessWidget {
@@ -18,241 +18,12 @@ class GridDashboard extends StatelessWidget {
     return Flexible(
       child: GridView.count(
           childAspectRatio: 1.0,
-          padding: EdgeInsets.only(left: 10, right: 10),
+          // padding: EdgeInsets.only(left: 20, right: 20), 
+          padding: EdgeInsets.all(10),
           crossAxisCount: 2,
-          crossAxisSpacing: 18,
-          mainAxisSpacing: 18,
-          children: [
-            GestureDetector(
-              onTap: () {
-                Get.to(CelluleHome());
-              },
-              child: Container(
-                margin: const EdgeInsets.only(
-                  top: 10,
-                ),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7)
-                    ]),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Image.asset(
-                      "assets/images/cellule.png",
-                      width: 42,
-                    ),
-                    SizedBox(
-                      height: 14,
-                    ),
-                    Text(
-                      "Cellules",
-                      style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              color: Colors.green,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600)),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      "Cellules Actuelles",
-                      style: GoogleFonts.poppins(
-                          textStyle: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 10,
-                      )),
-                    ),
-                    const SizedBox(
-                      height: 14,
-                    ),
-                    Text(
-                      "10",
-                      style: GoogleFonts.poppins(
-                          textStyle: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 11,
-                              fontWeight: FontWeight.w600)),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: (){ Get.to(DepartementScreen());},
-              child: Container(
-                margin: EdgeInsets.only(top: 10),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7)
-                    ]),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Image.asset(
-                      "assets/images/map.png",
-                      width: 42,
-                    ),
-                    SizedBox(
-                      height: 14,
-                    ),
-                    Text(
-                      "Departements",
-                      style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              color: Colors.green,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600)),
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      "Departements actifs",
-                      style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 10,
-                      )),
-                    ),
-                    SizedBox(
-                      height: 14,
-                    ),
-                    Text(
-                      "25",
-                      style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              color: Colors.black,
-                              fontSize: 11,
-                              fontWeight: FontWeight.w600)),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: (){Get.to(MaisonView());},
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7)
-                    ]),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Image.asset(
-                      "assets/images/maison.jpg",
-                      width: 42,
-                    ),
-                    SizedBox(
-                      height: 14,
-                    ),
-                    Text(
-                      "Maison",
-                      style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              color: Colors.green,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600)),
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      "Maison actuelle",
-                      style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 10,
-                      )),
-                    ),
-                    SizedBox(
-                      height: 14,
-                    ),
-                    Text(
-                      "50",
-                      style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              color: Colors.black,
-                              fontSize: 11,
-                              fontWeight: FontWeight.w600)),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: (){Get.to(MembreScreen());},
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7)
-                    ]),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Image.asset(
-                      "assets/images/membre.png",
-                      width: 42,
-                    ),
-                    SizedBox(
-                      height: 14,
-                    ),
-                    Text(
-                      "Membres",
-                      style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              color: Colors.green,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600)),
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      "Membres actifs",
-                      style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 10,
-                      )),
-                    ),
-                    SizedBox(
-                      height: 14,
-                    ),
-                    Text(
-                      "500",
-                      style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              color: Colors.black,
-                              fontSize: 11,
-                              fontWeight: FontWeight.w600)),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+          crossAxisSpacing: 15,
+          mainAxisSpacing: 15,
+          children: [          
             GestureDetector(
               onTap: () {
                 Get.to(DecisionHome());
@@ -483,7 +254,9 @@ class GridDashboard extends StatelessWidget {
                 ),
               ),
             ),
-          ]),
+          ]
+          ),  
+          
     );
   }
 }

@@ -17,7 +17,7 @@ class EncadreurHome extends StatelessWidget {
           SliverAppBar(
             leading: IconButton(
                 onPressed: () {
-                  Get.to(DashBoardScreen());
+                  Get.back();
                 },
                 icon: Icon(Icons.arrow_back)),
             backgroundColor: Colors.green,

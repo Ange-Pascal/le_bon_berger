@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lebonberger/dashboard/components/screens/absence-screen.dart';
+import 'package:lebonberger/nouvelles/screens/nouvelle-screen.dart';
 import 'package:lebonberger/dashboard/services/add-visite.dart';
 
-class AbsenceHome extends StatelessWidget {
-  const AbsenceHome({super.key});
+class NouvelleHome extends StatelessWidget {
+  const NouvelleHome({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +22,8 @@ class AbsenceHome extends StatelessWidget {
             backgroundColor: Colors.green,
             expandedHeight: 200,
             pinned: true,
-            flexibleSpace: const FlexibleSpaceBar(
-              title: Text("Visites"),
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text("Nouvelles", style: GoogleFonts.poppins(fontSize: 25, fontWeight: FontWeight.bold),),
               centerTitle: true,
               expandedTitleScale: 1,
               collapseMode: CollapseMode.parallax,
@@ -58,18 +58,18 @@ class AbsenceHome extends StatelessWidget {
                       Icons.home,
                       color: Colors.white,
                     )),
-                title: Text("Absence $index",
+                title: Text("Nouvelle $index",
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold, fontSize: 18)),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                  Text("Fidèle $index"), 
-                  Text("Koffi $index"),
+                  Text("Libéllé $index"), 
+                  Text("Date: 20-03-2025"),
                 ]),
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () {
-                  Get.to(AbsenceScreen());
+                  Get.to(NouvelleScreen());
                 },
               ),
             );

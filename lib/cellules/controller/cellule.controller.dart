@@ -26,7 +26,7 @@ class CelluleController extends GetxController {
     nomCelluleController = TextEditingController(); 
     super.onInit();
   }
-  
+  // fetch cellule controller
   void findCelluleAll() {
     isLoading(true); 
     CelluleService.flindAll().then((res) {
@@ -64,7 +64,7 @@ class CelluleController extends GetxController {
       }
     }
   }
-
+  // delete cellule controller
   void deleteCellule(Cellule cellul) {
     isLoading(true); 
     CelluleService.deleteCellule(cellul.id.toString()).then((res) {

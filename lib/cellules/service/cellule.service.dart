@@ -9,7 +9,7 @@ import '../model/cellule.model.dart';
 
 
 class CelluleService {
-  // Liste cellules
+  // Liste cellules service
   static Future<dynamic> flindAll() async {
     // print(Uri.parse(ApiRoutes.membres));
 
@@ -23,7 +23,7 @@ class CelluleService {
 
 
 
-  // Add Cellule step 2 les differentes methodes
+  // Ajouter  Cellule step 2 service
   static Future<dynamic> create(Map<String, dynamic> data) async {
     // print(Uri.parse(ApiRoutes.membres));
     // print(data);
@@ -39,7 +39,7 @@ class CelluleService {
     return json.decode(res.body);
   }
 
-  // Supprimer une cellule 
+  // Supprimer une cellule  service
 
   static Future<dynamic> deleteCellule(String celluleId) async {
     // print(Uri.parse(ApiRoutes.membres));
@@ -60,7 +60,7 @@ class CelluleService {
   } 
 
 
-  // modifier le nom de la cellule 
+  // modifier le nom de la cellule  service
 
   static Future<dynamic> updateCellule(String celluleId) async {
     // print(Uri.parse(ApiRoutes.membres));

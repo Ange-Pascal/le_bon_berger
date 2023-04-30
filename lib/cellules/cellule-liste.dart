@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:lebonberger/cellules/controller/cellule.controller.dart';
 import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lebonberger/dashboard/components/screens/cellule_screen.dart';
 import 'package:lebonberger/membres/controller/membre.controller.dart';
 import 'add-cellule.dart';
 
@@ -26,7 +25,7 @@ class CelluleHome extends StatelessWidget {
               SliverAppBar(
                   leading: IconButton(
                       onPressed: () {
-                        Get.to(DashBoardScreen());
+                        Get.back();
                       },
                       icon: Icon(Icons.arrow_back)),
                   backgroundColor: Colors.green,
@@ -125,7 +124,9 @@ class CelluleHome extends StatelessWidget {
                                           style: GoogleFonts.poppins(
                                               fontSize: 15,
                                               color: Colors.grey[100]),
-                                        )));
+                                        )
+                                        )
+                                        );
                               },
                               child: Icon(
                                 Icons.edit,

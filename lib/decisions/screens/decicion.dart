@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lebonberger/dashboard/components/screens/department-screen.dart';
-import 'package:lebonberger/dashboard/services/add-departement.dart';
-import 'package:lebonberger/dashboard/services/add-maison.dart';
+import 'package:lebonberger/decisions/screens/decision-screen.dart';
+import 'package:lebonberger/dashboard/services/add-decision.dart';
 
-class MaisonView extends StatelessWidget {
-  const MaisonView({super.key});
+class DecisionHome extends StatelessWidget {
+  const DecisionHome({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +16,14 @@ class MaisonView extends StatelessWidget {
           SliverAppBar(
             leading: IconButton(
                 onPressed: () {
-                  Get.to(DashBoardScreen());
+                  Get.back();
                 },
                 icon: Icon(Icons.arrow_back)),
             backgroundColor: Colors.green,
             expandedHeight: 200,
             pinned: true,
-            flexibleSpace: const FlexibleSpaceBar(
-              title: Text("Maison"),
+            flexibleSpace:  FlexibleSpaceBar(
+              title: Text("Decision" , style: GoogleFonts.poppins(fontSize: 25, fontWeight: FontWeight.bold),),
               centerTitle: true,
               expandedTitleScale: 1,
               collapseMode: CollapseMode.parallax,
@@ -59,41 +58,31 @@ class MaisonView extends StatelessWidget {
                       Icons.home,
                       color: Colors.white,
                     )),
-                title: Text("Maison $index",
+                title: Text("Decision $index",
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold, fontSize: 18)),
                 subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                  Text("Chef de Famille $index"), 
-                  Text("Koffi Jacob $index"),
-                ]),
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Assigné à $index"),
+                      Text("Statut $index"),
+                    ]),
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () {
-                  Get.to(DepartementView());
+                  Get.to(DecisionScreen());
                 },
               ),
             );
           }, childCount: 10))
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _modal(context);
-        },
-        child: const Icon(Icons.add),
-        backgroundColor: Colors.green,
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     //_modal(context);
+      //   },
+      //   child: const Icon(Icons.add),
+      //   backgroundColor: Colors.green,
+      // ),
     );
   }
 }
-
-void _modal(BuildContext context) =>
-    showModalBottomSheet(
-      backgroundColor: Colors.white,
-      context: context, 
-      isScrollControlled: true, 
-      isDismissible: true,
-      builder: (BuildContext context) {
-      return AddMaison();
-    });
