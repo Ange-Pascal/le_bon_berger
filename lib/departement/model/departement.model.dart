@@ -14,7 +14,6 @@ class Departement {
   Departement({
     required this.id,
     required this.nomDepartement,
-    required this.typeDepartement,
     this.isActive,
     this.isDeleted,
     required this.createdAt,
@@ -23,7 +22,6 @@ class Departement {
 
   int id;
   String nomDepartement;
-  String typeDepartement;
   dynamic isActive;
   dynamic isDeleted;
   DateTime createdAt;
@@ -32,7 +30,6 @@ class Departement {
   factory Departement.fromJson(Map<String, dynamic> json) => Departement(
         id: json["id"],
         nomDepartement: json["nom_departement"],
-        typeDepartement: json["type_departement"],
         isActive: json["isActive"],
         isDeleted: json["isDeleted"],
         createdAt: DateTime.parse(json["created_at"]),
@@ -42,7 +39,6 @@ class Departement {
   Map<String, dynamic> toJson() => {
         "id": id,
         "nom_departement": nomDepartement,
-        "type_departement": typeDepartement,
         "isActive": isActive,
         "isDeleted": isDeleted,
         "created_at": createdAt.toIso8601String(),

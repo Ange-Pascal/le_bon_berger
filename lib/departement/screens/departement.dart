@@ -78,14 +78,9 @@ class DepartementScreen extends StatelessWidget {
                         subtitle: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              
                               Text(
-                                'Type de departement',
-                                style: GoogleFonts.poppins(
-                                    fontStyle: FontStyle.italic,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              Text(
-                                '${controller.departements[index].typeDepartement}',
+                                '${controller.departements[index].createdAt}',
                                 style: GoogleFonts.poppins(fontSize: 15),
                               ),
                             ]),

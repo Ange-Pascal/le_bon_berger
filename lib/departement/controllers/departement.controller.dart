@@ -13,7 +13,7 @@ class DepartementController extends GetxController {
   var  id = ""; 
   var nomDepartement = ""; 
   var typeDepartement = "";  
-    final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
 
   @override 
