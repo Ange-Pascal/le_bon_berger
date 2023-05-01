@@ -20,6 +20,8 @@ class MembreService {
       'Accept': 'application/json',
       'Authorization': 'Bearer ${Token.getToken()}',
     });
+    // print(res.body);
+
     return res.body;
   }
 
@@ -47,9 +49,9 @@ class MembreService {
       },
     );
 
-    print(res.body);
+    // print(res.body);
 
-    // return json.decode(res.body);
+    return json.decode(res.body);
   }
 
   static Future<dynamic> uploadImage(File file, String membreId) async {
