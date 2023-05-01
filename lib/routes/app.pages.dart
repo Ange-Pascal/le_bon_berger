@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:lebonberger/auth/login_page.dart';
 import 'package:lebonberger/auth/welcome_page.dart';
 import 'package:lebonberger/dashboard/Dashboard.dart';
+import 'package:lebonberger/maison/screens/maison-screen.dart';
 import 'package:lebonberger/membres/MembreScreen.dart';
 import 'package:lebonberger/membres/add-membre.dart';
 import 'package:lebonberger/membres/membre-detail.dart';
@@ -37,6 +38,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.membreEnAttente,
       page: () => MembreListeEnAttenteScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.detailMaison,
+      page: () => MaisonScreen(),
     )
   ];
 }

@@ -141,11 +141,11 @@ class MembreController extends GetxController {
   findAll() async {
     isLoading(true);
     MembreService.flindAll().then((res) {
-      print(res);
+      // print(res);
       isLoading(false);
       membres.assignAll(membreFromJson(res));
     }).catchError((onError) {
-      print("error");
+      // print("error");
       isLoading(false);
       print(onError);
     });

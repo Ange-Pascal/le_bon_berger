@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 import 'package:lebonberger/maison/controller/maison.controller.dart';
+import 'package:lebonberger/maison/controller/maison.detail.controller.dart';
 
 class MaisonScreen extends StatelessWidget {
-   MaisonScreen({super.key});  
+  MaisonScreen({super.key});
 
-  MaisonController controller = Get.put(MaisonController()); 
+  MaisonDetailController controller = Get.put(MaisonDetailController());
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class MaisonScreen extends StatelessWidget {
         children: [
           CustomScrollView(
             slivers: [
-              Obx(() => SliverAppBar(
+              SliverAppBar(
                 expandedHeight: 350,
                 backgroundColor: Colors.grey[100],
                 flexibleSpace: FlexibleSpaceBar(
@@ -45,12 +47,14 @@ class MaisonScreen extends StatelessWidget {
                               style: GoogleFonts.poppins(
                                   fontSize: 30, fontWeight: FontWeight.bold),
                             ),
-                            Text(
-                              "${controller.maisons[0].nomMaison}", 
-                              style: GoogleFonts.poppins(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.green),
+                            Obx(
+                              () => Text(
+                                "${controller.maisons[0].nomMaison}",
+                                style: GoogleFonts.poppins(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
                             ),
                           ],
                         ),
@@ -58,7 +62,7 @@ class MaisonScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-              ),),
+              ),
               SliverList(
                   delegate: SliverChildListDelegate([
                 Padding(
@@ -76,15 +80,20 @@ class MaisonScreen extends StatelessWidget {
                             color: Colors.green,
                             fontWeight: FontWeight.bold),
                       ),
-                      Text(
-                        'Ancien Koffi Anderson',
-                        style: GoogleFonts.poppins(
-                            fontSize: 15, fontWeight: FontWeight.w700),
-                      ),
+                      Obx(() {
+                        if (controller.maisons[0] != null) {
+                          return Text(
+                            '${controller.maisons[0].chefDeFamille}',
+                            style: GoogleFonts.poppins(
+                                fontSize: 15, fontWeight: FontWeight.w700),
+                          );
+                        } else {
+                          return Text('');
+                        }
+                      }),
                       SizedBox(
                         height: 5,
                       ),
-
                       Text(
                         'Repère',
                         style: GoogleFonts.poppins(
@@ -92,10 +101,18 @@ class MaisonScreen extends StatelessWidget {
                             color: Colors.green,
                             fontWeight: FontWeight.bold),
                       ),
-                      Text(
-                        'koumassi Camp Commando',
-                        style: GoogleFonts.poppins(
-                            fontSize: 15, fontWeight: FontWeight.w700),
+                      Obx(
+                        () {
+                          if (controller.maisons[0] != null) {
+                            return Text(
+                              '${controller.maisons[0].repere}',
+                              style: GoogleFonts.poppins(
+                                  fontSize: 15, fontWeight: FontWeight.w700),
+                            );
+                          } else {
+                            return Text("");
+                          }
+                        },
                       ),
                       SizedBox(
                         height: 5,
@@ -107,10 +124,18 @@ class MaisonScreen extends StatelessWidget {
                             color: Colors.green,
                             fontWeight: FontWeight.bold),
                       ),
-                      Text(
-                        'Station Vinco',
-                        style: GoogleFonts.poppins(
-                            fontSize: 15, fontWeight: FontWeight.w700),
+                      Obx(
+                        () {
+                          if (controller.maisons[0] != null) {
+                            return Text(
+                              '${controller.maisons[0].quartier}',
+                              style: GoogleFonts.poppins(
+                                  fontSize: 15, fontWeight: FontWeight.w700),
+                            );
+                          } else {
+                            return Text('');
+                          }
+                        },
                       ),
                       SizedBox(
                         height: 5,
@@ -120,12 +145,20 @@ class MaisonScreen extends StatelessWidget {
                         style: GoogleFonts.poppins(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                      Text(
-                        "24-05-2022",
-                        style: GoogleFonts.poppins(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
+                      Obx(
+                        () {
+                          if (controller.maisons[0] != null) {
+                            return Text(
+                              "${DateFormat('dd.MM.yyyy').format(controller.maisons[0].createdAt)}",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey),
+                            );
+                          } else {
+                            return Text('');
+                          }
+                        },
                       ),
                       SizedBox(
                         height: 50,

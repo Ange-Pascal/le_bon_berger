@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lebonberger/maison/controller/maison.controller.dart';
 import 'package:lebonberger/maison/screens/add-maison.dart';
 import 'package:lebonberger/maison/screens/maison-screen.dart';
+import 'package:lebonberger/routes/app.routes.dart';
 
 class MaisonView extends StatelessWidget {
   MaisonView({super.key});
@@ -81,7 +82,7 @@ class MaisonView extends StatelessWidget {
                             ]),
                         trailing: Icon(Icons.keyboard_arrow_right),
                         onTap: () {
-                          Get.to(MaisonScreen(),
+                          Get.toNamed(AppRoutes.detailMaison,
                               arguments: controller.maisons[index].id);
                         },
                       ),

@@ -5,5 +5,6 @@ class AppRoutes {
   static const dashboard = '/dashboard';
   static const addMembre = '/add-membre';
   static const DetailsMembre = '/details-membre';
+  static const detailMaison = '/details-maison';
   static const membreEnAttente = '/membre-en-attente';
 }

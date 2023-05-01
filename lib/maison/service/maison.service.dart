@@ -1,7 +1,12 @@
-import 'package:get/get.dart';
+import 'dart:convert';
+import 'dart:io';
+
+// import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:lebonberger/auth/Token.dart';
+import 'package:lebonberger/maison/model/maison.model.dart';
 import 'package:lebonberger/routes/api.routes.dart';
+import 'package:dio/dio.dart';
 
 // class MaisonService extends GetConnect {
 //   // Liste membres
@@ -16,10 +21,10 @@ import 'package:lebonberger/routes/api.routes.dart';
 //     );
 //     return res.body;
 //   }
-// }  
+// }
 
 class MaisonService {
-  // Liste maison , affichage 
+  // Liste maison , affichage
   static Future<dynamic> flindAll() async {
     // print(Uri.parse(ApiRoutes.membres));
 
@@ -30,5 +35,18 @@ class MaisonService {
     });
     return res.body;
   }
-}
 
+  static Future<Maison> findOndById(String maisonId) async {
+    Dio dio = Dio();
+    Response response;
+
+    response = await dio.get('${ApiRoutes.maisons}/$maisonId',
+        options: Options(headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ${Token.getToken()}',
+        }));
+
+    return maisonFromJsonSingle(jsonEncode(response.data));
+  }
+}

@@ -9,6 +9,8 @@ import 'package:lebonberger/cellules/model/cellule.model.dart';
 List<Maison> maisonFromJson(String str) =>
     List<Maison>.from(json.decode(str).map((x) => Maison.fromJson(x)));
 
+Maison maisonFromJsonSingle(String str) => Maison.fromJson(json.decode(str));
+
 String maisonToJson(List<Maison> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
@@ -23,6 +25,7 @@ class Maison {
     required this.isActive,
     required this.isDeleted,
     required this.cellule,
+    this.createdAt,
   });
 
   int id;
@@ -34,6 +37,7 @@ class Maison {
   dynamic isActive;
   dynamic isDeleted;
   Cellule cellule;
+  dynamic createdAt;
 
   factory Maison.fromJson(Map<String, dynamic> json) => Maison(
         id: json["id"],
@@ -45,6 +49,7 @@ class Maison {
         isActive: json["isActive"],
         isDeleted: json["isDeleted"],
         cellule: Cellule.fromJson(json["cellule"]),
+        createdAt: DateTime.parse(json["created_at"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -57,5 +62,6 @@ class Maison {
         "isActive": isActive,
         "isDeleted": isDeleted,
         "cellule": cellule.toJson(),
+        "created_at": createdAt
       };
 }
