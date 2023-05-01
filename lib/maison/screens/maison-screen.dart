@@ -3,9 +3,12 @@ import 'package:get/get.dart';
 import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
+import 'package:lebonberger/maison/controller/maison.controller.dart';
 
 class MaisonScreen extends StatelessWidget {
-  const MaisonScreen({super.key});
+   MaisonScreen({super.key});  
+
+  MaisonController controller = Get.put(MaisonController()); 
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +17,7 @@ class MaisonScreen extends StatelessWidget {
         children: [
           CustomScrollView(
             slivers: [
-              SliverAppBar(
+              Obx(() => SliverAppBar(
                 expandedHeight: 350,
                 backgroundColor: Colors.grey[100],
                 flexibleSpace: FlexibleSpaceBar(
@@ -38,12 +41,12 @@ class MaisonScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              "Maison koffi",
+                              "Maison",
                               style: GoogleFonts.poppins(
                                   fontSize: 30, fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              "20 Membres",
+                              "${controller.maisons[0].nomMaison}", 
                               style: GoogleFonts.poppins(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -55,7 +58,7 @@ class MaisonScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-              ),
+              ),),
               SliverList(
                   delegate: SliverChildListDelegate([
                 Padding(
@@ -63,7 +66,7 @@ class MaisonScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Text(

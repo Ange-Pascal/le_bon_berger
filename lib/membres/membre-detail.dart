@@ -143,7 +143,7 @@ class MembreDetail extends StatelessWidget {
                               enableDrag: false,
                             );
                           },
-                          child: Icon(
+                          child: const Icon(
                             Icons.camera_alt,
                             size: 35.0,
                             color: Colors.black,
@@ -211,7 +211,7 @@ class MembreDetail extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Container(

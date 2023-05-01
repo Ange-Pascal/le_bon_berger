@@ -40,7 +40,7 @@ class DepartementScreen extends StatelessWidget {
                   centerTitle: true,
                   expandedTitleScale: 1,
                   collapseMode: CollapseMode.parallax,
-                  background: Image(
+                  background: const Image(
                     image: AssetImage("assets/images/bible.jpg"),
                     fit: BoxFit.cover,
                   ),
