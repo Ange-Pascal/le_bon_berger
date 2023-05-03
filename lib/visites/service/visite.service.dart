@@ -5,7 +5,6 @@ import 'package:http/http.dart' as http;
 import 'package:lebonberger/auth/Token.dart';
 import 'package:lebonberger/routes/api.routes.dart';
 
-import '../model/cellule.model.dart';
 
 
 class CelluleService {

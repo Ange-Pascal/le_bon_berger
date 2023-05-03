@@ -4,7 +4,7 @@ import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lebonberger/maison/controller/maison.controller.dart';
 import 'package:lebonberger/maison/screens/add-maison.dart';
-import 'package:lebonberger/maison/screens/maison-screen.dart';
+import 'package:lebonberger/maison/screens/maison-detail.dart';
 import 'package:lebonberger/routes/app.routes.dart';
 
 class MaisonView extends StatelessWidget {
@@ -94,7 +94,8 @@ class MaisonView extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _modal(context);
+          // _modal(context); 
+          Get.to(AddMaison()); 
         },
         child: Icon(Icons.add),
         backgroundColor: Colors.green,
@@ -102,12 +103,12 @@ class MaisonView extends StatelessWidget {
     );
   }
 }
-
-void _modal(BuildContext context) => showModalBottomSheet(
-    backgroundColor: Colors.white,
-    context: context,
-    isScrollControlled: true,
-    isDismissible: true,
-    builder: (BuildContext context) {
-      return AddMaison();
-    });
+// 
+// void _modal(BuildContext context) => showModalBottomSheet(
+//     backgroundColor: Colors.white,
+//     context: context,
+//     isScrollControlled: true,
+//     isDismissible: true,
+//     builder: (BuildContext context) {
+//       return AddMaison();
+//     });

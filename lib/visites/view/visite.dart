@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lebonberger/visites/view/visite-screen.dart';
-import 'package:lebonberger/dashboard/services/add-visite.dart';
+import 'package:lebonberger/visites/view/add-visite.dart';
 
 class VisiteHome extends StatelessWidget {
   const VisiteHome({super.key});

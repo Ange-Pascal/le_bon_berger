@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lebonberger/absence/screen/absence-screen.dart';
-import 'package:lebonberger/dashboard/services/add-visite.dart';
+import 'package:lebonberger/visites/view/add-visite.dart';
 
 class AbsenceHome extends StatelessWidget {
   const AbsenceHome({super.key});

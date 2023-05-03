@@ -594,7 +594,8 @@ class MembreDetail extends StatelessWidget {
                                       ),
                                     )
                                   : Text(''),
-                              Divider(),
+                              Divider(), 
+                              
                               controller.membres[0].isActive == 0
                                   ? TextButton(
                                       onPressed: () {
@@ -756,7 +757,7 @@ class MembreDetail extends StatelessWidget {
                                             );
                                           },
                                           child: Text(
-                                            'Valider la crétaion',
+                                            'Valider la création',
                                             style: TextStyle(
                                               fontFamily: 'Poppins',
                                               fontSize: 17,
@@ -826,6 +827,8 @@ class MembreDetail extends StatelessWidget {
                                       Color.fromARGB(255, 236, 189, 189),
                                 ),
                               ),
+
+                              
                             ],
                           ),
                         )

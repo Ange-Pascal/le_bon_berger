@@ -12,7 +12,7 @@ List<Membre> membreFromJson(String str) =>
 
 Membre membreFromJsonSingle(String str) => Membre.fromJson(json.decode(str));
 
-String membreToJson(Membre data) => json.encode(data.toJson());
+String membreToJson(Membre data) => json.encode(data.toJson);
 
 class Membre {
   Membre({
@@ -97,7 +97,7 @@ class Membre {
         departement: Departement.fromJson(json["departement"]),
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> get toJson => {
         "civilite": civilite,
         "name": name,
         "prenom": prenom,

@@ -48,5 +48,25 @@ class MaisonService {
         }));
 
     return maisonFromJsonSingle(jsonEncode(response.data));
+  } 
+
+
+  // Methode controller pour Ajouter une maison 
+  static Future<dynamic> create(Map<String, dynamic> data) async {
+    
+    http.Response res = await http.post(
+      Uri.parse(ApiRoutes.maisons),
+      body: json.encode(data),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ${Token.getToken()}',
+      },
+    );
+    return json.decode(res.body);  
+
+    print(res.body);
   }
+
+
 }

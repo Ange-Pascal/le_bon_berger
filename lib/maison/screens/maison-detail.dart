@@ -15,9 +15,8 @@ class MaisonScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          CustomScrollView(
+      body: Container(
+        child: CustomScrollView(
             slivers: [
               SliverAppBar(
                 expandedHeight: 350,
@@ -45,15 +44,17 @@ class MaisonScreen extends StatelessWidget {
                             Text(
                               "Maison",
                               style: GoogleFonts.poppins(
-                                  fontSize: 30, fontWeight: FontWeight.bold),
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.green),
                             ),
                             Obx(
                               () => Text(
                                 "${controller.maisons[0].nomMaison}",
                                 style: GoogleFonts.poppins(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.green),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ],
@@ -114,11 +115,11 @@ class MaisonScreen extends StatelessWidget {
                           }
                         },
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Text(
-                        'Reference',
+                        'Quartier',
                         style: GoogleFonts.poppins(
                             fontSize: 20,
                             color: Colors.green,
@@ -216,13 +217,13 @@ class MaisonScreen extends StatelessWidget {
                                         )));
                               },
                               child: Icon(Icons.edit)),
-                          SizedBox(
+                          const SizedBox(
                             width: 100,
                           ),
                           ElevatedButton(
                               onPressed: () {
                                 Get.defaultDialog(
-                                  titlePadding: EdgeInsets.symmetric(
+                                  titlePadding: const EdgeInsets.symmetric(
                                       horizontal: 20, vertical: 20),
                                   title: "Supprimer une maison",
                                   titleStyle: const TextStyle(
@@ -275,8 +276,7 @@ class MaisonScreen extends StatelessWidget {
                 )
               ]))
             ],
-          )
-        ],
+          ),
       ),
     );
   }

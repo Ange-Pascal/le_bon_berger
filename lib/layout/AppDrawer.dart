@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
+import 'package:lebonberger/Politique/screens/term-condition.dart';
 import 'package:lebonberger/absence/screen/absence.dart';
 import 'package:lebonberger/auth/auth.controller.dart';
 import 'package:lebonberger/cellules/cellule-liste.dart';
@@ -157,7 +158,8 @@ class AppDrawer extends StatelessWidget {
               ),
             ), 
             onTap: () {
-              Get.to(EncadreurHome());
+              // Get.to(EncadreurHome()); 
+              Get.to(termCondition()); 
             },
           ),
           ListTile(

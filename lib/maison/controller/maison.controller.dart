@@ -1,5 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:lebonberger/cellules/model/cellule.model.dart';
+import 'package:lebonberger/cellules/service/cellule.service.dart';
 import 'package:lebonberger/maison/model/maison.model.dart';
 
 import '../service/maison.service.dart';
@@ -8,6 +11,8 @@ class MaisonController extends GetxController {
   RxBool isLoading = false.obs;
 
   late List<Maison> maisons = <Maison>[].obs;
+  late List<Cellule> cellules = <Cellule>[].obs;
+
   late TextEditingController nomMaisonController = TextEditingController();
   late TextEditingController chefDeFamilleController = TextEditingController();
   late TextEditingController telephoneController = TextEditingController();
@@ -17,10 +22,11 @@ class MaisonController extends GetxController {
 
   var id = "";
   var nomMaison = "";
-  var chefDeFammille = "";
+  var chefDeFamille = "";
   var telephone = "";
   var quartier = "";
   var repere = "";
+  var cellule = "".obs;
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
   @override
@@ -32,6 +38,7 @@ class MaisonController extends GetxController {
     repereController = TextEditingController();
     celluleController = TextEditingController();
     findMaisonAll();
+    findCelluleAll ();
     super.onInit();
   }
 
@@ -48,5 +55,51 @@ class MaisonController extends GetxController {
       isLoading(false);
       print(onError);
     });
+  }
+
+  void setCelluleItemValue (String newValue) {
+    print (newValue);
+    cellule.value = newValue;
+  }
+
+  void findCelluleAll() {
+    CelluleService.flindAll().then((res) {
+      cellules.assignAll(celluleFromJson(res));
+      print(cellules.length);
+    }).catchError((onError) => print(onError));
+  }
+
+  // controller pour ajout de cellule
+
+  MaisonSubmit() async {
+    formkey.currentState!.save();
+    if (formkey.currentState!.validate()) {
+      Map<String, dynamic> data = {
+        "nom_maison": nomMaison,
+        "chef_de_famille": chefDeFamille,
+        "telephone": telephone,
+        "quartier": quartier,
+        "repere": repere,
+        "cellule": cellule.value,
+      };
+      print(data);
+      var res = await MaisonService.create(data);
+      if (res != null && res["statusCode"] == 400) {
+        Get.snackbar(
+          "Champs Obligatoire",
+          res["message"][0].toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      } else {
+        nomMaisonController.clear();
+        chefDeFamilleController.clear();
+        telephoneController.clear();
+        repereController.clear();
+        celluleController.clear();
+        Get.back();
+      }
+    }
   }
 }

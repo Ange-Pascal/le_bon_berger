@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lebonberger/auth/auth.controller.dart';
-import 'package:lebonberger/dashboard/services/add-visite.dart';
+import 'package:lebonberger/visites/view/add-visite.dart';
 import 'package:lebonberger/routes/app.routes.dart';
 import '../delayed_animation.dart';
 import '../main.dart';

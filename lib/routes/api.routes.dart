@@ -26,5 +26,8 @@ class ApiRoutes {
   static String departements = APP_BASE_URL + '/departements';
 
   // Encadreur
-  static String encadreur = APP_BASE_URL + '/encadreurs';
+  static String encadreur = APP_BASE_URL + '/encadreurs'; 
+
+  // Absences
+  static String absences = APP_BASE_URL + '/absences'; 
 }
