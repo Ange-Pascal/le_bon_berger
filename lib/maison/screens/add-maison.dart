@@ -14,13 +14,8 @@ class AddMaison extends StatefulWidget {
 
 class _AddMaisonState extends State<AddMaison> {
   MaisonController controller = Get.put(MaisonController());
-  CelluleController _controller = Get.put(CelluleController());
 
-  final _formKey = GlobalKey<FormState>();
   String? valueChoose;
-  String? newValue;
-  String? valueItem;
-  final List listItem = [];
 
   @override
   Widget build(BuildContext context) {
@@ -161,7 +156,7 @@ class _AddMaisonState extends State<AddMaison> {
                         width: 300,
                         child: ElevatedButton(
                           onPressed: () {
-                            controller.MaisonSubmit();
+                            controller.maisonSubmit();
                           },
                           child: Text(
                             "Ajouter",

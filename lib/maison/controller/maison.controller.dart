@@ -38,7 +38,7 @@ class MaisonController extends GetxController {
     repereController = TextEditingController();
     celluleController = TextEditingController();
     findMaisonAll();
-    findCelluleAll ();
+    findCelluleAll();
     super.onInit();
   }
 
@@ -57,8 +57,8 @@ class MaisonController extends GetxController {
     });
   }
 
-  void setCelluleItemValue (String newValue) {
-    print (newValue);
+  void setCelluleItemValue(String newValue) {
+    print(newValue);
     cellule.value = newValue;
   }
 
@@ -71,19 +71,19 @@ class MaisonController extends GetxController {
 
   // controller pour ajout de cellule
 
-  MaisonSubmit() async {
+  void maisonSubmit() async {
     formkey.currentState!.save();
     if (formkey.currentState!.validate()) {
       Map<String, dynamic> data = {
         "nom_maison": nomMaison,
         "chef_de_famille": chefDeFamille,
-        "telephone": telephone,
+        "telephone": "0777952356",
         "quartier": quartier,
         "repere": repere,
-        "cellule": cellule.value,
+        "cellule_id": cellule.value,
       };
-      print(data);
       var res = await MaisonService.create(data);
+      print(res);
       if (res != null && res["statusCode"] == 400) {
         Get.snackbar(
           "Champs Obligatoire",
