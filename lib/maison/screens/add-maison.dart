@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../cellules/controller/cellule.controller.dart';
-import '../controller/maison.controller.dart';
+import 'package:lebonberger/cellules/controller/cellule.controller.dart';
+import 'package:lebonberger/maison/controller/maison.controller.dart';
 
 class AddMaison extends StatefulWidget {
   const AddMaison({super.key});
@@ -66,6 +66,29 @@ class _AddMaisonState extends State<AddMaison> {
                             borderSide: BorderSide(color: Colors.green))),
                     onSaved: (newValue) {
                       controller.chefDeFamille = newValue!;
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Champs Obligatoire';
+                      }
+                      return null;
+                    },
+                  ),
+                ), 
+                
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  child: TextFormField(
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                        icon: Icon(Icons.numbers),
+                        labelText: 'Telephone',
+                        hintText: 'Entrez votre numero de telephone',
+                        focusColor: Colors.green,
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.green))),
+                    onSaved: (newValue) {
+                      controller.telephone = newValue!;
                     },
                     validator: (value) {
                       if (value == null || value.isEmpty) {

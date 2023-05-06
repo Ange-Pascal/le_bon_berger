@@ -5,8 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:im_stepper/stepper.dart';
 import 'package:lebonberger/eglise/screens/eglise.login.dart';
 
-class termCondition extends StatelessWidget {
-  termCondition({super.key});
+class TermCondition extends StatelessWidget {
+  TermCondition({super.key});
 
   final controller = Get.put(TermController());
 
@@ -17,9 +17,9 @@ class termCondition extends StatelessWidget {
         title: Text('Termes et conditions'),
         centerTitle: true,
         elevation: 0,
-        leading: const Icon(
-          Icons.info,
-        ),
+        // leading: const Icon(
+        //   Icons.info,
+        // ),
       ),
       body: Stack(children: [
         Container(
@@ -86,7 +86,7 @@ class termCondition extends StatelessWidget {
         content: Text(
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
           style: GoogleFonts.poppins(fontSize: 18),
-        ),
+        ), 
         isActive: controller.currentStep.value >= 0,
         state: controller.currentStep.value > 0
             ? StepState.complete

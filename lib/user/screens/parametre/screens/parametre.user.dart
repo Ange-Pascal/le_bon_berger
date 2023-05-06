@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lebonberger/cellules/add-cellule.dart';
-import 'encadreur-screen.dart';
-import 'package:get/get.dart';
+import 'package:lebonberger/nouvelles/screens/nouvelle-screen.dart';
+import 'package:lebonberger/visites/view/add-visite.dart';
 
-class EncadreurHome extends StatelessWidget {
-  const EncadreurHome({super.key});
+class ParametreUser extends StatelessWidget {
+  const ParametreUser({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +16,14 @@ class EncadreurHome extends StatelessWidget {
           SliverAppBar(
             leading: IconButton(
                 onPressed: () {
-                  Get.back();
+                  Get.back(); 
                 },
                 icon: Icon(Icons.arrow_back)),
             backgroundColor: Colors.green,
             expandedHeight: 200,
             pinned: true,
-            flexibleSpace: const FlexibleSpaceBar(
-              title: Text("Encadreur"),
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text("Paramètres", style: GoogleFonts.poppins(fontSize: 25, fontWeight: FontWeight.bold),),
               centerTitle: true,
               expandedTitleScale: 1,
               collapseMode: CollapseMode.parallax,
@@ -59,16 +58,20 @@ class EncadreurHome extends StatelessWidget {
                       Icons.home,
                       color: Colors.white,
                     )),
-                title: Text("Nom: Encadreur $index",
+                title: Text("Paramètre $index",
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold, fontSize: 18)),
-                subtitle: Text("Departement:  Musique $index"),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                  Text("Libéllé $index"), 
+                  Text("Date: 20-03-2025"),
+                ]),
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () {
-                  Get.to(EncadreurScreen());
+                  Get.to(NouvelleScreen());
                 },
               ),
-              
             );
           }, childCount: 10))
         ],
@@ -84,7 +87,13 @@ class EncadreurHome extends StatelessWidget {
   }
 }
 
-void _modal(BuildContext context) => showModalBottomSheet(
-  context: context,
-   builder: (context) => AddCellule()
-);
+void _modal(BuildContext context) =>
+    showModalBottomSheet(
+      backgroundColor: Colors.white,
+      context: context, 
+      isScrollControlled: true, 
+      isDismissible: true,
+      builder: (BuildContext context) {
+      return AddVisite();
+    });
+

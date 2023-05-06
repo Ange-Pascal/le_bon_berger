@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
-import 'package:lebonberger/absence/screen/absence.dart';
-import 'package:lebonberger/decisions/screens/decicion.dart';
-import 'package:lebonberger/departement/screens/departement.dart';
-import 'package:lebonberger/cellules/cellule-liste.dart';
-import 'package:lebonberger/maison/screens/maison.dart';
-import 'package:lebonberger/nouvelles/screens/nouvelle.dart';
-import 'package:lebonberger/visites/view/visite.dart';
+import 'package:lebonberger/user/screens/absences/screens/absenceList.user.dart';
+import 'package:lebonberger/user/screens/decison/screens/decision.user.dart';
+import 'package:lebonberger/user/screens/nouvelles/screens/nouvelleList.user.dart';
+import 'package:lebonberger/user/screens/parametre/screens/parametre.user.dart';
 
-class GridDashboard extends StatelessWidget {
+class DashboardHomeUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var color = 0xff808000;
@@ -24,7 +21,7 @@ class GridDashboard extends StatelessWidget {
           children: [          
             GestureDetector(
               onTap: () {
-                Get.to(DecisionHome());
+                Get.to(DecisionUserHome());
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -43,7 +40,7 @@ class GridDashboard extends StatelessWidget {
                       "assets/images/accepter.jpg",
                       width: 42,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 14,
                     ),
                     Text(
@@ -58,7 +55,7 @@ class GridDashboard extends StatelessWidget {
                       height: 8,
                     ),
                     Text(
-                      "Decisons par semaine",
+                      "Decision suite à l'absence",
                       style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                         color: Colors.grey,
@@ -82,7 +79,7 @@ class GridDashboard extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Get.to(VisiteHome());
+                Get.to(NouvelleListUser());
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -105,7 +102,7 @@ class GridDashboard extends StatelessWidget {
                       height: 14,
                     ),
                     Text(
-                      "Visites",
+                      "Nouvelles",
                       style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               color: Colors.green,
@@ -116,7 +113,7 @@ class GridDashboard extends StatelessWidget {
                       height: 8,
                     ),
                     Text(
-                      "Visite par semaine",
+                      "Nouvelles de l'eglise",
                       style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                         color: Colors.grey,
@@ -139,7 +136,7 @@ class GridDashboard extends StatelessWidget {
               ),
             ),
             GestureDetector(
-              onTap: (){Get.to(AbsenceHome());},
+              onTap: (){Get.to(AbsenceListUser());},
               child: Container(
                 decoration: BoxDecoration(
                     color: Colors.white,
@@ -172,7 +169,7 @@ class GridDashboard extends StatelessWidget {
                       height: 8,
                     ),
                     Text(
-                      "",
+                      "Liste de mes absences",
                       style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                         color: Colors.grey,
@@ -183,7 +180,7 @@ class GridDashboard extends StatelessWidget {
                       height: 14,
                     ),
                     Text(
-                      "3 Events",
+                      "10",
                       style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               color: Colors.black,
@@ -196,7 +193,7 @@ class GridDashboard extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Get.to(NouvelleHome());
+                Get.to(ParametreUser());
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -219,7 +216,7 @@ class GridDashboard extends StatelessWidget {
                       height: 14,
                     ),
                     Text(
-                      "Nouvelles",
+                      "Paramètres",
                       style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               color: Colors.green,
@@ -230,7 +227,7 @@ class GridDashboard extends StatelessWidget {
                       height: 8,
                     ),
                     Text(
-                      "Informations",
+                      "Infos du compte ",
                       style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                         color: Colors.grey,
@@ -241,7 +238,7 @@ class GridDashboard extends StatelessWidget {
                       height: 14,
                     ),
                     Text(
-                      "des infos de l'eglise",
+                      "et de l'eglise",
                       style: GoogleFonts.poppins(
                           textStyle: const TextStyle(
                               color: Colors.black,

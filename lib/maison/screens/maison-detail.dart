@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:get/get.dart';
-import 'package:lebonberger/maison/controller/maison.controller.dart';
 import 'package:lebonberger/maison/controller/maison.detail.controller.dart';
 
 class MaisonScreen extends StatelessWidget {
@@ -92,7 +89,7 @@ class MaisonScreen extends StatelessWidget {
                           return Text('');
                         }
                       }),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Text(
@@ -257,7 +254,9 @@ class MaisonScreen extends StatelessWidget {
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.red,
                                     ),
-                                    onPressed: () {},
+                                    onPressed: () { controller.deleteMaison(
+                                      controller.maisons[0], 
+                                    );  Get.back();},
                                     child: Text(
                                       'Oui, Supprimer',
                                       style: GoogleFonts.poppins(

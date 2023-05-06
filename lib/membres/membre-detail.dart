@@ -8,6 +8,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:lebonberger/cellules/model/cellule.model.dart';
+import 'package:lebonberger/encadreur/add-encadreur.dart';
+import 'package:lebonberger/encadreur/controller/encadreur-add.controller.dart';
 import 'package:lebonberger/membres/controller/membre.controller.dart';
 import 'package:lebonberger/membres/controller/membre.controller.detail.dart';
 import 'package:lebonberger/membres/model/membre.model.dart';
@@ -16,6 +18,7 @@ import 'package:lebonberger/routes/api.routes.dart';
 class MembreDetail extends StatelessWidget {
   MembreDetail({super.key});
   MembreDetailController controller = Get.put(MembreDetailController());
+  EncadreurDetailController _controller = Get.put(EncadreurDetailController());
 
   @override
   Widget build(BuildContext context) {
@@ -594,8 +597,7 @@ class MembreDetail extends StatelessWidget {
                                       ),
                                     )
                                   : Text(''),
-                              Divider(), 
-                              
+                              Divider(),
                               controller.membres[0].isActive == 0
                                   ? TextButton(
                                       onPressed: () {
@@ -774,6 +776,60 @@ class MembreDetail extends StatelessWidget {
                               TextButton(
                                 onPressed: () {
                                   Get.defaultDialog(
+                                    title: "Devenir encadreur",
+                                    titleStyle: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.green,
+                                    ),
+                                    middleText: "Devenir vraiment encadreur ?",
+                                    middleTextStyle: TextStyle(
+                                      fontSize: 15.0,
+                                    ),
+                                    backgroundColor: Colors.white,
+                                    radius: 0.0,
+                                    cancel: TextButton(
+                                      onPressed: () {
+                                        Get.back();
+                                      },
+                                      child: Text(
+                                        'Annuler',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                    confirm: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.red,
+                                      ),
+                                      onPressed: () {
+                                        Get.to(AddEncadreur(),
+                                            arguments: _controller.membres[0].id);
+                                      },
+                                      child: Text('Oui, Devenir'),
+                                    ),
+                                    barrierDismissible: false,
+                                  );
+                                },
+                                child: Text(
+                                  'Devenir encadreur',
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    color: Colors.black,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                                style: TextButton.styleFrom(
+                                  minimumSize: Size.fromHeight(50),
+                                  backgroundColor: Colors.green,
+                                ),
+                              ),
+                              Divider(),
+                              TextButton(
+                                onPressed: () {
+                                  Get.defaultDialog(
                                     title: "Supprimer le compte",
                                     titleStyle: TextStyle(
                                       fontFamily: 'Poppins',
@@ -827,8 +883,6 @@ class MembreDetail extends StatelessWidget {
                                       Color.fromARGB(255, 236, 189, 189),
                                 ),
                               ),
-
-                              
                             ],
                           ),
                         )

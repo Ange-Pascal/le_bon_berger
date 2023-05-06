@@ -1,8 +1,8 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebonberger/maison/model/maison.model.dart';
 
-import '../service/maison.service.dart';
+import 'package:lebonberger/maison/service/maison.service.dart';
 
 class MaisonDetailController extends GetxController {
   RxBool isLoading = false.obs;
@@ -25,5 +25,19 @@ class MaisonDetailController extends GetxController {
         maisons.add(maison);
       }).catchError((onError) => print(onError));
     }
-  }
+  } 
+
+  // Methode pour supprimer une maison : le controller 
+
+  // Supprimer une maison 
+  void deleteMaison(Maison id) {
+    isLoading(true); 
+    MaisonService.deleteMaison(id.id.toString()).then((res) {
+      isLoading(false);
+      Get.back();
+    }).catchError((onError) {
+      isLoading(false);
+      print(onError);
+    });
+  } 
 }

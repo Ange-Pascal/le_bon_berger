@@ -7,9 +7,11 @@ import 'package:lebonberger/auth/auth.controller.dart';
 import 'package:lebonberger/cellules/cellule-liste.dart';
 import 'package:lebonberger/decisions/screens/decicion.dart';
 import 'package:lebonberger/departement/screens/departement.dart';
-import 'package:lebonberger/encadreur/components/screens/encadreur-home.dart';
+import 'package:lebonberger/encadreur/screens/encadreurList.dart';
 import 'package:lebonberger/maison/screens/maison.dart';
 import 'package:lebonberger/routes/app.routes.dart';
+import 'package:lebonberger/user/screens/components/home_user_dashboard.dart';
+import 'package:lebonberger/user/screens/home_user.dart';
 import 'package:lebonberger/visites/view/visite.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -158,8 +160,8 @@ class AppDrawer extends StatelessWidget {
               ),
             ), 
             onTap: () {
-              // Get.to(EncadreurHome()); 
-              Get.to(termCondition()); 
+              Get.to(EncadreurList()); 
+              // Get.to(termCondition()); 
             },
           ),
           ListTile(
@@ -183,7 +185,8 @@ class AppDrawer extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Get.to(DecisionHome());
+              // Get.to(DecisionHome()); 
+              Get.to(HomeUserDashboard());
             },
           ),
           

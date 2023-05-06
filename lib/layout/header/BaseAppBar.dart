@@ -23,7 +23,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
         SizedBox(width: 10),
         Container(
           child: Text(
-            'Le Bon Berger',
+            'LeBonBerger',
             style: TextStyle(
               fontFamily: 'KottaOne',
               fontWeight: FontWeight.bold,

@@ -1,18 +1,16 @@
 import 'dart:convert';
-import 'dart:io';
 
-// import 'package:get/get.dart';
+import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:lebonberger/auth/Token.dart';
-import 'package:lebonberger/maison/model/maison.model.dart';
+import 'package:lebonberger/membres/model/membre.model.dart';
 import 'package:lebonberger/routes/api.routes.dart';
-import 'package:dio/dio.dart';
 
-// class MaisonService extends GetConnect {
+// class EncadreurService extends GetConnect {
 //   // Liste membres
 //   static Future<dynamic> flindAll() async {
 //     http.Response res = await http.get(
-//       Uri.parse(ApiRoutes.maisons),
+//       Uri.parse(ApiRoutes.encadreur),
 //       headers: {
 //         'Content-Type': 'application/json',
 //         'Accept': 'application/json',
@@ -21,54 +19,58 @@ import 'package:dio/dio.dart';
 //     );
 //     return res.body;
 //   }
-// }
+// } 
 
-class MaisonService {
-  // Liste maison , affichage
+
+
+class EncadreurService {
+  // Liste cellules service
   static Future<dynamic> flindAll() async {
     // print(Uri.parse(ApiRoutes.membres));
 
-    http.Response res = await http.get(Uri.parse(ApiRoutes.maisons), headers: {
+    http.Response res = await http.get(Uri.parse(ApiRoutes.encadreur), headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer ${Token.getToken()}',
     });
     return res.body;
   }
-  // Methode service pour afficher les infos d'une maison
-  static Future<Maison> findOndById(String maisonId) async {
+  // Methode pour recupere les infos d'un membre a enregistrer comme encadreur
+  static Future<Membre> findOndById(String membreId) async {
     Dio dio = Dio();
     Response response;
 
-    response = await dio.get('${ApiRoutes.maisons}/$maisonId',
+    response = await dio.get('${ApiRoutes.maisons}/$membreId',
         options: Options(headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
           'Authorization': 'Bearer ${Token.getToken()}',
         }));
 
-    return maisonFromJsonSingle(jsonEncode(response.data));
+    return membreFromJsonSingle(jsonEncode(response.data));
   }
 
-  // Methode controller pour Ajouter une maison
+  // Ajouter  un encadreur step 2 service
   static Future<dynamic> create(Map<String, dynamic> data) async {
+    // print(Uri.parse(ApiRoutes.membres));
+    // print(data);
     http.Response res = await http.post(
-      Uri.parse(ApiRoutes.maisons),
+      Uri.parse(ApiRoutes.encadreur),
       body: json.encode(data),
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'applicastion/json',
         'Accept': 'application/json',
         'Authorization': 'Bearer ${Token.getToken()}',
       },
     );
     return json.decode(res.body);
-  } 
+  }
 
-  // supprimer une maison 
+  // Supprimer un encadreur
 
-  static Future<dynamic> deleteMaison(String id) async {
+  static Future<dynamic> deleteEncadreur(String id) async {
     // print(Uri.parse(ApiRoutes.membres));
-    String path = '${ApiRoutes.maisons}/$id';
+    String path = '${ApiRoutes.encadreur}/$id';
     
     http.Response res = await http.delete(
       Uri.parse(path),
@@ -83,4 +85,10 @@ class MaisonService {
 
     return json.decode(res.body);
   } 
+
+
+  // modifier un encadreur
+
+  
 }
+

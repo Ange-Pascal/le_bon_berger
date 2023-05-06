@@ -1,0 +1,110 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:lebonberger/cellules/model/cellule.model.dart';
+import 'package:lebonberger/encadreur/model/encadreur.model.dart';
+import 'package:lebonberger/encadreur/screens/encadreurList.dart';
+import 'package:lebonberger/encadreur/service/encadreur.service.dart';
+import 'package:lebonberger/membres/model/membre.model.dart';
+import 'package:lebonberger/membres/service/membre.service.dart';
+import 'package:lebonberger/routes/app.routes.dart';
+
+class EncadreurController extends GetxController {
+  RxBool isLoading = false.obs;
+  // Etape 1 creation des instances
+  late List<Encadreur> encadreurs = <Encadreur>[].obs;
+  late List<Membre> membres = <Membre>[].obs;
+  late TextEditingController nameController = TextEditingController();
+  late TextEditingController prenomController = TextEditingController();
+  late TextEditingController emailController = TextEditingController();
+  late TextEditingController userIdController = TextEditingController();
+
+  var id = "";
+  var userId = "".obs;
+  var name = "";
+  var prenom = "";
+  var email = "";
+
+  final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+
+  // Fetch cellule step 2 appel in service the method
+
+  @override
+  void onInit() async {
+    nameController = TextEditingController();
+    prenomController = TextEditingController();
+    emailController = TextEditingController();
+    userIdController = TextEditingController();
+    findEncadreurAll();
+    findMembreAll();
+
+    super.onInit();
+  }
+
+
+  // fetch cellule controller
+  void findEncadreurAll() {
+    isLoading(true);
+    EncadreurService.flindAll().then((res) {
+      isLoading(false);
+      encadreurs.assignAll(encadreurFromJson(res));
+    }).catchError((onError) {
+      isLoading(false);
+      print(onError);
+    });
+  }
+
+// Afficher les membres
+  void setEncadreurItemValue(String newValue) {
+    print(newValue);
+    userId.value = newValue;
+  }
+
+  void findMembreAll() {
+    MembreService.flindAll().then((res) {
+      membres.assignAll(membreFromJson(res));
+      print(membres.length);
+    }).catchError((onError) => print(onError));
+  }
+  // controller pour ajout d'encadreur
+
+  encadreurSubmit() async {
+    formkey.currentState!.save();
+    if (formkey.currentState!.validate()) {
+      Map<String, dynamic> data = {
+        "name": name,
+        "prenom": prenom,
+        "email": email,
+        "user_id": userId.value,
+      };
+
+      var res = await EncadreurService.create(data);
+      if (res != null && res["statusCode"] == 400) {
+        Get.snackbar(
+          "Champs Obligatoire",
+          res["message"][0].toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      } else {
+        // nomCelluleController.clear();
+        Get.to(EncadreurList());
+      }
+    }
+  }
+
+  // delete cellule controller
+  void deleteEncadreur(Cellule id) {
+    isLoading(true);
+    EncadreurService.deleteEncadreur(id.id.toString()).then((res) {
+      isLoading(false);
+      findEncadreurAll();
+      Get.back();
+    }).catchError((onError) {
+      isLoading(false);
+      print(onError);
+    });
+  }
+
+  // Modifier la cellule controller function
+}

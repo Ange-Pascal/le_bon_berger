@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lebonberger/Politique/screens/term-condition.dart';
 import 'package:lebonberger/auth/auth.controller.dart';
 import 'package:lebonberger/visites/view/add-visite.dart';
 import 'package:lebonberger/routes/app.routes.dart';
@@ -170,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            SizedBox(height: 90),
+            SizedBox(height: 10),
             Align(
               alignment: Alignment.centerRight,
               child: Padding(
@@ -180,12 +181,38 @@ class _LoginPageState extends State<LoginPage> {
                     // controller.login();
                     Navigator.pop(context);
                   },
-                  child: Text(
-                    "Passer",
-                    style: GoogleFonts.poppins(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20, 
+                      vertical: 20, 
+                    ),
+                    child: Row( 
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Avez vous un compte?",
+                          style: GoogleFonts.poppins(
+                            color: Colors.grey,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                            fontStyle: FontStyle.italic
+                          ),
+                        ), 
+                        SizedBox(width: 10,), 
+                        InkWell(
+                          onTap: (){
+                            Get.to(TermCondition()); 
+                          },
+                          child: Text(
+                            "S'inscrire",
+                            style: GoogleFonts.poppins(
+                              color: Colors.red,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

@@ -5,8 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lebonberger/decisions/screens/decision-screen.dart';
 import 'package:lebonberger/dashboard/services/add-decision.dart';
 
-class DecisionHome extends StatelessWidget {
-  const DecisionHome({super.key});
+class DecisionUserHome extends StatelessWidget {
+  const DecisionUserHome({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -77,7 +77,7 @@ class MaisonController extends GetxController {
       Map<String, dynamic> data = {
         "nom_maison": nomMaison,
         "chef_de_famille": chefDeFamille,
-        "telephone": "0777952356",
+        "telephone": telephone,
         "quartier": quartier,
         "repere": repere,
         "cellule_id": cellule.value,
@@ -102,4 +102,7 @@ class MaisonController extends GetxController {
       }
     }
   }
+
+  
+
 }
