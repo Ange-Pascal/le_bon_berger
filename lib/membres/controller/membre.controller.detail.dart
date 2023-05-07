@@ -11,6 +11,10 @@ import 'package:lebonberger/cellules/model/cellule.model.dart';
 import 'package:lebonberger/cellules/service/cellule.service.dart';
 import 'package:lebonberger/departement/model/departement.model.dart';
 import 'package:lebonberger/departement/service/departement.service.dart';
+import 'package:lebonberger/encadreur/controller/encadreur.controller.dart';
+import 'package:lebonberger/encadreur/model/encadreur.model.dart';
+import 'package:lebonberger/encadreur/screens/encadreurList.dart';
+import 'package:lebonberger/encadreur/service/encadreur.service.dart';
 import 'package:lebonberger/maison/model/maison.model.dart';
 import 'package:lebonberger/maison/service/maison.service.dart';
 import 'package:lebonberger/membres/MembreScreen.dart';
@@ -22,6 +26,7 @@ import 'package:lebonberger/routes/app.routes.dart';
 
 class MembreDetailController extends GetxController {
   late List<Membre> membres = <Membre>[];
+  late List<Encadreur> encadreurs = <Encadreur>[];
 
   RxBool isLoading = true.obs;
 
@@ -77,7 +82,20 @@ class MembreDetailController extends GetxController {
       // print(membre);
     }
   }
+// Devenir encadreur 
 
+validerEncadreur(Membre membre) async {
+    isLoading(true);
+    dynamic data = {
+      "user_id": membre.id.toString(),
+    };
+    EncadreurService.validerEncadreur(data).then((res) {
+      isLoading(false);
+      EncadreurController encadreurController = Get.find();
+      encadreurController.findEncadreurAll();
+      Get.to(EncadreurList());
+    }).catchError((onError) => print(onError));
+  }
 // 1 compte Actif
 // 0 compte Inactif
   activerDesactiverCompte(Membre membre) async {

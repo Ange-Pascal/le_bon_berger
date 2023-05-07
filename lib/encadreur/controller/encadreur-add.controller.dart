@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lebonberger/maison/model/maison.model.dart';
 
 import 'package:lebonberger/membres/model/membre.model.dart';
 import 'package:lebonberger/membres/service/membre.service.dart';

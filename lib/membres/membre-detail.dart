@@ -18,7 +18,6 @@ import 'package:lebonberger/routes/api.routes.dart';
 class MembreDetail extends StatelessWidget {
   MembreDetail({super.key});
   MembreDetailController controller = Get.put(MembreDetailController());
-  EncadreurDetailController _controller = Get.put(EncadreurDetailController());
 
   @override
   Widget build(BuildContext context) {
@@ -805,8 +804,7 @@ class MembreDetail extends StatelessWidget {
                                         backgroundColor: Colors.red,
                                       ),
                                       onPressed: () {
-                                        Get.to(AddEncadreur(),
-                                            arguments: _controller.membres[0].id);
+                                       controller.validerEncadreur(controller.membres[0]);
                                       },
                                       child: Text('Oui, Devenir'),
                                     ),

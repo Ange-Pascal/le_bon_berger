@@ -34,12 +34,12 @@ class EncadreurController extends GetxController {
     prenomController = TextEditingController();
     emailController = TextEditingController();
     userIdController = TextEditingController();
+    // validerEncadreur();
     findEncadreurAll();
     findMembreAll();
 
     super.onInit();
   }
-
 
   // fetch cellule controller
   void findEncadreurAll() {
@@ -65,33 +65,10 @@ class EncadreurController extends GetxController {
       print(membres.length);
     }).catchError((onError) => print(onError));
   }
-  // controller pour ajout d'encadreur
 
-  encadreurSubmit() async {
-    formkey.currentState!.save();
-    if (formkey.currentState!.validate()) {
-      Map<String, dynamic> data = {
-        "name": name,
-        "prenom": prenom,
-        "email": email,
-        "user_id": userId.value,
-      };
+  //
 
-      var res = await EncadreurService.create(data);
-      if (res != null && res["statusCode"] == 400) {
-        Get.snackbar(
-          "Champs Obligatoire",
-          res["message"][0].toString(),
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-        );
-      } else {
-        // nomCelluleController.clear();
-        Get.to(EncadreurList());
-      }
-    }
-  }
+  
 
   // delete cellule controller
   void deleteEncadreur(Cellule id) {

@@ -50,6 +50,25 @@ class EncadreurService {
     return membreFromJsonSingle(jsonEncode(response.data));
   }
 
+  // valider un encadreur service 
+  static Future<Membre> validerEncadreur(
+      dynamic data) async {
+
+    // print(Uri.parse(ApiRoutes.membres));
+    http.Response res = await http.post(
+      Uri.parse(ApiRoutes.encadreur),
+      body: json.encode(data),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ${Token.getToken()}',
+      },
+    ); 
+    print(res);
+    return json.decode(res.body);
+  }
+
+
   // Ajouter  un encadreur step 2 service
   static Future<dynamic> create(Map<String, dynamic> data) async {
     // print(Uri.parse(ApiRoutes.membres));

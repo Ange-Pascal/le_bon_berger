@@ -135,13 +135,13 @@ class EncadreurList extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Get.to(AddEncadreur()); 
-        },
-        child: const Icon(Icons.add),
-        backgroundColor: Colors.green,
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Get.to(AddEncadreur()); 
+      //   },
+      //   child: const Icon(Icons.add),
+      //   backgroundColor: Colors.green,
+      // ),
     );
   }
 }
