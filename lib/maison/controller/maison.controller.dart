@@ -49,11 +49,8 @@ class MaisonController extends GetxController {
     MaisonService.flindAll().then((res) {
       isLoading(false);
       maisons.assignAll(maisonFromJson(res));
-      print('maison');
-      print(maisons.length);
     }).catchError((onError) {
       isLoading(false);
-      print(onError);
     });
   }
 
@@ -102,7 +99,4 @@ class MaisonController extends GetxController {
       }
     }
   }
-
-  
-
 }

@@ -19,22 +19,22 @@ import 'package:lebonberger/routes/api.routes.dart';
 //     );
 //     return res.body;
 //   }
-// } 
-
-
+// }
 
 class EncadreurService {
   // Liste cellules service
   static Future<dynamic> flindAll() async {
     // print(Uri.parse(ApiRoutes.membres));
 
-    http.Response res = await http.get(Uri.parse(ApiRoutes.encadreur), headers: {
+    http.Response res =
+        await http.get(Uri.parse(ApiRoutes.encadreur), headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer ${Token.getToken()}',
     });
     return res.body;
   }
+
   // Methode pour recupere les infos d'un membre a enregistrer comme encadreur
   static Future<Membre> findOndById(String membreId) async {
     Dio dio = Dio();
@@ -50,10 +50,8 @@ class EncadreurService {
     return membreFromJsonSingle(jsonEncode(response.data));
   }
 
-  // valider un encadreur service 
-  static Future<Membre> validerEncadreur(
-      dynamic data) async {
-
+  // valider un encadreur service
+  static Future<dynamic> validerEncadreur(dynamic data) async {
     // print(Uri.parse(ApiRoutes.membres));
     http.Response res = await http.post(
       Uri.parse(ApiRoutes.encadreur),
@@ -63,11 +61,9 @@ class EncadreurService {
         'Accept': 'application/json',
         'Authorization': 'Bearer ${Token.getToken()}',
       },
-    ); 
-    print(res);
-    return json.decode(res.body);
+    );
+    return res.body;
   }
-
 
   // Ajouter  un encadreur step 2 service
   static Future<dynamic> create(Map<String, dynamic> data) async {
@@ -90,7 +86,7 @@ class EncadreurService {
   static Future<dynamic> deleteEncadreur(String id) async {
     // print(Uri.parse(ApiRoutes.membres));
     String path = '${ApiRoutes.encadreur}/$id';
-    
+
     http.Response res = await http.delete(
       Uri.parse(path),
       headers: {
@@ -103,11 +99,7 @@ class EncadreurService {
     print(res.body);
 
     return json.decode(res.body);
-  } 
-
+  }
 
   // modifier un encadreur
-
-  
 }
-

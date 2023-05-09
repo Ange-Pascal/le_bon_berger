@@ -23,6 +23,7 @@ import 'package:lebonberger/membres/membre-detail.dart';
 import 'package:lebonberger/membres/model/membre.model.dart';
 import 'package:lebonberger/membres/service/membre.service.dart';
 import 'package:lebonberger/routes/app.routes.dart';
+import 'package:lebonberger/encadreur/controller/encadreur.controller.dart';
 
 class MembreDetailController extends GetxController {
   late List<Membre> membres = <Membre>[];
@@ -82,20 +83,21 @@ class MembreDetailController extends GetxController {
       // print(membre);
     }
   }
-// Devenir encadreur 
+// Devenir encadreur
 
-validerEncadreur(Membre membre) async {
+  validerEncadreur(Membre membre) async {
     isLoading(true);
     dynamic data = {
       "user_id": membre.id.toString(),
     };
     EncadreurService.validerEncadreur(data).then((res) {
       isLoading(false);
-      EncadreurController encadreurController = Get.find();
-      encadreurController.findEncadreurAll();
-      Get.to(EncadreurList());
+      //EncadreurController encadreurController = Get.find();
+      //encadreurController.findEncadreurAll();
+      Get.back(result: true);
     }).catchError((onError) => print(onError));
   }
+
 // 1 compte Actif
 // 0 compte Inactif
   activerDesactiverCompte(Membre membre) async {
