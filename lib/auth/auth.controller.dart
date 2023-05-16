@@ -55,7 +55,7 @@ class AuthController extends GetxController with CacheManager {
         isLoading(false);
 
         if (jsonToken["statusCode"] == 404) {
-          Get.snackbar("Invalid Credentials", jsonToken["message"]);
+          Get.snackbar("Invalid Credentials 1", jsonToken["message"]);
         } else {
           await saveToken(jsonToken["access_token"], jsonToken["current_user"]);
           Get.toNamed(AppRoutes.membre);
@@ -64,11 +64,11 @@ class AuthController extends GetxController with CacheManager {
         print("echec");
         // print(onError);
         isLoading(false);
-        Get.snackbar("Invalid Credentials", "Champs obligatoire");
+        Get.snackbar("Invalid Credentials 2", "Champs obligatoire");
       });
     } else {
       isLoading(false);
-      Get.snackbar("Invalid Credentials", "Champs obligatoire");
+      Get.snackbar("Invalid Credentials 3", "Champs obligatoire");
     }
   }
 
