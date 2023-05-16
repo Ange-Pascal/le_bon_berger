@@ -64,7 +64,7 @@ class AuthController extends GetxController with CacheManager {
         print("echec");
         // print(onError);
         isLoading(false);
-        Get.snackbar("Invalid Credentials 2", "Champs obligatoire");
+        Get.snackbar("Invalid Credentials 2", onError.toString());
       });
     } else {
       isLoading(false);
