@@ -51,6 +51,7 @@ class AuthController extends GetxController with CacheManager {
       AuthService.login(data).then((res) async {
         // print(res);
         // String rawJson = '{"name":"Mary","age":30}';
+        Get.snackbar("Invalid Credentials 2", res.toString());
         Map<String, dynamic> jsonToken = jsonDecode(res);
         isLoading(false);
 
