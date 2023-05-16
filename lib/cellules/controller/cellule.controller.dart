@@ -79,17 +79,29 @@ class CelluleController extends GetxController {
 
   // Modifier la cellule controller function
 
-  void updateCellules(Cellule cellul) {
-    isLoading(true); 
-    CelluleService.updateCellule(cellul.id.toString()).then((res) {
-      isLoading(false);
-      findCelluleAll();
-      Get.back();
-    }).catchError((onError) {
-      isLoading(false);
-      print(onError);
-    });
-  }
+//   updateCellule(id) async{
+//     formkey.currentState!.save();
+//     if(formkey.currentState!.validate()){
+//       Map<String, dynamic> data = {
+//         "nom_cellule" : nomCellule,
+//       };
+// 
+//       var res = await CelluleService.updateCellule(id); 
+//       if (res != null && res["statusCode"] == 200) {
+//         Get.snackbar(
+//           "Champs Obligatoire",
+//           res["message"][0].toString(),
+//           snackPosition: SnackPosition.BOTTOM,
+//           backgroundColor: Colors.red,
+//           colorText: Colors.white,
+//         ); 
+//         
+//       } else {
+//         nomCelluleController.clear();
+//         Get.back();
+//       }
+//     }
+//   }
   
   
   

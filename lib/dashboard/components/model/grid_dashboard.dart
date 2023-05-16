@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
-import 'package:lebonberger/absence/screen/absence.dart';
+import 'package:lebonberger/absence/screen/absenceList-screen.dart';
 import 'package:lebonberger/decisions/screens/decicion.dart';
 import 'package:lebonberger/departement/screens/departement.dart';
 import 'package:lebonberger/cellules/cellule-liste.dart';

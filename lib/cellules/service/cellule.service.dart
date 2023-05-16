@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:lebonberger/auth/Token.dart';
 import 'package:lebonberger/routes/api.routes.dart';
 
-import '../model/cellule.model.dart';
+import 'package:lebonberger/cellules/model/cellule.model.dart';
 
 
 class CelluleService {
@@ -26,7 +26,7 @@ class CelluleService {
   // Ajouter  Cellule step 2 service
   static Future<dynamic> create(Map<String, dynamic> data) async {
     // print(Uri.parse(ApiRoutes.membres));
-    // print(data);
+    print(data);
     http.Response res = await http.post(
       Uri.parse(ApiRoutes.cellules),
       body: json.encode(data),
@@ -62,21 +62,21 @@ class CelluleService {
 
   // modifier le nom de la cellule  service
 
-  static Future<dynamic> updateCellule(String celluleId) async {
+  // static Future<dynamic> updateCellule(String celluleId) async {
     // print(Uri.parse(ApiRoutes.membres));
-    String path = '${ApiRoutes.cellules}/$celluleId';
-    
-    http.Response res = await http.put(
-      Uri.parse(path),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ${Token.getToken()}',
-      },
-    );
-
-    print(res.body);
-
-    return json.decode(res.body);
-  }
+//     String path = '${ApiRoutes.cellules}/$celluleId';
+//     
+//     http.Response res = await http.post(
+//       Uri.parse(path),
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Accept': 'application/json',
+//         'Authorization': 'Bearer ${Token.getToken()}',
+//       },
+//     );
+// 
+//     print(res.body);
+// 
+//     return json.decode(res.body);
+//   }
 }

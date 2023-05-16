@@ -35,20 +35,7 @@ class EncadreurService {
     return res.body;
   }
 
-  // Methode pour recupere les infos d'un membre a enregistrer comme encadreur
-  static Future<Membre> findOndById(String membreId) async {
-    Dio dio = Dio();
-    Response response;
-
-    response = await dio.get('${ApiRoutes.maisons}/$membreId',
-        options: Options(headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Authorization': 'Bearer ${Token.getToken()}',
-        }));
-
-    return membreFromJsonSingle(jsonEncode(response.data));
-  }
+  
 
   // valider un encadreur service
   static Future<dynamic> validerEncadreur(dynamic data) async {

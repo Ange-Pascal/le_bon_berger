@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lebonberger/absence/screen/absence-screen.dart';
+import 'package:lebonberger/absence/screen/absenceDetail-screen.dart';
 import 'package:lebonberger/visites/view/add-visite.dart';
 
 class AbsenceListUser extends StatelessWidget {

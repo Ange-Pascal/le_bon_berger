@@ -71,7 +71,7 @@ class EncadreurController extends GetxController {
   
 
   // delete cellule controller
-  void deleteEncadreur(Cellule id) {
+  void deleteEncadreur(Encadreur id) {
     isLoading(true);
     EncadreurService.deleteEncadreur(id.id.toString()).then((res) {
       isLoading(false);

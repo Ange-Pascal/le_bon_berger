@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lebonberger/absence/controller/absence.detail.controller.dart';
 import 'package:lebonberger/dashboard/services/add-decision.dart';
 
 class AbsenceScreen extends StatelessWidget {
-  const AbsenceScreen({super.key});
+  AbsenceScreen({super.key});
+
+  AbsenceDetailController controller = Get.put(AbsenceDetailController());
 
   @override
   Widget build(BuildContext context) {
@@ -49,40 +51,29 @@ class AbsenceScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      " Fidèle ",
+                                      " Date ",
                                       style: GoogleFonts.poppins(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.green),
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      " Kouakoua jean ",
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 18, color: Colors.black),
                                     ),
                                   ]),
                               Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 70),
                                   child: Row(
                                     children: [
-                                      Text(
-                                        "Date",
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.green),
-                                      ),
-                                      const SizedBox(
-                                        width: 30,
-                                      ),
-                                      Text(
-                                        "23-07-2024",
-                                        style: GoogleFonts.poppins(
-                                            color: Colors.black, fontSize: 18),
-                                      ),
+                                      Obx(() {
+                                        if (controller.absences[0] != null) {
+                                          return Text(
+                                            "${controller.absences[0].dateAbsence}",
+                                            style: GoogleFonts.poppins(
+                                                color: Colors.black,
+                                                fontSize: 18),
+                                          );
+                                        } else {
+                                          return Text('');
+                                        }
+                                      })
                                     ],
                                   ))
                             ],
@@ -99,18 +90,25 @@ class AbsenceScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        
                         Text(
                           "Motif d'absence",
                           style: GoogleFonts.poppins(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
-                        Text(
-                          "le bébé et la famille se porte bien le bébé et la famille se porte bien le bébé et la famille se porte bien le bébé et la famille se porte bien le bébé et la famille se porte bien",
-                          style: GoogleFonts.poppins(
-                              fontSize: 16, color: Colors.black),
-                        ),
-                        SizedBox(
+                        Obx(() {
+                          if (controller.absences[0] != null) {
+                            return Expanded(
+                              child: Text(
+                                "${controller.absences[0].motifAbsence}",
+                                style: GoogleFonts.poppins(
+                                    fontSize: 16, color: Colors.black),
+                              ),
+                            );
+                          } else {
+                            return Text('');
+                          }
+                        }),
+                        const SizedBox(
                           height: 100,
                         ),
                         Center(
@@ -137,13 +135,11 @@ class AbsenceScreen extends StatelessWidget {
   }
 }
 
-void _modal(BuildContext context) =>
-    showModalBottomSheet(
-      backgroundColor: Colors.white,
-      context: context, 
-      isScrollControlled: true, 
-      isDismissible: true,
-      builder: (BuildContext context) {
+void _modal(BuildContext context) => showModalBottomSheet(
+    backgroundColor: Colors.white,
+    context: context,
+    isScrollControlled: true,
+    isDismissible: true,
+    builder: (BuildContext context) {
       return AddDecision();
     });
-

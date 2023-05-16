@@ -20,7 +20,13 @@ class DepartementScreen extends StatelessWidget {
           onRefresh: () async{
             controller.findDepartementAll();
           },
-          child: CustomScrollView(
+          child: Obx((){
+            if(controller.isLoading.value == true){
+              return const Center(
+                child: CircularProgressIndicator(),
+              ); 
+            } else{
+              return CustomScrollView(
             slivers: [
               SliverAppBar(
                 leading: IconButton(
@@ -140,7 +146,9 @@ class DepartementScreen extends StatelessWidget {
                     );
                   }, childCount: controller.departements.length)))
             ],
-          ),
+          );
+            }
+          })
         ),
       ),
       floatingActionButton: FloatingActionButton(

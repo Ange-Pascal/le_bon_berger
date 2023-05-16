@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lebonberger/encadreur/controller/encadreur.controller.dart';
-import 'package:lebonberger/encadreur/update-encadreur.dart';
+import 'package:lebonberger/absence/controller/absence.controller.dart';
+import 'package:lebonberger/absence/screen/absenceDetail-screen.dart';
 import 'package:lebonberger/membres/controller/membre.controller.dart';
+import 'package:lebonberger/visites/view/add-visite.dart';
 
-class EncadreurDetails extends StatelessWidget {
-   EncadreurDetails({super.key});  
+class AbsenceHome extends StatelessWidget {
+   AbsenceHome({super.key,}); 
 
-  EncadreurController controller = Get.put(EncadreurController()); 
-  MembreController _controller = Get.put(MembreController()); 
+  AbsenceController controller = Get.put(AbsenceController());
+  MembreController _membreController = Get.put(MembreController()); 
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class EncadreurDetails extends StatelessWidget {
       body: Container(
         child: RefreshIndicator( 
           onRefresh: () async {
-            controller.findEncadreurAll();
+            controller.findAbsenceAll();
           },
           child: CustomScrollView(
             slivers: [
@@ -31,7 +32,7 @@ class EncadreurDetails extends StatelessWidget {
                 expandedHeight: 200,
                 pinned: true,
                 flexibleSpace:  FlexibleSpaceBar(
-                  title: Text("Liste des membres", style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.bold),),
+                  title: Text("Absence",  style: GoogleFonts.poppins(fontSize: 25, fontWeight: FontWeight.bold),),
                   centerTitle: true,
                   expandedTitleScale: 1,
                   collapseMode: CollapseMode.parallax,
@@ -42,7 +43,7 @@ class EncadreurDetails extends StatelessWidget {
                 ),
               ),
               Obx(() => SliverList(
-                  delegate: SliverChildBuilderDelegate((context, index) { 
+                  delegate: SliverChildBuilderDelegate((context, index) {
                 return Container(
                   margin: EdgeInsets.all(30),
                   padding: EdgeInsets.all(20),
@@ -63,33 +64,48 @@ class EncadreurDetails extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.green),
                         child: const Icon(
-                          Icons.check_circle,
+                          Icons.home,
                           color: Colors.white,
                         )),
-                    title: Text("${controller.encadreurs[index].name}  ${controller.encadreurs[index].prenom}",
+                    title: Text(controller.absences[index].userId == _membreController.membres[index].id ? " Nom: ${_membreController.membres[index].name}" : "Aucun absence",
                         style: GoogleFonts.poppins(
-                            fontWeight: FontWeight.bold, fontSize: 18)),
-                    subtitle: Text("Email: ${controller.encadreurs[index].email}"),
-                    // trailing: Icon(Icons.keyboard_arrow_right),
-                    // onTap: () {
-                    //   Get.to(EncadreurScreen());
-                    // },
+                            fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black)),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                      // Text( controller.absences[index].userId == _membreController.membres[index].id ? "${_membreController.membres[index].name}" : "Aucune absence"),
+                      // Text("${_controller.membre[index].id}"),
+                    ]),
+                    trailing: Icon(Icons.keyboard_arrow_right),
+                    onTap: () {
+                      Get.to(AbsenceScreen(),
+                              arguments: controller.absences[index].id);
+                    },
                   ),
-                  
                 );
-              }, childCount: controller.encadreurs.length)
-              ))
+              }, childCount: controller.absences.length)))
             ],
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Get.to(UpdateEncadreur()); 
+          _modal(context);
         },
-        child:  Icon(Icons.edit),
+        child: const Icon(Icons.add),
         backgroundColor: Colors.green,
       ),
     );
   }
 }
+
+void _modal(BuildContext context) =>
+    showModalBottomSheet(
+      backgroundColor: Colors.white,
+      context: context, 
+      isScrollControlled: true, 
+      isDismissible: true,
+      builder: (BuildContext context) {
+      return AddVisite();
+    });
+

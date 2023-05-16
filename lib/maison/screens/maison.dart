@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lebonberger/dashboard/Dashboard.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lebonberger/maison/controller/maison.controller.dart';
 import 'package:lebonberger/maison/screens/add-maison.dart';
-import 'package:lebonberger/maison/screens/maison-detail.dart';
 import 'package:lebonberger/routes/app.routes.dart';
 
 class MaisonView extends StatelessWidget {
@@ -19,7 +17,13 @@ class MaisonView extends StatelessWidget {
           onRefresh: () async {
             controller.findMaisonAll();
           },
-          child: CustomScrollView(
+          child: Obx((){
+            if(controller.isLoading == true){
+              return const Center(
+                child: CircularProgressIndicator(),
+              ); 
+            } else {
+              return CustomScrollView(
             slivers: [
               SliverAppBar(
                 leading: IconButton(
@@ -61,7 +65,7 @@ class MaisonView extends StatelessWidget {
                                 offset: Offset(0, 3))
                           ]),
                       child: ListTile(
-                        leading: Container(
+                        leading: Container( 
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
@@ -89,7 +93,9 @@ class MaisonView extends StatelessWidget {
                     );
                   }, childCount: controller.maisons.length)))
             ],
-          ),
+          );
+            }
+          })
         ),
       ),
       floatingActionButton: FloatingActionButton(

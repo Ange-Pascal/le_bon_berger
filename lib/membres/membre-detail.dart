@@ -10,7 +10,6 @@ import 'package:intl/intl.dart';
 import 'package:lebonberger/cellules/model/cellule.model.dart';
 import 'package:lebonberger/encadreur/add-encadreur.dart';
 import 'package:lebonberger/encadreur/controller/encadreur-add.controller.dart';
-import 'package:lebonberger/membres/controller/membre.controller.dart';
 import 'package:lebonberger/membres/controller/membre.controller.detail.dart';
 import 'package:lebonberger/membres/model/membre.model.dart';
 import 'package:lebonberger/routes/api.routes.dart';

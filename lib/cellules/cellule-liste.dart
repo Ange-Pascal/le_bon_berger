@@ -19,7 +19,13 @@ class CelluleHome extends StatelessWidget {
           onRefresh: () async {
             controller.findCelluleAll();
           },
-          child: CustomScrollView(
+          child: Obx((){
+            if(controller.isLoading == true) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else {
+              return CustomScrollView(
             slivers: [
               SliverAppBar(
                   leading: IconButton(
@@ -46,8 +52,7 @@ class CelluleHome extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   )),
-              Obx(
-                () => SliverList(
+            SliverList(
                   delegate: SliverChildBuilderDelegate((context, index) {
                     return Container(
                       margin: EdgeInsets.all(30),
@@ -114,9 +119,9 @@ class CelluleHome extends StatelessWidget {
                                     ),
                                     confirm: ElevatedButton(
                                         onPressed: () {
-                                          controller.updateCellules(
-                                            controller.cellules[0]
-                                          );
+                                          // controller.updateCellule(
+                                          //   controller.cellules[0]
+                                          // );
                                         },
                                         child: Text(
                                           'Modifier',
@@ -127,7 +132,7 @@ class CelluleHome extends StatelessWidget {
                                         )
                                         );
                               },
-                              child: Icon(
+                              child: const Icon(
                                 Icons.edit,
                                 color: Colors.white,
                               ),
@@ -191,9 +196,11 @@ class CelluleHome extends StatelessWidget {
                     );
                   }, childCount: controller.cellules.length),
                 ),
-              )
+                
             ],
-          ),
+          );
+            }
+          })
         ),
       ),
       floatingActionButton: FloatingActionButton(
