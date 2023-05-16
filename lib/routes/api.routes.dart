@@ -5,14 +5,14 @@ class ApiRoutes {
   // static String CORE_BASE_URL = 'http://$BASE_IP:8000/api';
 
   // Base Route dev
-  static String BASE_IP = 'http://leecka.bptechnology.net/public/index.php';
+  static String BASE_IP = 'https://leecka.bptechnology.net/public/index.php';
   static String APP_BASE_URL =
-      'http://leecka.bptechnology.net/public/index.php/api';
+      'https://leecka.bptechnology.net/public/index.php/api';
   static String CORE_BASE_URL =
       'http://leecka.bptechnology.net/public/index.php/api';
 
   static String STORAGE_PUBLIC_PATH =
-      'http://leecka.bptechnology.net/public/uploads/';
+      'https://leecka.bptechnology.net/public/uploads/';
 
   // APP ROUTE
   static String membres = APP_BASE_URL + '/membres';
@@ -26,8 +26,8 @@ class ApiRoutes {
   static String departements = APP_BASE_URL + '/departements';
 
   // Encadreur
-  static String encadreur = APP_BASE_URL + '/encadreurs'; 
+  static String encadreur = APP_BASE_URL + '/encadreurs';
 
   // Absences
-  static String absences = APP_BASE_URL + '/absences'; 
+  static String absences = APP_BASE_URL + '/absences';
 }
