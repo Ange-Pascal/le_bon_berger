@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
       debugShowCheckedModeBanner: false,
-      home: OnBoard(), 
+      home: OnBoard(),
       // home: DashBoardScreen(),
       getPages: AppPages.pages,
     );

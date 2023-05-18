@@ -18,6 +18,17 @@ class AuthService {
       return res.body;
     } catch (e) {
       print(e);
+      return e;
     }
+  }
+
+  static Future<dynamic> findTodo() async {
+    String path = "https://chaka-brenda.com/api/totos";
+
+    http.Response res = await http.get(Uri.parse(path), headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    });
+    return res.body;
   }
 }

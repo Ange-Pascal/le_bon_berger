@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebonberger/auth/Todo.dart';
 import 'package:lebonberger/auth/cache_manager.dart';
 import 'package:lebonberger/auth/login.service.dart';
 import 'package:lebonberger/auth/user.model.dart';
@@ -14,6 +15,7 @@ class AuthController extends GetxController with CacheManager {
       GlobalKey<FormState>(debugLabel: 'LoginPage');
 
   Map<String, dynamic> currentUser = {};
+  late List<Todo> todos = <Todo>[].obs;
 
   late TextEditingController telephoneController;
   late TextEditingController passwordController;
@@ -28,6 +30,7 @@ class AuthController extends GetxController with CacheManager {
     telephoneController = TextEditingController();
     passwordController = TextEditingController();
     getPayload();
+    findTodo();
     super.onReady();
   }
 
@@ -88,5 +91,13 @@ class AuthController extends GetxController with CacheManager {
     if (user != null) {
       return user;
     }
+  }
+
+  void findTodo() async {
+    AuthService.findTodo()
+        .then((res) => {todos.assignAll(todoFromJson(res))})
+        .catchError((onError) {
+      print(onError);
+    });
   }
 }
