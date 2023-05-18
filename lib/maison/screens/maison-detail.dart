@@ -35,7 +35,7 @@ class MaisonScreen extends StatelessWidget {
                         ])),
                     child: Padding(
                       padding: EdgeInsets.all(20),
-                      child: Column(
+                      child: Column( 
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [

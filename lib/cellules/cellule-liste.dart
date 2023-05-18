@@ -15,44 +15,42 @@ class CelluleHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: RefreshIndicator(
-          onRefresh: () async {
-            controller.findCelluleAll();
-          },
-          child: Obx((){
-            if(controller.isLoading == true) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else {
-              return CustomScrollView(
-            slivers: [
-              SliverAppBar(
-                  leading: IconButton(
-                      onPressed: () {
-                        Get.back();
-                      },
-                      icon: Icon(Icons.arrow_back)),
-                  backgroundColor: Colors.green,
-                  expandedHeight: 200,
-                  pinned: true,
-                  flexibleSpace: FlexibleSpaceBar(
-                    title: Text(
-                      "Cellule ",
-                      style: GoogleFonts.poppins(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
+        child: RefreshIndicator(onRefresh: () async {
+          controller.findCelluleAll();
+        }, child: Obx(() {
+          if (controller.isLoading == true) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            return CustomScrollView(
+              slivers: [
+                SliverAppBar(
+                    leading: IconButton(
+                        onPressed: () {
+                          Get.back();
+                        },
+                        icon: Icon(Icons.arrow_back)),
+                    backgroundColor: Colors.green,
+                    expandedHeight: 200,
+                    pinned: true,
+                    flexibleSpace: FlexibleSpaceBar(
+                      title: Text(
+                        "Cellule ",
+                        style: GoogleFonts.poppins(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    centerTitle: true,
-                    expandedTitleScale: 1,
-                    collapseMode: CollapseMode.parallax,
-                    background: const Image(
-                      image: AssetImage("assets/images/bible.jpg"),
-                      fit: BoxFit.cover,
-                    ),
-                  )),
-            SliverList(
+                      centerTitle: true,
+                      expandedTitleScale: 1,
+                      collapseMode: CollapseMode.parallax,
+                      background: const Image(
+                        image: AssetImage("assets/images/bible.jpg"),
+                        fit: BoxFit.cover,
+                      ),
+                    )),
+                SliverList(
                   delegate: SliverChildBuilderDelegate((context, index) {
                     return Container(
                       margin: EdgeInsets.all(30),
@@ -89,18 +87,20 @@ class CelluleHome extends StatelessWidget {
                                         fontSize: 15, color: Colors.green),
                                     titlePadding: EdgeInsets.symmetric(
                                         horizontal: 20, vertical: 20),
-                                    content: Form( 
+                                    content: Form(
                                       key: controller.formkey,
                                       child: TextFormField(
+                                        initialValue: controller
+                                            .cellules[index].nomCellule,
+                                        onSaved: (newValue) {
+                                          controller.nomCellule = newValue!;
+                                        },
                                         decoration: const InputDecoration(
                                             labelText: "Nom de la cellule",
                                             hintText: "Entrez le nouveau nom"),
-                                            validator: (value) {
-                                          if (value == null || value.isEmpty) {
-                                            return 'Champs obligatoire';
-                                          }
-                                          return null;
-                                        },
+                                        //     validator: (value) {
+                                        //
+                                        // },
                                       ),
                                     ),
                                     contentPadding: EdgeInsets.all(20),
@@ -119,18 +119,15 @@ class CelluleHome extends StatelessWidget {
                                     ),
                                     confirm: ElevatedButton(
                                         onPressed: () {
-                                          // controller.updateCellule(
-                                          //   controller.cellules[0]
-                                          // );
+                                          controller.updateCellule(
+                                              controller.cellules[0]);
                                         },
                                         child: Text(
                                           'Modifier',
                                           style: GoogleFonts.poppins(
                                               fontSize: 15,
                                               color: Colors.grey[100]),
-                                        )
-                                        )
-                                        );
+                                        )));
                               },
                               child: const Icon(
                                 Icons.edit,
@@ -196,12 +193,10 @@ class CelluleHome extends StatelessWidget {
                     );
                   }, childCount: controller.cellules.length),
                 ),
-                
-            ],
-          );
-            }
-          })
-        ),
+              ],
+            );
+          }
+        })),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
